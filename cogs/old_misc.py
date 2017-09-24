@@ -9,7 +9,7 @@ import json
 from .utils import launcher
 
 
-class Old_Misc():
+class Misc():
 
 
     def __init__(self, bot):
@@ -150,4 +150,4 @@ class Old_Misc():
     
        
 def setup(bot):
-    bot.add_cog(Old_Misc(bot))
+    bot.add_cog(Misc(bot))
