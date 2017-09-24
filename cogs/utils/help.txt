@@ -1,0 +1,20 @@
+
+  
+**Misc:**
+  .ping                Check the bot's reponse time(not working)
+  .invite              Get the OAuth invite link for the bot
+  .suggest             Add a suggestion for the bot
+  .info                Get a list of info on the bot
+  
+**Mod:**
+  .kick                Kick a member
+  .ban                 Ban a member
+  .unban               Unban a member (not working atm)
+  .purge               Delete messages in bulk
+  
+**No Category:**
+  ._leave_server       Owner command to leave server
+  ._leave_all_servers_ Very Dangerous :)
+  .cog                 Reloads a module.
+  .help                Shows this message.
+  .shutdown            Shutsdown the bot
