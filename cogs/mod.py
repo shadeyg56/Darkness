@@ -1,5 +1,4 @@
 import discord
-from ext.commands import Bot
 from ext import commands
 from .utils import launcher
 import asyncio
