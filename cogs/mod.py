@@ -43,8 +43,8 @@ class Mod():
                 await self.bot.say('{} was kicked'.format(member))
             except discord.Forbidden:
                 await self.bot.say("I need **Kick Members** for this")
-            else:
-                 await self.bot.say('You need **Kick Members for this')
+        else:
+             await self.bot.say('You need **Kick Members for this')
                 
     @commands.command(pass_context = True)
     async def ban(self, ctx, member: discord.Member):       
@@ -54,8 +54,8 @@ class Mod():
                 await self.bot.say('{} was banned'.format(member))
             except discord.Forbidden:
                 await self.bot.say("I need **Ban Members** for this")
-            else:
-                 await self.bot.say('You need **Ban Members** for this')
+        else:
+             await self.bot.say('You need **Ban Members** for this')
                
     @commands.command(pass_context = True)
     async def unban(self, ctx, member: str): 
@@ -67,8 +67,8 @@ class Mod():
                 await self.bot.say('{} was unbanned'.format(mem))
             except discord.Forbidden:
                 await self.bot.say("I need **Ban Members** for this")
-            else:
-                 await self.bot.say('You need **Ban Members** for this')
+        else:
+            await self.bot.say('You need **Ban Members** for this')
                 
     @commands.command(pass_context = True)
     async def purge(self,ctx, msgs: int):
@@ -83,8 +83,8 @@ class Mod():
                 await self.bot.delete_message(x)
             except discord.Forbidden:
                 await self.bot.say('I need **Manage Messages** for this')
-            else:
-                 await self.bot.say('You need **Manage Messages** for this')
+        else:
+             await self.bot.say('You need **Manage Messages** for this')
                 
     @commands.command(pass_context = True)
     async def softban(self, ctx, member: discord.Member):
@@ -96,6 +96,18 @@ class Mod():
                 await self.bot.say('{} was softbanned'.format(member))
             except discord.Forbidden:
                 await self.bot.say('I need **Ban Members** for this')
+                
+    @commands.command(pass_context = True)
+    async def warn(self, ctx, member: discord.Member, *, reason: str):
+        server = ctx.message.server
+        mod = ctx.message.author
+        if ctx.message.author.server_permissions.manage_messages:         
+           await self.bot.say('**{} has been warned**'.format(member))
+           await self.bot.send_message(member, 'You have been warned in {} for {} by {}'.format(server, reason, mod))
+        else:
+             await self.bot.say('You need **Manage Messages** for this')
+        
+        
   
         
                      
