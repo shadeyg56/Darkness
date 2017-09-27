@@ -112,7 +112,7 @@ def owner_only():
     return commands.check(lambda ctx: ctx.message.author == ctx.message.server.owner)
 
 def is_owner():
-    return commands.check(lambda ctx: ctx.message.author.id == owner)
+    return commands.check(lambda ctx: ctx.message.author.id == '<@300396755193954306>')
 
 
 @bot.event
@@ -327,6 +327,7 @@ async def register(ctx):
     await bot.add_reaction(ctx.message, '\u2705')
    
 @bot.command(pass_context = True)
+@is_owner()
 async def shutdown(ctx):
     timestamp = ctx.message.timestamp                         
     embed=discord.Embed(title='Good Night', description='See you tomorrow', color=0xed, timestamp=timestamp)
@@ -366,6 +367,7 @@ async def to_code_block(ctx, body):
            
            
 @bot.command(pass_context=True, name='eval')
+@is_owner()
 async def _eval(ctx, *, body: str):
     '''Run python scripts on discord!'''
     env = {
