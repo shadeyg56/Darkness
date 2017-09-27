@@ -29,7 +29,7 @@ if 'TOKEN' in os.environ:
     TOKEN = os.environ['TOKEN']
  
 info = launcher.bot()
-owner = info['owner']
+owner = info['<@300396755193954306>']
 
 
 
@@ -112,7 +112,7 @@ def owner_only():
     return commands.check(lambda ctx: ctx.message.author == ctx.message.server.owner)
 
 def is_owner():
-    return commands.check(lambda ctx: ctx.message.author.id == bot.owner_id)
+    return commands.check(lambda ctx: ctx.message.author.id == owner)
 
 
 @bot.event
