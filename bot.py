@@ -29,7 +29,7 @@ if 'TOKEN' in os.environ:
     TOKEN = os.environ['TOKEN']
  
 info = launcher.bot()
-owner = info['<@300396755193954306>']
+owner = '<@300396755193954306>'
 
 
 
