@@ -112,7 +112,7 @@ def owner_only():
     return commands.check(lambda ctx: ctx.message.author == ctx.message.server.owner)
 
 def is_owner():
-    return commands.check(lambda ctx: ctx.message.author.id == '<@300396755193954306>')
+    return commands.check(lambda ctx: ctx.message.author.id == Bot.owner_id)
 
 
 @bot.event
