@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from launcher import utils
+import utils
 
 class Utils():
     def __init__(self, bot):
