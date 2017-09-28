@@ -12,7 +12,7 @@ class Utils():
     @commands.command(pass_context = True)
     async def addrole(self, ctx, user: discord.Member, role: str):
         server_roles = [role for role in ctx.message.server.roles if not role.is_everyone]
-        add = discord.utils.find(server_roles, '{}'.format(role))
+        add = discord.utils.find(role.name, ctx.message.server.roles
         if ctx.message.author.server_permissions.manage_roles:
             await self.bot.add_roles(user, add)
             await self.bot.say('I gave {} the {} role'.format(user, role))
