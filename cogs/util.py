@@ -7,7 +7,7 @@ class Utils():
         
     @commands.command(pass_context = True)
     async def utils(self, ctx):
-        await self.bot.say('The utils cog is working')
+        await self.bot.say('The util cog is working')
         
 def setup(bot):
     bot.add_cog(Utils(bot))
