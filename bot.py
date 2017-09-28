@@ -37,7 +37,8 @@ startup_extensions = [
  
  
     'cogs.mod',
-    'cogs.misc'
+    'cogs.misc',
+    'cogs.utils'
  
  
 ]
