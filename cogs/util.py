@@ -26,7 +26,7 @@ class Utils():
                 
     @commands.command(pass_context = True)
     async def removerole(self, ctx, user: discord.Member, *, rolename: str):
-        role = discord.utils.find(lambda m: role.lower() in m.name.lower(), ctx.message.server.roles)
+        role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.message.server.roles)
         if not role:
             await self.bot.say('That role doesnt exist')
         if ctx.message.author.server_permissions.manage_roles:
