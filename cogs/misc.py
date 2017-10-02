@@ -151,8 +151,8 @@ class Misc():
               await self.bot.say('This command can only be ran in the Dragons and Kats server\n. If you arent in this server, you can join with this invite link: https://discord.gg/uEC84cR')
         
         
-    @commands.command(pass_context = True)
-    async def 8ball(self, ctx, *, question):
+    @commands.command(pass_context = True, aliases='8ball')
+    async def ball(self, ctx, *, question):
         ans = random.randint(0, 19)
         timestamp = ctx.message.timestamp
         embed = discord.Embed(title='8ball', color=0xed, timestamp=timestamp)
