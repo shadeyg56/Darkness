@@ -152,12 +152,15 @@ class Misc():
     @commands.command(pass_context = True, aliases=['8ball'])
     async def ball(self, ctx, *, question):
         ans = random.randint(0, 19)
+        author = ctx.message.author
+        avatar = author.avatar_url
         timestamp = ctx.message.timestamp
         embed = discord.Embed(title='8ball', color=0xed, timestamp=timestamp)
         embed.add_field(name='Question :question:', value='{}'.format(question))
         embed.add_field(name='Answer :8ball:', value=self.answers[ans])
         embed.set_footer(text='Asked at')
         embed.set_thumbnail(url='http://legomenon.com/images/magic-8ball-first-white.jpg')
+        embed.set_author(name=author, icon=avatar)
         await self.bot.say(embed=embed)
         await self.bot.delete_message(ctx.message)
             
