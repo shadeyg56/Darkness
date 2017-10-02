@@ -18,7 +18,7 @@ class Utils():
         if ctx.message.author.server_permissions.manage_roles:
             try:
                 await self.bot.add_roles(user, add)
-                await self.bot.say('I gave {} the {} role'.format(user, role)
+                await self.bot.say('I gave {} the {} role'.format(user, role))
             except discord.Forbidden:
                 await self.bot.say('I need **Manage Roles** for this')
         else:
