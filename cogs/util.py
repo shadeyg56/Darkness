@@ -13,7 +13,7 @@ class Utils():
     async def addrole(self, ctx, user: discord.Member, *, role: str):
         server_roles = [role for role in ctx.message.server.roles if not role.is_everyone]
         add = discord.utils.find(lambda m: role.lower() in m.name.lower(), ctx.message.server.roles)
-        if not role:
+        if not add:
             await self.bot.say('That role doesnt exist')
         if ctx.message.author.server_permissions.manage_roles:
             try:
