@@ -13,8 +13,7 @@ class Misc():
 
     def __init__(self, bot):
         self.bot = bot
-     
-    ball = ['It is certain', 'It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
+        self.ball = ['It is certain', 'It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
                      'As I see it, yes', 'Most likely', 'Outlook good', 'Yes', 'Signs point to yes',
                      'Reply hazy try again',
                      'Ask again later', 'Better not tell you now', 'Cannot predict now', 'Concentrate and ask again',
@@ -157,7 +156,7 @@ class Misc():
         timestamp = ctx.message.timestamp
         embed = discord.Embed(title='8ball', color=0xed, timestamp=timestamp)
         embed.add_field(name='Question :question:', value='{}'.format(question))
-        embed.add_field(name='Answer :8ball:', value=ball[ans])
+        embed.add_field(name='Answer :8ball:', value=self.ball[ans])
         embed.set_footer(text='Asked at')
         embed.set_thumbnail(url='http://legomenon.com/images/magic-8ball-first-white.jpg')
         await self.bot.say(embed=embed)
