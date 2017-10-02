@@ -23,6 +23,21 @@ class Utils():
                 await self.bot.say('I need **Manage Roles** for this')
         else:
              await self.bot.say('You need *Manage Roles** for this')
+                
+    @commands.command(pass_context = True)
+    async def removerole(self, ctx, user: discord.Member, *, rolename: str):
+        role = discord.utils.find(lambda m: role.lower() in m.name.lower(), ctx.message.server.roles)
+        if not role:
+            await self.bot.say('That role doesnt exist')
+        if ctx.message.author.server_permissions.manage_roles:
+            try:
+                await self.bot.add_roles(user, role)
+                await self.bot.say('I removed the {} role from {}'.format(rolename, user))
+            except discord.Forbidden:
+                await self.bot.say('I need **Manage Roles** for this')
+        else:
+             await self.bot.say('You need *Manage Roles** for this')
+                
         
         
 def setup(bot):
