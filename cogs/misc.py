@@ -160,7 +160,7 @@ class Misc():
         embed.add_field(name='Answer :8ball:', value=self.answers[ans])
         embed.set_footer(text='Asked at')
         embed.set_thumbnail(url='http://legomenon.com/images/magic-8ball-first-white.jpg')
-        embed.set_author(name=author, icon=avatar)
+        embed.set_author(name=author, icon_url=avatar)
         await self.bot.say(embed=embed)
         await self.bot.delete_message(ctx.message)
             
