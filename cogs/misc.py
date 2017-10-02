@@ -13,6 +13,13 @@ class Misc():
 
     def __init__(self, bot):
         self.bot = bot
+     
+    ball = ['It is certain', 'It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
+                     'As I see it, yes', 'Most likely', 'Outlook good', 'Yes', 'Signs point to yes',
+                     'Reply hazy try again',
+                     'Ask again later', 'Better not tell you now', 'Cannot predict now', 'Concentrate and ask again',
+                     'Don\'t count on it', 'My reply is no', 'My sources say no', 'Outlook not so good',
+                     'Very doubtful']
         
         
     async def send_cmd_help(self,ctx):
@@ -144,7 +151,16 @@ class Misc():
               await self.bot.say('This command can only be ran in the Dragons and Kats server\n. If you arent in this server, you can join with this invite link: https://discord.gg/uEC84cR')
         
         
-       
+    @commands.command(pass_context = True)
+    async def 8ball(self, ctx, *, question):
+        ans = random.randint(0, 19)
+        timestamp = ctx.message.timestamp
+        embed = discord.Embed(title='8ball', color=0xed, timestamp=timestamp)
+        embed.add_field(title='Question :question:', value='{}'.format(question))
+        embed.add_field(title='Answer :8ball:', value=ball[ans])
+        embed.set_footer(text='Asked at')
+        embed.set_thumbnail(url='http://legomenon.com/images/magic-8ball-first-white.jpg')
+        await self.bot.say(embed=embed)
             
     
        
