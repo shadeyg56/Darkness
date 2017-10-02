@@ -31,7 +31,7 @@ class Utils():
             await self.bot.say('That role doesnt exist')
         if ctx.message.author.server_permissions.manage_roles:
             try:
-                await self.bot.add_roles(user, role)
+                await self.bot.remove_roles(user, role)
                 await self.bot.say('I removed the {} role from {}'.format(rolename, user))
             except discord.Forbidden:
                 await self.bot.say('I need **Manage Roles** for this')
