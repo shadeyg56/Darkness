@@ -14,8 +14,15 @@ class Utils():
         server_roles = [role for role in ctx.message.server.roles if not role.is_everyone]
         add = discord.utils.find(lambda m: role.lower() in m.name.lower(), ctx.message.server.roles)
         if ctx.message.author.server_permissions.manage_roles:
-            await self.bot.add_roles(user, add)
-            await self.bot.say('I gave {} the {} role'.format(user, role))
+            try:
+                await self.bot.add_roles(user, add)
+                await self.bot.say('I gave {} the {} role'.format(user, role))
+        elif not role:
+                await self.bot.say('That role doesnt exist')
+            except discord.Forbidden:
+                await self.bot.say('I need **Manage Roles** for this')
+        else:
+             await self.bot.say('You need *Manage Roles** for this')
         
         
 def setup(bot):
