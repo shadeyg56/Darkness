@@ -17,8 +17,8 @@ class Utils():
             try:
                 await self.bot.add_roles(user, add)
                 await self.bot.say('I gave {} the {} role'.format(user, role))
-        if not role:
-                await self.bot.say('That role doesnt exist')
+                if not role:
+                    await self.bot.say('That role doesnt exist')
             except discord.Forbidden:
                 await self.bot.say('I need **Manage Roles** for this')
         else:
