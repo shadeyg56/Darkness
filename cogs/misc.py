@@ -159,7 +159,7 @@ class Misc():
         embed.set_footer(text='Asked at')
         embed.set_thumbnail(url='http://legomenon.com/images/magic-8ball-first-white.jpg')
         await self.bot.say(embed=embed)
-        await self.bot.delete_messag(ctx.message)
+        await self.bot.delete_message(ctx.message)
             
     
        
