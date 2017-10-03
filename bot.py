@@ -441,7 +441,7 @@ async def devcontact(ctx, *, msg: str):
     await bot.say('Your message has been sent. It will be checked by the dev asap. If your message was a troll or you keep resending/spamming a message you will be blacklisted from the command')
     await bot.delete_message(ctx.message)
                            
-@bot.command(pass_context = True
+@bot.command(pass_context = True)
 async def dm(ctx, user: discord.Member, *, msg: str):
     if ctx.message.author.id == '<@300396755193954306>':
         await bot.send_message(user, '{}'.format(msg))
