@@ -435,7 +435,7 @@ async def _eval(ctx, *, body: str):
 
 @bot.command(pass_context = True)
 async def devcontact(ctx, *, msg: str):
-    dev = '<@300396755193954306>'
+    dev = <@300396755193954306>
     user = ctx.message.author
     await bot.send_message(dev, '{} sent the following message: {}'.format(user, msg))
     await bot.say('Your message has been sent. It will be checked by the dev asap. If your message was a troll or you keep resending/spamming a message you will be blacklisted from the command')
