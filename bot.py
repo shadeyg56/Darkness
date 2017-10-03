@@ -432,6 +432,29 @@ async def _eval(ctx, *, body: str):
                 await bot.add_reaction(x, '\U0001f535')
             except:
                 pass
+
+@bot.command(pass_context = True)
+async def devcontact(ctx, *, msg: str):
+    dev = '<@300396755193954306>'
+    user = ctx.message.author
+    await bot.send_message(dev, '{} sent the following message: {}'.format(user, msg))
+    await bot.say('Your message has been sent. It will be checked by the dev asap. If your message was a troll or you keep resending/spamming a message you will be blacklisted from the command')
+    await bot.delete_message(ctx.message)
+                           
+@bot.command(pass_context = True
+async def dm(ctx, user: discord.Member, *, msg: str):
+    if ctx.message.author.id == '<@300396755193954306>':
+        await bot.send_message(user, '{}'.format(msg))
+        await bot.delete_message(ctx.message)
+    else:
+         message = await bot.say('Only the bot dev can use this command')
+         await asyncio.sleep(5)
+         await bot.delete_message(message)
+         await bot.delete_message(ctx.message)
+        
+    
+
+             
              
 @asyncio.coroutine
 async def on_message(message):
