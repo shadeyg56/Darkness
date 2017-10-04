@@ -7,7 +7,7 @@ class Info():
         self.bot = bot
       
     @commands.command(pass_context=True)
-    async def info(self, ctx):
+    async def infotest(self, ctx):
         await self.bot.say('The info cog is working')
         
 def setup(bot):
