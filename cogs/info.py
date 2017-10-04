@@ -19,7 +19,8 @@ class Info():
         embed = discord.Embed(title='Server Info', color=0xed)
         embed.set_author(name=server.name, icon_url=server.icon_url)
         embed.set_thumbnail(url=server.icon_url)
-        embed.add_field(name='Members', value='{} total\n{} online'.format(members, online))
+        embed.add_field(name='Members', value='{} total\n{} online'.format(total_members, online))
+        await self.bot.say(embed=embed)
                       
                           
                        
