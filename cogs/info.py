@@ -24,7 +24,7 @@ class Info():
         embed.set_author(name=server.name, icon_url=server.icon_url)
         embed.set_thumbnail(url=server.icon_url)
         embed.add_field(name='Owner', value=server.owner)
-        embed.add_field(name='ID', value==server.id)
+        embed.add_field(name='ID', value=server.id)
         embed.add_field(name='Members', value='{} total\n{} online'.format(total_members, online))
         embed.add_field(name="Roles", value=len(server.roles))
         embed.add_field(name='Text Channels', value=text_channels)
