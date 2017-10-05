@@ -43,7 +43,7 @@ class Info():
         avatar = user.avatar_url
         embed = discord.Embed(title='User Info', description='{} is chilling in {} mode'.format(user, user.status), color=0xed)
         embed.set_author(name=user, icon_url=avatar)
-        embed.set_thumnbail(url=avatar)
+        embed.set_thumbnail(url=avatar)
         embed.add_field(name='Nickname', value=user.nick)
         embed.add_field(name='Roles', value=roles)
         await self.bot.say(embed=embed)
