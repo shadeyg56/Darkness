@@ -38,7 +38,7 @@ class Info():
     async def userinfo(self, ctx, user: discord.Member = None):
         if user == None:
             user = ctx.message.author
-        roles = sorted([a.name a for a in user.roles if a.name != '@everyone'])
+        roles = sorted([a.name for a in user.roles if a.name != '@everyone'])
         avatar = user.avatar_url
         created = user.created_at
         member_number = sorted(server.members,key=lambda m: m.joined_at).index(user) + 1
