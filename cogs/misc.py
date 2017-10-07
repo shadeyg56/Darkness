@@ -170,7 +170,8 @@ class Misc():
     async def cat(self, ctx):
         pic = random.randint(0,1)
         x = cat.getCat(directory=None, filename=None, format='{}'.format(self.type[pic]))
-        await self.bot.say(x)
+        file = open(x, 'r')
+        await self.bot.say(file)
     
             
     
