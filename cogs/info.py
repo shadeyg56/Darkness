@@ -40,6 +40,7 @@ class Info():
             user = ctx.message.author
         roles = sorted([a.name for a in user.roles if a.name != '@everyone'])
         avatar = user.avatar_url
+        server = ctx.message.server
         created = user.created_at
         member_number = sorted(server.members,key=lambda m: m.joined_at).index(user) + 1
         embed = discord.Embed(title='User Info', description='{} is chilling in {} mode'.format(user, user.status), color=0xed)
