@@ -6,6 +6,7 @@ import random
 import asyncio
 import json
 from .utils import launcher
+import cat
 
 
 class Misc():
@@ -18,6 +19,7 @@ class Misc():
                      'Ask again later', 'Better not tell you now', 'Cannot predict now', 'Concentrate and ask again',
                      'Don\'t count on it', 'My reply is no', 'My sources say no', 'Outlook not so good',
                      'Very doubtful']
+        self.type = ['png', 'gif']
         
         
     async def send_cmd_help(self,ctx):
@@ -163,6 +165,13 @@ class Misc():
         embed.set_author(name=author, icon_url=avatar)
         await self.bot.say(embed=embed)
         await self.bot.delete_message(ctx.message)
+        
+    @commands.command(pass_context=True)
+    async def cat(self, ctx):
+        pic = random.randint(0,1)
+        x = cat.getCat(directory=None, filename=None, format='{}'.format(self.type[pic]))
+        await self.bot.say(x)
+    
             
     
        
