@@ -40,7 +40,7 @@ class Info():
             user = ctx.message.author
         roles = sorted([a.name for a in user.roles if a.name != '@everyone'])
         avatar = user.avatar_url
-        avatar = avatar.replace(".webp",".png").replace("?size=1024","?si
+        avatar = avatar.replace(".webp",".png").replace("?size=1024","?size=2048")
         server = ctx.message.server
         created = user.created_at
         member_number = sorted(server.members,key=lambda m: m.joined_at).index(user) + 1
@@ -60,7 +60,7 @@ class Info():
         if user == None:
             user = ctx.message.author
         avi = user.avatar_url or user.default.avatar_url
-        avi = avi.replace(".webp",".png").replace("?size=1024","?si
+        avi = avi.replace(".webp",".png").replace("?size=1024","?size=2048")
         embed = discord.Embed(color=0xed)
         embed.set_image(url=avi)
         await self.bot.say(embed=embed)
