@@ -172,7 +172,7 @@ class Misc():
         channel = ctx.message.channel
         x = cat.getCat(directory=None, filename=None, format='{}'.format(self.type[pic]))
         with open(x, 'r') as f:
-            await bot.send_file(channel, f)
+            await self.bot.send_file(channel, f)
     
             
     
