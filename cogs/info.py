@@ -53,6 +53,19 @@ class Info():
         embed.add_field(name='Roles', value=roles)
         embed.set_footer(text='ID:' + user.id)
         await self.bot.say(embed=embed)
+      
+    @commands.command(pass_context=True)
+    async def avatar(self, ctx, user: discord.Member = None):
+        if user == None:
+            user = ctx.message.author
+        avi = user.avatar_url
+        if avi:
+            pass
+        else:
+            avi = user.default_avatar_url
+        embed = discord.Embed(color=0xed)
+        embed.set_image(avi)
+        await self.bot.say(embed=embed)
                          
                        
         
