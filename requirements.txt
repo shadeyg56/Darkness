@@ -1,3 +1,4 @@
 discord.py
 requests
 PythonGists
+random-cat==1.0.1
