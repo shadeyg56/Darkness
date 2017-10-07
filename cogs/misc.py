@@ -169,9 +169,10 @@ class Misc():
     @commands.command(pass_context=True)
     async def cat(self, ctx):
         pic = random.randint(0,1)
+        channel = ctx.message.channel
         x = cat.getCat(directory=None, filename=None, format='{}'.format(self.type[pic]))
-        file = open(x, 'r')
-        await self.bot.say(file)
+        with open(x, 'r') as f:
+            await bot.send_file(channel, f)
     
             
     
