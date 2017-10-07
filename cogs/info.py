@@ -64,7 +64,7 @@ class Info():
         else:
             avi = user.default_avatar_url
         embed = discord.Embed(color=0xed)
-        embed.set_image(avi)
+        embed.set_image(url=avi)
         await self.bot.say(embed=embed)
                          
                        
