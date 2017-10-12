@@ -7,7 +7,7 @@ class Music():
          self.bot = bot
          
     @commands.command()
-    async def musictest():
+    async def musictest(self):
         await self.bot.say('The music cog is working')
         
 def setup(bot):
