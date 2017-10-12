@@ -39,7 +39,8 @@ startup_extensions = [
     'cogs.mod',
     'cogs.misc',
     'cogs.util',
-    'cogs.info'
+    'cogs.info',
+    'cogs.music'
  
  
 ]
