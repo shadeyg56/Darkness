@@ -8,7 +8,7 @@ class Music():
     def __init__(self, bot):
          self.bot = bot
             
-         self.voice = await self.bot.join_voice_channel
+        
          
     @commands.command()
     async def musictest(self):
@@ -16,7 +16,8 @@ class Music():
         
     @commands.command(pass_context=True)
     async def play(self, ctx, songname: str = None):
-        player = await self.voice.create_ytdl_player('https://youtube.com/watch?v=Fz50hqWrHUY')
+        voice = self.bot.join_voice_channel(channel)
+        player = await voice.create_ytdl_player('https://youtube.com/watch?v=Fz50hqWrHUY')
         discord.opus.load_opus()
         player.start()
         
