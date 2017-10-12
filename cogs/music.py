@@ -15,6 +15,7 @@ class Music():
         
     @commands.command(pass_context=True)
     async def play(self, ctx, songname: str = None):
+        channel = ctx.message.authoe.voice.channel
         voice = self.bot.join_voice_channel(channel)
         player = await voice.create_ytdl_player('https://youtube.com/watch?v=Fz50hqWrHUY')
         discord.opus.load_opus()
