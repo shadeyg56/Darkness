@@ -22,6 +22,11 @@ class Music():
         player = await voice.create_ytdl_player('https://www.youtube.com/watch?v=Fz50hqWrHUY')
         player.start()
         
+    @commands.command(pass_context=True)
+    async def summon(self, ctx):
+        voice = self.bot.join_voice_channel(ctx.message.author.voice.voice_channel)
+    
+        
         
         
 def setup(bot):
