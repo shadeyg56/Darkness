@@ -1,4 +1,5 @@
 import discord
+from discord import opus
 from discord.ext import commands
 import youtube_dl
 
@@ -17,7 +18,7 @@ class Music():
     async def play(self, ctx, songname: str = None):
         channel = ctx.message.author.voice.voice_channel
         voice = self.bot.join_voice_channel(channel)
-        player = await voice.create_ytdl_player('https://youtube.com/watch?v=Fz50hqWrHUY')
+        player = await voice.create_ytdl_player('https://www.youtube.com/watch?v=Fz50hqWrHUY')
         discord.opus.load_opus()
         player.start()
         
