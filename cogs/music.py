@@ -26,6 +26,11 @@ class Music():
     async def summon(self, ctx):
         voice = self.bot.join_voice_channel(ctx.message.author.voice.voice_channel)
         await voice
+     
+    @commands.command(pass_context=True)
+    async def disconnect(self, ctx):
+        voice = self.bot.join_voice_channel(ctx.message.author.voice.voice_channel)
+        await self.bot.leave_voice_channel(ctx.message.author.voice.voice_channel)
     
         
         
