@@ -31,7 +31,7 @@ class Music():
     async def disconnect(self, ctx):
         voice = self.bot.join_voice_channel(ctx.message.author.voice.voice_channel)
         state = self.get_voice_state(ctx.message.server)
-        await state.voice.disconnect
+        await VoiceClient.disconnect
     
         
         
