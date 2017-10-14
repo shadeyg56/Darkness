@@ -48,7 +48,7 @@ class Fun():
             victim = ctx.message.server
         if not virusname:
             virusname = 'discord'
-        x = await self.bot.say(['▓▓▓             ] / {}-virus.exe Packing Files.'.format(virusname))
+        x = await self.bot.say('[▓▓▓             ] / {}-virus.exe Packing Files.'.format(virusname))
         await asyncio.sleep(0.5)
         x = await self.bot.edit_message(x, '[▓▓▓                    ] - {}-virus.exe Packing Files.'.format(virusname)) 
         await asyncio.sleep(0.5)                        
@@ -62,7 +62,7 @@ class Fun():
         await asyncio.sleep(0.5)                        
         x = await self.bot.edit_message(x, '[▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] | {}-virus.exe Finishing..'.format(virusname))   
         await asyncio.sleep(0.5)                        
-        x = await self.bot.edit_message(x,'``Successfully downloaded {}-virus.exe``'.format(hack))a
+        x = await self.bot.edit_message(x,'``Successfully downloaded {}-virus.exe``'.format(virusname))
         await asyncio.sleep(2)
         x = await self.bot.edit_message(x,'``Injecting virus.   |``')
         await asyncio.sleep(0.5)
@@ -73,7 +73,7 @@ class Fun():
         x = await self.bot.edit_message(x,'``Injecting virus....\``')
         await self.bot.delete_message(x)
         await self.bot.delete_message(ctx.message)                      
-        await self.bot.say('Succesfully injected {}-virus.exe into {}'.format(victim))           
+        await self.bot.say('Succesfully injected {}-virus.exe into {}'.format(virusname, victim))           
                                 
 def setup(bot):                               
     bot.add_cog(Fun(bot))
