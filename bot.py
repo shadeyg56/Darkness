@@ -111,7 +111,7 @@ async def help(ctx):
         p.embed.set_author(name='Help - Darkness Commands', icon_url=bot.user.avatar_url)
         p.embed.color = 0x00FFFF
         await p.paginate()
-    except discord.Forbidden:
+    except:
         embed = discord.Embed(title='Darkness Commands', color=0xed)
         embed.add_field(name='Moderation:', value='kick, ban, unban, softban, warn, purge')
         embed.add_field(name='Information:', value='info, serverinfo, userinfo, avatar')
