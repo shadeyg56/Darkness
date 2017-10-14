@@ -3,6 +3,7 @@ from discord.ext import commands
 import cat
 import random
 import asyncio
+import pykemon
 
 class Fun():
     def __init__(self, bot):
