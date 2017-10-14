@@ -113,11 +113,11 @@ async def help(ctx):
         await p.paginate()
     except discord.Forbidden:
         embed = discord.Embed(title='Darkness Commands', color=0xed)
-        embed.add_field(name='Moderation':, value='kick, ban, unban, softban, warn, purge')
+        embed.add_field(name='Moderation:', value='kick, ban, unban, softban, warn, purge')
         embed.add_field(name='Information:', value='info, serverinfo, userinfo, avatar')
         embed.add_field(name='Miscellaneous:', value='ping, suggest, invite, support')
-        embed.add_field(name='Utilities', value='calc, remind, addrole, removerole')
-        embed.add_field(name='Fun', value='8ball, cat')
+        embed.add_field(name='Utilities:', value='calc, remind, addrole, removerole')
+        embed.add_field(name='Fun:', value='8ball, cat')
         embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
         await bot.say(embed=embed)
     
