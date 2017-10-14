@@ -93,9 +93,11 @@ class Music():
                  'quiet': True,
         }
         if state.voice is None:
-            join = self.bot.join_voice_channel(ctx.message.author.voice.voice_channel)
+            join = self.bot.join_voice_channel(ctx.message.author.voice.voice_channel)       
         try:
            player = await voice.create_ytdl_player(song, ytdl_options=options, after=state.toggle_next)
+        except Exception as e:
+            await bot.say('An error occurred')
         else:
              queue = VoiceEntry(ctx.message, player)
              await self.bot.say('{} added to the queue'.format(queue))
