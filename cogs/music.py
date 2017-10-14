@@ -98,6 +98,7 @@ class Music():
     @commands.command(pass_context=True)
     async def disconnect(self, ctx):
         server = ctx.message.server
+        state = self.get_voice_state(server)
         del self.voice_states[server.id]
         await state.voice.disconnect()
         
