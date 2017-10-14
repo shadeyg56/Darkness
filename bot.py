@@ -39,8 +39,8 @@ startup_extensions = [
     'cogs.mod',
     'cogs.misc',
     'cogs.util',
-    'cogs.info',
-    'cogs.music'
+    'cogs.info'
+    
  
  
 ]
@@ -120,35 +120,15 @@ def is_owner():
 
 @bot.event
 async def on_member_join(member):
-    with open('cogs/utils/t_config.json') as f:
-        data = json.loads(f.read())
-    darkness = bot.get_channel('356599668739670049')
-    
-    server = member.server
-    status = data[server.id]["welcome"]["status"]
-    if status:
-        fmt = data[server.id]["welcome"]["msg"]
-        if fmt == 'random_msg':
-            with open('cogs/utils/welc.json') as f:
-                welcs = json.loads(f.read())['welcs']
-            fmt = random.choice(welcs)
-        channel = data[server.id]["welcome"]["channel"]
-        if channel == 'default':
-            channel = member.server
-        else:
-            channel = discord.utils.get(server.channels, id=channel)
+   darkness = bot.get_channel('356599668739670049')
+   if member.server.id == '356599668739670048':
+       await bot.send_message(darkness, 'Welcome {} to {}. Please read #info-and-rules and enjoy your stay. Do d.help to check out the bot'.format(member, server))
+   kats = bot.get_channel('313863292126756864')
+   if member.server.id == '294262760752152576':
+       await bot.send_message(kats, '{} Welcome to **Dragons and Kats**! Have a great time here and enjoy yourselves!!!:wink: !'.format(member))
+   else:
+        print('Member joined, but message not sent')
 
-        await bot.send_message(darkness, 'Welcome {} to {}. Please read #info-and-rules and enjoy your stay. Do d.help to check out the bot'.format(member, server))
-        kats = bot.get_channel('313863292126756864')
-        await bot.send_message(kats, '{} Welcome to **Dragons and Kats**! Have a great time here and enjoy yourselves!!!:wink: !'.format(member))
-
-    autorole = data[server.id]["autorole"]
-    autorole = discord.utils.get(server.roles,id=autorole)
-
-    try:
-        await bot.add_roles(member,autorole)
-    except:
-        pass
 
 @bot.event
 async def on_command(command, ctx):
