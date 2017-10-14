@@ -5,8 +5,8 @@ import youtube_dl
 
 
     
-    def __init__(self, bot):
-         self.bot = bot
+def __init__(self, bot):
+     self.bot = bot
             
 class VoiceEntry:
     def __init__(self, message, player):
