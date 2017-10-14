@@ -106,11 +106,21 @@ async def help(ctx):
             x = line.strip().strip('.')
             x = ctx.prefix + x
             msg[i] = '`' + x + '`'
-
-    p = Pages(bot, message=ctx.message, entries=msg)
-    p.embed.set_author(name='Help - Darkness Commands', icon_url=bot.user.avatar_url)
-    p.embed.color = 0x00FFFF
-    await p.paginate()
+    try:
+        p = Pages(bot, message=ctx.message, entries=msg)
+        p.embed.set_author(name='Help - Darkness Commands', icon_url=bot.user.avatar_url)
+        p.embed.color = 0x00FFFF
+        await p.paginate()
+    except discord.Forbidden:
+        embed = discord.Embed(title='Darkness Commands', color=0xed)
+        embed.add_field(name='Moderation':, value='kick, ban, unban, softban, warn, purge')
+        embed.add_field(name='Information:', value='info, serverinfo, userinfo, avatar')
+        embed.add_field(name='Miscellaneous:', value='ping, suggest, invite, support')
+        embed.add_field(name='Utilities', value='calc, remind, addrole, removerole')
+        embed.add_field(name='Fun', value='8ball, cat')
+        embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
+        await bot.say(embed=embed)
+    
 
 def owner_only():
     return commands.check(lambda ctx: ctx.message.author == ctx.message.server.owner)
@@ -426,7 +436,7 @@ async def devcontact(ctx, *, msg: str):
                            
 @bot.command(pass_context = True)
 async def dm(ctx, user: discord.Member, *, msg: str):
-    if ctx.message.author.id == '<@300396755193954306>':
+    if ctx.message.author.id == '300396755193954306':
         await bot.send_message(user, '{}'.format(msg))
         await bot.delete_message(ctx.message)
     else:
