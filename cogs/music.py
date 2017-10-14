@@ -4,7 +4,8 @@ from discord.ext import commands
 import youtube_dl
 import asyncio
 
-
+if not discord.opus.is_loaded():
+    discord.opus.load_opus('opus')
     
 def __init__(self, bot):
      self.bot = bot
@@ -83,11 +84,23 @@ class Music():
         await self.bot.say('The music cog is working')
         
     @commands.command(pass_context=True)
-    async def play(self, ctx, songname: str = None):
+    async def play(self, ctx, *, song: str = None):
         channel = ctx.message.author.voice.voice_channel
         voice = self.bot.join_voice_channel(channel)
-        player = await voice.create_ytdl_player('https://www.youtube.com/watch?v=Fz50hqWrHUY')
-        player.start()
+        state = self.get_voice_state(ctx.message.server)
+        options = {
+                 'default_search': 'auto',
+                 'quiet': True,
+        }
+        if state.voice is None:
+            join = self.bot.join_voice_channel(ctx.message.author.voice.voice_channel)
+        try:
+           player = await voice.create_ytdl_player(song, ytdl_options=options, after=state.toggle_next)
+        else:
+             queue = VoiceEntry(ctx.message, player)
+             await self.bot.say('{} added to the queue'.format(queue))
+             await state.songs.put(queue)
+        
         
     @commands.command(pass_context=True)
     async def summon(self, ctx):
