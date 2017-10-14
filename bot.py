@@ -122,12 +122,12 @@ def is_owner():
 async def on_member_join(member):
    darkness = bot.get_channel('356599668739670049')
    if member.server.id == '356599668739670048':
-       await bot.send_message(darkness, 'Welcome {} to {}. Please read #info-and-rules and enjoy your stay. Do d.help to check out the bot'.format(member, server))
+       await bot.send_message(darkness, 'Welcome {0.mention} to {}. Please read #info-and-rules and enjoy your stay. Do d.help to check out the bot'.format(member, server))
    kats = bot.get_channel('313863292126756864')
    if member.server.id == '294262760752152576':
-       await bot.send_message(kats, '{} Welcome to **Dragons and Kats**! Have a great time here and enjoy yourselves!!!:wink: !'.format(member))
+       await bot.send_message(kats, '{0.mention} Welcome to **Dragons and Kats**! Have a great time here and enjoy yourselves!!!:wink: !'.format(member))
    else:
-        print('Member joined, but message not sent')
+        print('Member joined {}, but message not sent'.format(member.server)
 
 
 @bot.event
