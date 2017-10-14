@@ -127,7 +127,7 @@ async def on_member_join(member):
    if member.server.id == '294262760752152576':
        await bot.send_message(kats, '{0.mention} Welcome to **Dragons and Kats**! Have a great time here and enjoy yourselves!!!:wink: !'.format(member))
    else:
-        print('Member joined {}, but message not sent'.format(member.server)
+        print('Member joined {}, but message not sent'.format(member.server))
 
 
 @bot.event
