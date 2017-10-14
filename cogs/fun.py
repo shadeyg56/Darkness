@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 import cat
+import random
+import asyncio
 
 class Fun():
     def __init__(self, bot):
@@ -39,6 +41,15 @@ class Fun():
         x = cat.getCat(directory=None, filename=None, format='{}'.format(self.type[pic]))
         with open(x, 'rb') as f:
             await self.bot.send_file(channel, f)
+         
+    @commands.command(pass_context=True)
+    async def virus(self, ctx, victim: discord.Member = None, *, virusname: str = None):
+        if not victim:
+            victim = ctx.message.server
+        if not virusname:
+            virusname = 'discord'
+            
+        
     
         
 def setup(bot):
