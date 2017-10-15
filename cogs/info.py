@@ -81,7 +81,7 @@ class Info():
       
     @commands.command(pass_context=True)
     async def weather(self, ctx, *, city: str):
-         settings = {"APPID":, "units": "metric"}
+         settings = {"APPID":' 5793b69ec91fb3232c200c1df4c2141b', "units": "metric"}
          data = weather.get_current('{}'.format(city))
          await self.bot.say(data)
                        
