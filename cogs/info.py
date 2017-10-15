@@ -3,6 +3,7 @@ from discord.ext import commands
 import urbanpyctionary
 from urbanpyctionary.client import Client
 import os
+import urbandict
 
 
 class Info():
@@ -68,44 +69,16 @@ class Info():
         embed = discord.Embed(color=0xed)
         embed.set_image(url=avi)
         await self.bot.say(embed=embed)
-      
- import urbandict
-import discord
-from discord.ext import commands
 
-TOKEN = 'YOUT TOKEN'
-
-description = '''Python bot'''
-bot = commands.Bot(command_prefix='!', description=description)
-
-@bot.event
-async def on_ready():
-    print('Logged in as')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('-------------------')
-
-@bot.command()
-async def urban(*, word: str):
+@commands.command(pass_context=True)
+async def urban(self, ctx, *, word: str):
     defi = urbandict.define(word)
-
     definition = defi[0]['def'] #definition of the word
     example = defi[0]['example'] #example of usage (if available)
-
-    embed = discord.Embed(
-        title=word,
-        description=definition,
-        color=0x0062f4
-    )
-    embed.add_field(
-        name="Example",
-        value=example,
-        inline=False
-    )
+    embed = discord.Embed(title=word,description=definition, color=0x0062f4)
+    embed.add_field(name="Example",value=example,inline=False)
     embed.set_footer(text="Urban Dictionary")
     await bot.say(embed=embed)
-
-bot.run(TOKEN)
                        
         
 def setup(bot):  
