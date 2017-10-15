@@ -1,9 +1,8 @@
 import discord
 from discord.ext import commands
-import urbanpyctionary
-from urbanpyctionary.client import Client
 import os
 import urbandict
+import openweathermapy.core as weather
 
 
 class Info():
@@ -79,6 +78,12 @@ class Info():
         embed.add_field(name="Example",value=example,inline=False)
         embed.set_footer(text="Urban Dictionary")
         await self.bot.say(embed=embed)
+      
+    @commands.command(pass_context=True)
+    async def weather(self, ctx, *, city: str):
+         settings = {"APPID":, "units": "metric"}
+         data = weather.get_current('{}'.format(city))
+         await self.bot.say(data)
                        
         
 def setup(bot):  
