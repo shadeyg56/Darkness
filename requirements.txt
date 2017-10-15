@@ -5,3 +5,4 @@ random-cat==1.0.1
 youtube_dl
 pykemon2.0
 urbanpyctionary
+urbandict
