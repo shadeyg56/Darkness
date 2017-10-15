@@ -70,15 +70,15 @@ class Info():
         embed.set_image(url=avi)
         await self.bot.say(embed=embed)
 
-@commands.command(pass_context=True)
-async def urban(self, ctx, *, word: str):
-    defi = urbandict.define(word)
-    definition = defi[0]['def'] #definition of the word
-    example = defi[0]['example'] #example of usage (if available)
-    embed = discord.Embed(title=word,description=definition, color=0x0062f4)
-    embed.add_field(name="Example",value=example,inline=False)
-    embed.set_footer(text="Urban Dictionary")
-    await bot.say(embed=embed)
+    @commands.command(pass_context=True)
+    async def urban(self, ctx, *, word: str):
+        defi = urbandict.define(word)
+        definition = defi[0]['def'] #definition of the word
+        example = defi[0]['example'] #example of usage (if available)
+        embed = discord.Embed(title=word,description=definition, color=0x0062f4)
+        embed.add_field(name="Example",value=example,inline=False)
+        embed.set_footer(text="Urban Dictionary")
+        await bot.say(embed=embed)
                        
         
 def setup(bot):  
