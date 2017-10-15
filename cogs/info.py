@@ -1,5 +1,7 @@
 import discord
 from discord.ext import commands
+import urbanpyctionary
+import os
 
 class Info():
    
@@ -64,7 +66,16 @@ class Info():
         embed = discord.Embed(color=0xed)
         embed.set_image(url=avi)
         await self.bot.say(embed=embed)
-                         
+      
+    @commands.command(pass_context=True)
+    async def urban(self, ctx, *, term: str):
+        if 'URBAN' in os.environ:
+            heroku = True
+            KEY = os.environ['URBAN']
+         c = client(API_key = KEY)
+         r = c.get('{}'.format(term))
+         msg = r.definitions[1]
+         await self.bot.say(msg)
                        
         
 def setup(bot):
