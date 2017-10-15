@@ -78,7 +78,7 @@ class Info():
         embed = discord.Embed(title=word,description=definition, color=0x0062f4)
         embed.add_field(name="Example",value=example,inline=False)
         embed.set_footer(text="Urban Dictionary")
-        await bot.say(embed=embed)
+        await self.bot.say(embed=embed)
                        
         
 def setup(bot):  
