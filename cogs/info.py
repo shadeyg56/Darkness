@@ -85,6 +85,8 @@ class Info():
          data = weather.get_current('{}'.format(city), **settings)
          keys = ['main.temp', 'main.humidity', 'coord.lon', 'coord.lat']
          x = data.get_many(keys)
+         x.replace('(', '')
+         x.replace(')', '')
          await self.bot.say(x)
                        
         
