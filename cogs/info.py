@@ -1,7 +1,9 @@
 import discord
 from discord.ext import commands
 import urbanpyctionary
+from urbanpyctionary.client import Client
 import os
+
 
 class Info():
    
