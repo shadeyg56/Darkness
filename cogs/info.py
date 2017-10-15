@@ -72,13 +72,12 @@ class Info():
         if 'URBAN' in os.environ:
             heroku = True
             KEY = os.environ['URBAN']
-         c = client(API_key = KEY)
-         r = c.get('{}'.format(term))
-         msg = r.definitions[1]
-         await self.bot.say(msg)
+        c = client(API_key = KEY)
+        r = c.get('{}'.format(term))
+        msg = r.definitions[1]
+        await self.bot.say(msg)
                        
         
-def setup(bot):
-   
+def setup(bot):  
     bot.add_cog(Info(bot))
   
