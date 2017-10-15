@@ -83,7 +83,7 @@ class Info():
     async def weather(self, ctx, *, city: str):
          settings = {"APPID": '5793b69ec91fb3232c200c1df4c2141b', "units": "metric"}
          data = weather.get_current('{}'.format(city), **settings)
-         keys = [main.temp, main.humidity]
+         keys = ['main.temp', 'main.humidity']
          x = data.get_many(keys)
          await self.bot.say(x)
                        
