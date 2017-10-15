@@ -74,7 +74,7 @@ class Info():
         if 'URBAN' in os.environ:
             heroku = True
             KEY = os.environ['URBAN']
-        c = client(API_key = KEY)
+        c = Client(API_key = KEY)
         r = c.get('{}'.format(term))
         msg = r.definitions[1]
         await self.bot.say(msg)
