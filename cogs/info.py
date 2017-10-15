@@ -69,15 +69,43 @@ class Info():
         embed.set_image(url=avi)
         await self.bot.say(embed=embed)
       
-    @commands.command(pass_context=True)
-    async def urban(self, ctx, *, term: str):
-        if 'URBAN' in os.environ:
-            heroku = True
-            KEY = os.environ['URBAN']
-        c = Client(API_key = KEY)
-        r = c.get('{}'.format(term))
-        msg = r.definitions[1]
-        await self.bot.say(msg)
+ import urbandict
+import discord
+from discord.ext import commands
+
+TOKEN = 'YOUT TOKEN'
+
+description = '''Python bot'''
+bot = commands.Bot(command_prefix='!', description=description)
+
+@bot.event
+async def on_ready():
+    print('Logged in as')
+    print(bot.user.name)
+    print(bot.user.id)
+    print('-------------------')
+
+@bot.command()
+async def urban(*, word: str):
+    defi = urbandict.define(word)
+
+    definition = defi[0]['def'] #definition of the word
+    example = defi[0]['example'] #example of usage (if available)
+
+    embed = discord.Embed(
+        title=word,
+        description=definition,
+        color=0x0062f4
+    )
+    embed.add_field(
+        name="Example",
+        value=example,
+        inline=False
+    )
+    embed.set_footer(text="Urban Dictionary")
+    await bot.say(embed=embed)
+
+bot.run(TOKEN)
                        
         
 def setup(bot):  
