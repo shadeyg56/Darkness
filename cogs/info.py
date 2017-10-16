@@ -86,7 +86,7 @@ class Info():
          data2 = weather.get_current(city, units='standard', **settings)
          keys = ['main.temp', 'main.humidity', 'coord.lon', 'coord.lat']
          x = data.get_many(keys)
-         loc = data('sys.name')
+         loc = data('name')
          country = data('sys.country')
          coords = ['coord.lon', 'coord.lat']
          y = data.get_many(coords)
