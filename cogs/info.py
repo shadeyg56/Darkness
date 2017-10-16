@@ -86,14 +86,14 @@ class Info():
          data2 = weather.get_current(city, units='standard', **settings)
          keys = ['main.temp', 'main.humidity', 'coord.lon', 'coord.lat']
          x = data.get_many(keys)
-         loc = data('type.name')
-         country = data('type.country')
+         loc = data('sys.name')
+         country = data('sys.country')
          coords = ['coord.lon', 'coord.lat']
          y = data.get_many(coords)
          embed = discord.Embed(title='{}, {}'.format(loc, country), color=0x00FF00)
          embed.add_field(name='Absolute Location', value=y)
          embed.add_field(name='Temperature', value='{}F, {}C'.format(data('main.temp'), data2('main.temp')))
-         await self.bot.say()
+         await self.bot.say(embed=embed)
                        
         
 def setup(bot):  
