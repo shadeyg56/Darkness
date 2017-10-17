@@ -104,6 +104,7 @@ class Info():
          embed.add_field(name='Low and High Temp', value='{}F - {}F\n{}C - {}C'.format(low2, high2, low, high))
          embed.set_footer(text='Weather Data from OpenWeatherMap.org')
          await self.bot.say(embed=embed)
+         await self.bot.say(data('weather.icon'))
                        
         
 def setup(bot):  
