@@ -92,9 +92,17 @@ class Info():
          lat = data('coord.lat')
          temp = data('main.temp')
          temp2 = temp * 9/5 + 32
-         embed = discord.Embed(title='{}, {}'.format(loc, country), color=0x00FF00, description=data(int('weather.description')))
+         high = data('main.temp_max')
+         low = data('main.temp_min')
+         high2 = high * 9/5 + 32
+         low2 = high * 9/5 + 32
+         embed = discord.Embed(title='{}, {}'.format(loc, country), color=0x00FF00)
          embed.add_field(name='Absolute Location', value='{}, {}'.format(lon, lat))
          embed.add_field(name='Temperature', value='{}F, {}C'.format(temp2, temp))
+         embed.add_field(name='Humidity', value='{}%'.format(data('main.humidity')))
+         embed.add_field(name='Wind Speed', value='{}m/s'.format(data('wind.speed')))       
+         embed.add_field(name='High and Low Temp', value='{}F - {}F\n{}C - {}C'.format(low2, high2, low, high))
+         embed.set_footer(text='Weather Data from OpenWeatherMap.org')
          await self.bot.say(embed=embed)
                        
         
