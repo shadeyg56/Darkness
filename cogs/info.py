@@ -94,7 +94,7 @@ class Info():
          temp2 = data2('main.temp')
          embed = discord.Embed(title='{}, {}'.format(loc, country), color=0x00FF00)
          embed.add_field(name='Absolute Location', value=y)
-         embed.add_field(name='Temperature', value='{}F, {}C'.format(temp2, temp)
+         embed.add_field(name='Temperature', value='{}F, {}C'.format(temp2, temp))
          await self.bot.say(embed=embed)
                        
         
