@@ -91,7 +91,7 @@ class Info():
          coords = ['coord.lon', 'coord.lat']
          y = data.get_many(coords)
          temp = data('main.temp')
-         temp2 = data2('main.temp')
+         temp2 = temp * 9/5 + 32
          embed = discord.Embed(title='{}, {}'.format(loc, country), color=0x00FF00)
          embed.add_field(name='Absolute Location', value=y)
          embed.add_field(name='Temperature', value='{}F, {}C'.format(temp2, temp))
