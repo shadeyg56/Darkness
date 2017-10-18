@@ -3,7 +3,7 @@ from discord.ext import commands
 import cat
 import random
 import asyncio
-import pykemon
+from pokemonNames.pokemonNames import PokemonNames
 
 class Fun():
     def __init__(self, bot):
@@ -74,7 +74,22 @@ class Fun():
         x = await self.bot.edit_message(x,'``Injecting virus....\``')
         await self.bot.delete_message(x)
         await self.bot.delete_message(ctx.message)                      
-        await self.bot.say('Succesfully injected {}-virus.exe into {}'.format(virusname, victim))           
+        await self.bot.say('Succesfully injected {}-virus.exe into {}'.format(virusname, victim))    
+        
+    @commands.command(pass_context=True)
+    async def whosthatpokemon(self, ctx):
+        num = random.randint(0, 721)
+        with open('sprites/sprites/pokemon/{}.png'.format(num) as f:
+             file = json.loads(f.read())
+        p = PokemonNames()
+        x = p.get_name(num)
+        embed = discord.Embed(title='Who\'s this Pokemon?', color =0x00FF00)
+        await self.bot.send_file(ctx.message.channel, file)
+        msg = await self.bot.wait_for_message(timeout=60, author=ctx.message.author)
+        if msg.content == x:
+            await self.bot.say('Correct. That Pokemon is {}'.format(x))
+        if not msg.content == x:
+            await self.bot.say('Incorrect. That Pokemon is {}'.format(x))
                                 
 def setup(bot):                               
     bot.add_cog(Fun(bot))
