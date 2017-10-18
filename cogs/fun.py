@@ -83,17 +83,19 @@ class Fun():
         with open("cogs/utils/pokemon.txt", "r") as f:
             for line in f:
                 if line.startswith(str(num)):
-                    x = line - str(num)   
+                    x = line   
         pic = 'sprites/sprites/pokemon/{}.png'.format(num)
         with open(pic, 'rb') as f:
             p = PokeAPI()
             embed = discord.Embed(title='Who\'s this Pokemon?', color =0x00FF00)
             await self.bot.send_file(ctx.message.channel, f)
+            await self.bot.say(str(num))
             msg = await self.bot.wait_for_message(timeout=60, author=ctx.message.author)
             if msg.content == x:
                 await self.bot.say('Correct. That Pokemon is {}'.format(x))
             if not msg.content == x:
                 await self.bot.say('Incorrect. That Pokemon is {}'.format(x))
+            
                                 
 def setup(bot):                               
     bot.add_cog(Fun(bot))
