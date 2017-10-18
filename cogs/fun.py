@@ -79,12 +79,11 @@ class Fun():
         
     @commands.command(pass_context=True)
     async def whosthatpokemon(self, ctx):
-        num = random.randint(0, 721)
+        num = random.randint(0, 100)
         pic = 'sprites/sprites/pokemon/{}.png'.format(num)
         with open(pic, 'rb') as f:
             p = PokeAPI()
             x = p.get_pokemon(num)
-            x = self.assertTrue('name' in x)
             embed = discord.Embed(title='Who\'s this Pokemon?', color =0x00FF00)
             await self.bot.send_file(ctx.message.channel, f)
             msg = await self.bot.wait_for_message(timeout=60, author=ctx.message.author)
