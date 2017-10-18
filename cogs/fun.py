@@ -3,7 +3,8 @@ from discord.ext import commands
 import cat
 import random
 import asyncio
-from pokemonNames.pokemonNames import PokemonNames
+from pokinator import Pokinator
+
 
 class Fun():
     def __init__(self, bot):
@@ -82,8 +83,7 @@ class Fun():
         pic = 'sprites/sprites/pokemon/{}.png'.format(num)
         with open(pic) as f:
              file = json.loads(f.read())
-        p = PokemonNames()
-        x = p.get_name(num)
+        x = Pokinator.generate(num)
         embed = discord.Embed(title='Who\'s this Pokemon?', color =0x00FF00)
         await self.bot.send_file(ctx.message.channel, file)
         msg = await self.bot.wait_for_message(timeout=60, author=ctx.message.author)
