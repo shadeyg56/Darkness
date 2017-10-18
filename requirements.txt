@@ -6,4 +6,4 @@ youtube_dl
 pokinator
 openweathermapy
 urbandict
-PokeAPI
+PokeAPI.py
