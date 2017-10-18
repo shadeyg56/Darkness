@@ -83,7 +83,7 @@ class Fun():
         with open("cogs/utils/pokemon.txt", "r") as f:
             for line in f:
                 if line.startswith(str(num)):
-                    x = line - num     
+                    x = line - str(num)   
         pic = 'sprites/sprites/pokemon/{}.png'.format(num)
         with open(pic, 'rb') as f:
             p = PokeAPI()
