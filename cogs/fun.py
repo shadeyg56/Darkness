@@ -79,7 +79,8 @@ class Fun():
     @commands.command(pass_context=True)
     async def whosthatpokemon(self, ctx):
         num = random.randint(0, 721)
-        with open('sprites/sprites/pokemon/{}.png'.format(num) as f:
+        pic = 'sprites/sprites/pokemon/{}.png'.format(num)
+        with open(pic) as f:
              file = json.loads(f.read())
         p = PokemonNames()
         x = p.get_name(num)
