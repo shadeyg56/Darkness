@@ -82,7 +82,7 @@ class Fun():
         num = random.randint(0, 100)
         with open("cogs/utils/pokemon.txt", "r") as f:
             for line in f:
-                if line.startswith(num):
+                if line.startswith(str(num)):
                     x = line.content - num     
         pic = 'sprites/sprites/pokemon/{}.png'.format(num)
         with open(pic, 'rb') as f:
