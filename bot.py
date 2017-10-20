@@ -454,6 +454,7 @@ async def blacklist(ctx, user_id: str):
         data = json.dumps(data, indent=4, sort_keys=True)
     with open('cogs/utils/blacklists.json', 'w') as f:
         f.write(data)
+        await bot.say('Succesfully blacklisted id {}'.format(user_id))
         
     
 
