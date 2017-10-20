@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import urbandict
 import openweathermapy.core as weather
-from cogs.utils import blacklists
+from cogs.utils import blacklisted
 
 class Info():
    
