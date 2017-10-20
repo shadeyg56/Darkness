@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import urbandict
 import openweathermapy.core as weather
-
+from cogs.utils import blacklists
 
 class Info():
    
@@ -35,7 +35,8 @@ class Info():
         embed.add_field(name='Voice Channels', value=voice_channels)
         embed.add_field(name='Region', value=server.region)
         embed.set_footer(text=date)
-        await self.bot.say(embed=embed)
+        if self.if_blacklisted(ctx.message.author) == False:
+            await self.bot.say(embed=embed)
       
    
     @commands.command(pass_context=True)
