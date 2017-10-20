@@ -444,6 +444,16 @@ async def dm(ctx, user: discord.Member, *, msg: str):
          await asyncio.sleep(5)
          await bot.delete_message(message)
          await bot.delete_message(ctx.message)
+         
+@bot.command(pass_context=True)
+@is_owner()
+async def blacklist(ctx, user_id: str):
+    with open('cogs/utils/blacklists.json') as f:
+        data = json.loads(f.read())
+        data = data["blacklists"][user_id] = user_id
+        data = json.dumps(data, indent=4, sort_keys=True)
+    with open('cogs/utils/blacklists.json', 'w') as f:
+        f.write(data)
         
     
 
