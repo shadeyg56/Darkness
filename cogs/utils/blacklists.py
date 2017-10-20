@@ -7,5 +7,5 @@ class Blacklists():
     def if_blacklisted(self, user):
         with open('cogs/utils/blacklists.json') as f:
              blacklist = json.loads(f.read())
-             if blacklist[blacklists][user.id] = user.id:
+             if blacklist["blacklists"][user.id] = user.id:
                  await self.bot.say('You are blacklisted')
