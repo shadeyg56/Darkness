@@ -92,6 +92,12 @@ async def on_ready():
         await asyncio.sleep(10)
         await bot.change_presence(game=discord.Game(name='d.support | d.invite'))
         await asyncio.sleep(25)
+    with open('cogs/utils/blacklists.json') as f;
+        data = json.loads(f.read())
+        data = data["blacklists"] = {}
+        data = json.dumps(data, indent=4, sort_keys=True)
+    with open('cogs/utils/blacklists.json', 'w') as f:
+        f.write(data)
                             
     
 
