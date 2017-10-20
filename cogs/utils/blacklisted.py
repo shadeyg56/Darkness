@@ -8,3 +8,4 @@ class Blacklists():
         with open('cogs/utils/blacklists.json') as f:
              blacklist = json.loads(f.read())
              if blacklist["blacklists"][user.id] == user.id:
+                 pass
