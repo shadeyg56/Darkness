@@ -451,7 +451,7 @@ async def dm(ctx, user: discord.Member, *, msg: str):
 async def blacklist(ctx, user_id: str):
     with open('cogs/utils/blacklists.json') as f:
         data = json.loads(f.read())
-        data = data["blacklists"][user_id] = 1
+        data = data[user_id] = "blacklisted"
         data = json.dumps(data, indent=4, sort_keys=True)
     with open('cogs/utils/blacklists.json', 'w') as f:
         f.write(data)
