@@ -1,9 +1,0 @@
-discord.py
-requests
-PythonGists
-random-cat==1.0.1
-youtube_dl
-pokinator
-openweathermapy
-urbandict
-PokeAPI.py
