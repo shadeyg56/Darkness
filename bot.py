@@ -8,8 +8,11 @@ from contextlib import redirect_stdout
 import json
 import asyncio
 import string
+import sys
+sys.path.insert(0, '/home/pi/Desktop/Darkness/cogs/utils')
+import private
 
-TOKEN = 'Mzk4ODkzODg3MTcyNjQwNzY4.DTFc7g.yKypeXZzCZ5p8iNFqDUg1B-5SGM'
+TOKEN = private.TOKEN
 async def get_pre(bot, message):
     with open('cogs/utils/servers.json') as f:
         data = json.loads(f.read())
@@ -19,7 +22,7 @@ async def get_pre(bot, message):
     except:
         pass
     else:
-        return config[message.guild.id]['prefix']
+        return data[message.guild.id]["prefix"]
 bot = commands.Bot(command_prefix=get_pre)
 bot.remove_command("help")
 
