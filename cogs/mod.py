@@ -48,5 +48,33 @@ class Mod():
 		except discord.Forbidden:
 			await ctx.send("I need **Kick Members** for that")
 
+	@commands.command()
+	@commands.has_permission(manage_roles=True)
+	async def addrole(self, ctx, user: discord.Member, *, rolename:str):
+                role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.message.server.roles)
+                if not role:
+                    await ctx.send('That role doesnt exist')
+                try:
+                    await user.add_roles(role)
+                    await ctx.send('I removed the {} role from {}'.format(rolename, user))
+                except discord.Forbidden:
+                    await ctx.send('I need **Manage Roles** for this')
+                else:
+                     await ctx.send('You need *Manage Roles** for this')
+                     
+        @commands.command()
+	@commands.has_permission(manage_roles=True)
+	async def removerole(self, ctx, user: discord.Member, *, rolename:str):
+                role = discord.utils.find(lambda m: rolename.lower() in m.name.lower(), ctx.message.server.roles)
+                if not role:
+                    await ctx.send('That role doesnt exist')
+                try:
+                    await user.remove_roles(role)
+                    await ctx.send('I removed the {} role from {}'.format(rolename, user))
+                except discord.Forbidden:
+                    await ctx.send('I need **Manage Roles** for this')
+                else:
+                     await ctx.send('You need *Manage Roles** for this') 
+
 def setup(bot):
 	bot.add_cog(Mod(bot))
