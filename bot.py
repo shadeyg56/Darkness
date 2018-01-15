@@ -5,6 +5,8 @@ import io
 import textwrap
 import traceback
 from contextlib import redirect_stdout
+import json
+import asyncio
 
 TOKEN = 'Mzk4ODkzODg3MTcyNjQwNzY4.DTFc7g.yKypeXZzCZ5p8iNFqDUg1B-5SGM'
 
@@ -45,6 +47,64 @@ async def on_ready():
 
 def is_owner():
     return commands.check(lambda ctx: ctx.message.author.id == 300396755193954306)
+
+@bot.command()
+async def setup(ctx):
+	server = ctx.guild
+	with open('cogs/utils/servers.json') as f:
+		data = json.loads(f.read())
+		data[server.id] ={}
+	x = await ctx.send('Welcome to the Darkness interactive setup')
+	await asyncio.sleep(3)
+	await ctx.send('Please enter a prefix (Enter None for default)')
+	prefix = await bot.wait_for('message', check=lambda m: m.author == ctx.author)
+	if prefix.content == 'None':
+		prefix.content  = '~'
+	await ctx.send(f'Prefix set to {prefix.content}')
+		
+	await ctx.send('Enable welcome message?')
+	msg = await bot.wait_for('message', check=lambda m: m.author == ctx.author)
+	if msg.content == 'Yes':
+		await ctx.send('What should the message say?')
+		msg = await bot.wait_for('message', check=lambda m: m.author == ctx.author)
+		await ctx.send('What channel should be the welcome channel?')
+		welc_channel = await bot.wait_for('message', check=lambda m: m.author == ctx.author)
+		if welc_channel.content.startswith('<#'):
+			await ctx.send(f'Welcome channel set to {welc_channel.content} with message {msg.content}')
+		else:
+			await ctx.send('Invalid channel. Please make sure you mention the channel')
+			await ctx.send('What channel should be the welcome channel?')
+			welc_channel = await bot.wait_for('message', check=lambda m: m.author == ctx.author)		
+			await ctx.send(f'Welcome channel set to {welc_channel.content} with message {msg.content}')	
+	else:
+		pass
+		
+	await ctx.send('Enable leave message?')
+	leave_msg = await bot.wait_for('message', check=lambda m: m.author == ctx.author)
+	if leave_msg.content == 'Yes':
+		await ctx.send('What should the message say?')
+		leave_msg = await bot.wait_for('message', check=lambda m: m.author == ctx.author)
+		await ctx.send(f'Leave message set to {leave_msg.content}')	
+	else:
+		pass
+		
+	data[server.id]['name'] = server.name 
+	data[server.id]['prefix'] = prefix.content.strip()
+	data[server.id]['welc_channel'] = welc_channel.content.strip()
+	data[server.id]['welc_msg'] = msg.content.strip()
+	data[server.id]['leave_msg'] = leave_msg.content.strip()
+	
+	data = json.dumps(data, indent=4, sort_keys=True)
+	
+	with open('cogs/utils/servers.json', 'w') as f:
+		f.write(data)
+	await ctx.send('Setup complete')
+
+
+
+	
+		
+	
 
 @bot.command()
 async def help(ctx):
@@ -113,8 +173,9 @@ async def to_code_block(ctx, body):
         content = body.strip('`')
     await bot.edit_message(ctx.message, '```py\n'+content+'```')
            
-           
-@bot.command(pass_context=True, name='eval')
+
+      
+@bot.command(name='eval')
 @is_owner()
 async def _eval(ctx, *, body: str):
     '''Run python scripts on discord!'''
