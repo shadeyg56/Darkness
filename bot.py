@@ -50,11 +50,35 @@ def is_owner():
 async def help(ctx):
     embed = discord.Embed(title="Darkness Commands", color=0xed)
     embed.add_field(name='Miscellaneous:', value='help, say')
-    embed.add_field(name="Moderation", value="purge, kick, ban, unban")
-    embed.add_field(name="Info", value="serverinfo")
+    embed.add_field(name="Moderation", value="purge, kick, ban, unban, addrole, removerole")
+    embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban")
+    embed.add_field(name='Fun', value='cat, ball')
     embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
     await ctx.send(embed=embed)
 
+def fmt_help(page):
+    cmd = ''
+    for line in page.splitlines():
+        if line.startswith('.'):
+            cmd = line.strip('.')
+            break
+    em = discord.Embed(color=0x00FFFF)
+    em.set_author(name='Help - {}'.format(cmd))
+
+async def send_cmd_help(ctx):
+    if ctx.invoked_subcommand:
+        pages = bot.formatter.format_help_for(ctx, ctx.invoked_subcommand)
+        for page in pages:
+            # page = page.strip('```css').strip('```')
+
+
+            await ctx.send(page)
+        print('Sent command help')
+    else:
+        pages = bot.formatter.format_help_for(ctx, ctx.command)
+        for page in pages:
+            await ctx.send(page)
+        print('Sent command help')
 
 @bot.command()
 async def say(ctx, *, msg: str):
