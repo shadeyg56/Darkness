@@ -72,7 +72,7 @@ async def help(ctx):
     embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
     await ctx.send(embed=embed)
     
-@bot.event()
+@bot.event
 async def on_member_join(member):
 	guild = member.guild
 	welc_channel = data[str(guild.id)]['welc_channel']
