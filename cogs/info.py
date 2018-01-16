@@ -130,7 +130,7 @@ class Info():
 		text = data[ctx.guild.id][tag]
 		try:
 			if tag == 'list':
-				text = [for tag in text]
+				text = ([for m in text])
 			await ctx.send(text)
 		except KeyError:
 			await ctx.send('That tag does not exist. You can create it with create_tag <tagname> <text>')
