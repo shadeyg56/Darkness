@@ -109,6 +109,28 @@ class Info():
 				embed.add_field(name="Example",value=example,inline=False)
 				embed.set_footer(text="Urban Dictionary")
 				await ctx.send(embed=embed)
+	@commands.command()
+	async def create_tag(self, ctx, tagname:str, *, text:str):
+		with open('cogs/utils/tags.json') as f:
+			data = json.load(f)
+		try:
+			data[tagname] = text
+			await ctx.send(f'Tag {tagname} succesfully created')
+		except:
+			await ctx.send('Error making tag')
+		data = json.dumps(data, indent=4, sort_keys=True)
+		with open('cogs/utils/tags.json', 'w') as f:
+			f.write(data)
+
+	@commands.command()
+	async def tag(self, ctx, *, tag:str):
+		with open('cogs/utils/tags.json') as f:
+			data = json.load(f)
+		text = data[tag]
+		try:
+			await ctx.send(text)
+		except:
+			await ctx.send('That tag does not exist. You can create it with create_tag <tagname> <text>')
 
 
 def setup(bot):
