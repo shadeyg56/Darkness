@@ -5,6 +5,7 @@ import psutil
 import platform
 import openweathermapy.core as weather
 import urbandict
+import json
 
 class Info():
 	def __init__(self, bot):
