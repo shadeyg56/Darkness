@@ -11,18 +11,17 @@ import string
 import sys
 sys.path.insert(0, '/home/pi/Desktop/Darkness/cogs/utils')
 import private
-
+with open('cogs/utils/servers.json') as f:
+        data = json.load(f)
 TOKEN = private.TOKEN
 async def get_pre(bot, message):
-    with open('cogs/utils/servers.json') as f:
-        data = json.loads(f.read())
-    try:
-        if message.guild.id not in data:
-            return '~'
-    except:
-        pass
-    else:
-        return data[message.guild.id]["prefix"]
+	prefix = data[str(message.guild.id)]['prefix'
+	if str(message.guild.id) is None:
+		return '~'
+	else:
+		return prefix
+	
+	
 bot = commands.Bot(command_prefix=get_pre)
 bot.remove_command("help")
 
@@ -72,6 +71,12 @@ async def help(ctx):
     embed.add_field(name='Fun', value='cat, ball')
     embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
     await ctx.send(embed=embed)
+    
+@bot.event()
+async def on_member_join(member):
+	
+	
+ 
 
 def fmt_help(page):
     cmd = ''
