@@ -81,7 +81,7 @@ async def on_member_join(member):
 	welc_channel = welc_channel.replace('>', '')
 	msg = data[str(guild.id)]['welc_msg']
 	if msg:
-		channel = welc_channel
+		channel = int(welc_channel)
 		await channel.send(msg)
 	
 	
