@@ -8,7 +8,7 @@ class Setup():
 		self.bot = bot
 	
 	@commands.command()
-	@command.has_permissions(manage_server=True)
+	@commands.has_permissions(manage_server=True)
 	async def setup(self, ctx):
 		with open('cogs/utils/servers.json') as f:
 			data = json.loads(f.read())
@@ -64,7 +64,7 @@ class Setup():
 		await ctx.send('Setup complete')
 		
 	@commands.command()
-	@command.has_permissions(manage_server=True)
+	@commands.has_permissions(manage_server=True)
 	async def config(self, ctx, setting=None, *, change=None):
 		if setting == None:
 			await ctx.send('Here is what you can change: prefix, welcome_message, welcome_channel, leave_message')
