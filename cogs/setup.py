@@ -2,12 +2,12 @@ import discord
 from discord.ext import commands
 import asyncio
 import json
-
+with open('cogs/utils/servers.json') as f:
+		data = json.loads(f.read())
 class Setup():
 	def __init__(self, bot):
 		self.bot = bot
-	with open('cogs/utils/servers.json') as f:
-			data = json.loads(f.read())
+	
 	@commands.command()
 	async def setup(self, ctx):
 		server = ctx.guild
