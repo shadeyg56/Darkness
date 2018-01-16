@@ -9,13 +9,13 @@ import json
 import asyncio
 import string
 import sys
-sys.path.insert(0, '/home/pi/Desktop/Darkness/cogs/utils')
+sys.path.insert(0, '/home/pi/Desktop/)
 import private
 with open('cogs/utils/servers.json') as f:
         data = json.load(f)
 TOKEN = private.TOKEN
 async def get_pre(bot, message):
-	prefix = data[str(message.guild.id)]['prefix'
+	prefix = data[str(message.guild.id)]['prefix']
 	if str(message.guild.id) is None:
 		return '~'
 	else:
