@@ -25,7 +25,9 @@ class Setup():
 		msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
 		if msg.content == 'Yes':
 			await ctx.send('What should the message say?')
+			await ctx.send('You can use {user} {server} and {member_count} to use them in your message')
 			msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
+			msg = f'{msg.content}'
 			await ctx.send('What channel should be the welcome channel?')
 			welc_channel = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
 			if welc_channel.content.startswith('<#'):
@@ -77,7 +79,8 @@ class Setup():
 		if setting == 'leave_message':
 			data[str(ctx.guild.id)]['leave_msg'] = change
 			await ctx.send(f'Leave message set to `{change}`')
-			
+		if setting != 'prefix' or 'welcome_message' or 'welcome_channel' or 'leave_message':
+			await ctx.send('Invalid setting. Please choose one of the following: prefix, welcome_message, welcome_channel, leave_message')
 		data = json.dumps(data, indent=4, sort_keys=True)
 		with open('cogs/utils/servers.json', 'w') as f:
 			f.write(data)
