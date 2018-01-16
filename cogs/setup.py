@@ -8,6 +8,7 @@ class Setup():
 		self.bot = bot
 	
 	@commands.command()
+	@command.has_permissions(manage_server=True)
 	async def setup(self, ctx):
 		with open('cogs/utils/servers.json') as f:
 			data = json.loads(f.read())
@@ -44,6 +45,7 @@ class Setup():
 		leave_msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
 		if leave_msg.content == 'Yes':
 			await ctx.send('What should the message say?')
+			await ctx.send('You can use {user} {server} and {member_count} to use them in your message')
 			leave_msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
 			await ctx.send(f'Leave message set to {leave_msg.content}')	
 		else:
@@ -62,6 +64,7 @@ class Setup():
 		await ctx.send('Setup complete')
 		
 	@commands.command()
+	@command.has_permissions(manage_server=True)
 	async def config(self, ctx, setting=None, *, change=None):
 		if setting == None:
 			await ctx.send('Here is what you can change: prefix, welcome_message, welcome_channel, leave_message')
