@@ -80,7 +80,7 @@ async def on_member_join(member):
 	with open('cogs/utils/servers.json') as f:
 		data = json.load(f)
 	guild = member.guild
-	member_count = guild.members
+	member_count = len(guild.members)
 	user = member
 	server = guild.name
 	welc_channel = data[str(guild.id)]['welc_channel']
@@ -88,6 +88,14 @@ async def on_member_join(member):
 	welc_channel = welc_channel.replace('#', '')
 	welc_channel = welc_channel.replace('>', '')
 	msg = data[str(guild.id)]['welc_msg']
+	if '{user}' in msg:
+		msg = msg.replace('{user}', user)
+	if '{server}' in msg:
+		msg = msg.replace('{server}', server)
+	if '{member_count}' in msg:
+		msg = msg.replace('{member_count}', member_count)
+			
+	
 	if msg:
 		channel = bot.get_channel(int(welc_channel))
 		await channel.send(msg)
