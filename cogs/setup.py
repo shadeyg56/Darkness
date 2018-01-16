@@ -6,12 +6,11 @@ import json
 class Setup():
 	def __init__(self, bot):
 		self.bot = bot
-	
+	with open('cogs/utils/servers.json') as f:
+			data = json.loads(f.read())
 	@commands.command()
 	async def setup(self, ctx):
 		server = ctx.guild
-		with open('cogs/utils/servers.json') as f:
-			data = json.loads(f.read())
 			data[server.id] ={}
 		x = await ctx.send('Welcome to the Darkness interactive setup')
 		await asyncio.sleep(3)
@@ -58,6 +57,13 @@ class Setup():
 		with open('cogs/utils/servers.json', 'w') as f:
 			f.write(data)
 		await ctx.send('Setup complete')
+		
+	@commands.command()
+	async def config(self, ctx, setting, *, change):
+		if setting == 'prefix':
+			data[str(ctx.guild.id)]['prefix'] = change
+			await ctx.send(f'Prefix set to `{change}`)
+		
 		
 def setup(bot):
 	bot.add_cog(Setup(bot))
