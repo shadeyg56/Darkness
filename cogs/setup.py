@@ -2,14 +2,15 @@ import discord
 from discord.ext import commands
 import asyncio
 import json
-with open('cogs/utils/servers.json') as f:
-		data = json.loads(f.read())
+
 class Setup():
 	def __init__(self, bot):
 		self.bot = bot
 	
 	@commands.command()
 	async def setup(self, ctx):
+		with open('cogs/utils/servers.json') as f:
+			data = json.loads(f.read())
 		server = ctx.guild
 		data[server.id] = {}
 		x = await ctx.send('Welcome to the Darkness interactive setup')
@@ -60,6 +61,8 @@ class Setup():
 		
 	@commands.command()
 	async def config(self, ctx, setting, *, change):
+		with open('cogs/utils/servers.json') as f:
+			data = json.loads(f.read())
 		if setting == 'prefix':
 			data[str(ctx.guild.id)]['prefix'] = change
 			await ctx.send(f'Prefix set to `{change}`')
