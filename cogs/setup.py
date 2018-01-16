@@ -63,6 +63,7 @@ class Setup():
 		if setting == 'prefix':
 			data[str(ctx.guild.id)]['prefix'] = change
 			await ctx.send(f'Prefix set to `{change}`')
+			data = json.dumps(data, indent=4, sort_keys=True)
 		with open('cogs/utils/servers.json', 'w') as f:
 			f.write(data)
 		
