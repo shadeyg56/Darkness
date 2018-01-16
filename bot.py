@@ -15,14 +15,13 @@ with open('cogs/utils/servers.json') as f:
         data = json.load(f)
 TOKEN = private.TOKEN
 async def get_pre(bot, message):
-	prefix = data[str(message.guild.id)]['prefix']
 	try:
 		if str(message.guild.id) not in data:
 			return '~'
 	except:
 		pass
 	else:
-		return prefix
+		return data[str(message.guild.id)]['prefix']
 
 	
 	
