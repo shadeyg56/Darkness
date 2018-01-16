@@ -77,6 +77,8 @@ async def help(ctx):
     
 @bot.event
 async def on_member_join(member):
+	with open('cogs/utils/servers.json') as f:
+		data = json.load(f)
 	guild = member.guild
 	member_count = guild.members
 	user = member
@@ -92,6 +94,8 @@ async def on_member_join(member):
 		
 @bot.event
 async def on_member_remove(member):
+	with open('cogs/utils/servers.json') as f:
+		data = json.load(f)
 	guild = member.guild
 	welc_channel = data[str(guild.id)]['welc_channel']
 	welc_channel = welc_channel.replace('<', '')
