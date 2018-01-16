@@ -115,7 +115,7 @@ class Info():
 		with open('cogs/utils/tags.json') as f:
 			data = json.load(f)
 		try:
-			data[tagname] = text
+			data[ctx.guild.id][tagname] = text
 			await ctx.send(f'Tag {tagname} succesfully created')
 		except:
 			await ctx.send('Error making tag')
@@ -127,10 +127,12 @@ class Info():
 	async def tag(self, ctx, *, tag:str):
 		with open('cogs/utils/tags.json') as f:
 			data = json.load(f)
-		text = data[tag]
+		text = data[ctx.guild.id][tag]
 		try:
+			if tag == 'list':
+				text = [for tag in text]
 			await ctx.send(text)
-		except:
+		except KeyError:
 			await ctx.send('That tag does not exist. You can create it with create_tag <tagname> <text>')
 
 
