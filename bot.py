@@ -76,7 +76,7 @@ async def help(ctx):
 async def on_member_join(member):
 	guild = member.guild
 	welc_channel = data[str(guild.id)]['welc_channel']
-	msg = data[str(guild.id)]['msg']
+	msg = data[str(guild.id)]['welc_msg']
 	if msg:
 		channel = await bot.get_channel(int(welc_channel))
 		await channel.send(msg)
