@@ -21,8 +21,8 @@ async def get_pre(bot, message):
 			return '~'
 	except:
 		pass
-			else:
-				return prefix
+	else:
+		return data[str(message.guild.id]['prefix']
 
 	
 	
