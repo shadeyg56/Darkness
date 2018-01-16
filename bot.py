@@ -85,7 +85,7 @@ async def on_member_join(member):
 		await channel.send(msg)
 		
 @bot.event
-async def on_member_leave(member):
+async def on_member_remove(member):
 	guild = member.guild
 	welc_channel = data[str(guild.id)]['welc_channel']
 	welc_channel = welc_channel.replace('<', '')
