@@ -16,10 +16,10 @@ with open('cogs/utils/servers.json') as f:
 TOKEN = private.TOKEN
 async def get_pre(bot, message):
 	prefix = data[str(message.guild.id)]['prefix']
-	if str(message.guild.id) is None:
-		return '~'
-	else:
+	if prefix:
 		return prefix
+	else:
+		return '~'
 	
 	
 bot = commands.Bot(command_prefix=get_pre)
