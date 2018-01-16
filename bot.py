@@ -78,6 +78,9 @@ async def help(ctx):
 @bot.event
 async def on_member_join(member):
 	guild = member.guild
+	member_count = guild.members
+	user = member
+	server = guild.name
 	welc_channel = data[str(guild.id)]['welc_channel']
 	welc_channel = welc_channel.replace('<', '')
 	welc_channel = welc_channel.replace('#', '')
