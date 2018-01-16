@@ -105,11 +105,20 @@ async def on_member_remove(member):
 	with open('cogs/utils/servers.json') as f:
 		data = json.load(f)
 	guild = member.guild
+	user = member
+	server = guild.name
+	member_count = len(guild.members)
 	welc_channel = data[str(guild.id)]['welc_channel']
 	welc_channel = welc_channel.replace('<', '')
 	welc_channel = welc_channel.replace('#', '')
 	welc_channel = welc_channel.replace('>', '')
 	msg = data[str(guild.id)]['leave_msg']
+	if '{user}' in msg:
+		msg = msg.replace('{user}', user.name)
+	if '{server}' in msg:
+		msg = msg.replace('{server}', server)
+	if '{member_count}' in msg:
+		msg = msg.replace('{member_count}', str(member_count))
 	if msg:
 		channel = bot.get_channel(int(welc_channel))
 		await channel.send(msg)
