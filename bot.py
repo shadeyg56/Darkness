@@ -78,7 +78,7 @@ async def on_member_join(member):
 	welc_channel = data[str(guild.id)]['welc_channel']
 	msg = data[str(guild.id)]['msg']
 	if msg:
-		channel = await bot.get_channel(int(welc_channel)
+		channel = await bot.get_channel(int(welc_channel))
 		await channel.send(msg)
 	
 	
