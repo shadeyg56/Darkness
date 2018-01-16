@@ -60,13 +60,25 @@ class Setup():
 		await ctx.send('Setup complete')
 		
 	@commands.command()
-	async def config(self, ctx, setting, *, change):
+	async def config(self, ctx, setting=None, *, change=None):
+		if setting == None:
+			await ctx.send('Here is what you can change: prefix, welcome_message, welcome_channel, leave_message')
 		with open('cogs/utils/servers.json') as f:
 			data = json.loads(f.read())
 		if setting == 'prefix':
 			data[str(ctx.guild.id)]['prefix'] = change
 			await ctx.send(f'Prefix set to `{change}`')
-			data = json.dumps(data, indent=4, sort_keys=True)
+		if setting == 'welcome_message':
+			data[str(ctx.guild.id)]['welc_msg'] = change
+			await ctx.send(f'Welcome message set to `{change}`')
+		if setting == 'welcome_channel':
+			data[str(ctx.guild.id)]['welc_channel'] = change
+			await ctx.send(f'Welcome channel set to {change}')
+		if setting == 'leave_message':
+			data[str(ctx.guild.id)]['leave_msg'] = change
+			await ctx.send(f'Leave message set to `{change}`')
+			
+		data = json.dumps(data, indent=4, sort_keys=True)
 		with open('cogs/utils/servers.json', 'w') as f:
 			f.write(data)
 		

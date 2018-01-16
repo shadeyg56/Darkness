@@ -3,7 +3,7 @@
         "leave_msg": "Bye",
         "name": "Darkness Support",
         "prefix": "!",
-        "welc_channel": "<#356599668739670049>",
-        "welc_msg": "Hello"
+        "welc_channel": "<#356613238458155010>",
+        "welc_msg": "Hello world"
     }
 }
