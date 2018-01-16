@@ -93,7 +93,7 @@ async def on_member_join(member):
 	if '{server}' in msg:
 		msg = msg.replace('{server}', server)
 	if '{member_count}' in msg:
-		msg = msg.replace('{member_count}', member_count)
+		msg = msg.replace('{member_count}', str(member_count))
 			
 	
 	if msg:
