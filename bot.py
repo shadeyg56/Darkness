@@ -9,7 +9,7 @@ import json
 import asyncio
 import string
 import sys
-sys.path.insert(0, '/home/pi/Desktop/)
+sys.path.insert(0, '/home/pi/Desktop/')
 import private
 with open('cogs/utils/servers.json') as f:
         data = json.load(f)
@@ -74,6 +74,12 @@ async def help(ctx):
     
 @bot.event()
 async def on_member_join(member):
+    guild = member.guild
+    welc_channel = data[str(guild.id)]['welc_channel']
+    msg = data[str(guild.id)]['msg']
+    if msg:
+	channel = await bot.get_channel(int(welc_channel))
+	await channel.send(msg)
 	
 	
  
