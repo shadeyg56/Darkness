@@ -89,7 +89,7 @@ async def on_member_join(member):
 	welc_channel = welc_channel.replace('>', '')
 	msg = data[str(guild.id)]['welc_msg']
 	if '{user}' in msg:
-		msg = msg.replace('{user}', user)
+		msg = msg.replace('{user}', user.name)
 	if '{server}' in msg:
 		msg = msg.replace('{server}', server)
 	if '{member_count}' in msg:
