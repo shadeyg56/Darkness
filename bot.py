@@ -11,10 +11,10 @@ import string
 import sys
 sys.path.insert(0, '/home/pi/Desktop/')
 import private
-with open('cogs/utils/servers.json') as f:
-        data = json.load(f)
 TOKEN = private.TOKEN
 async def get_pre(bot, message):
+	with open('cogs/utils/servers.json') as f:
+		data = json.load(f)
 	try:
 		if str(message.guild.id) not in data:
 			return '~'
