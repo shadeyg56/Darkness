@@ -11,7 +11,7 @@ class Setup():
 	@commands.command()
 	async def setup(self, ctx):
 		server = ctx.guild
-			data[server.id] ={}
+		data[server.id] = {}
 		x = await ctx.send('Welcome to the Darkness interactive setup')
 		await asyncio.sleep(3)
 		await ctx.send('Please enter a prefix (Enter None for default)')
