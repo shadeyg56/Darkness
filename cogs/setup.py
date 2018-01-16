@@ -62,7 +62,7 @@ class Setup():
 	async def config(self, ctx, setting, *, change):
 		if setting == 'prefix':
 			data[str(ctx.guild.id)]['prefix'] = change
-			await ctx.send(f'Prefix set to `{change}`)
+			await ctx.send(f'Prefix set to `{change}`')
 		
 		
 def setup(bot):
