@@ -130,7 +130,7 @@ class Info():
 		text = data[str(ctx.guild.id)][tag]
 		if tag == 'list':
 			keys = data[str(ctx.guild.id)]
-			text = keys.keys()
+			text = str(keys.keys())
 			text = text.replace('dict_keys[(', '')
 			text = text.replace("'", '')
 			text = text.replace(')]', '')
