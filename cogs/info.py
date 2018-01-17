@@ -128,7 +128,7 @@ class Info():
 		with open('cogs/utils/tags.json') as f:
 			data = json.load(f)
 		text = data[str(ctx.guild.id)][tag]
-		try:
+		if tag in list:
 			if tag == 'list':
 				keys = data[str(ctx.guild.id)]
 				text = keys.keys()
@@ -136,8 +136,8 @@ class Info():
 				text = text.replace("'", '')
 				text = text.replace(')]', '')
 			await ctx.send(text)
-		except:
-			await ctx.send('That tag does not exist. You can create it with create_tag <tagname> <text>')
+		else:
+			await ctx.send('That tag does not exist. You can create it with create_tag <tagname> <tsxt>')
 
 
 def setup(bot):
