@@ -131,9 +131,9 @@ class Info():
 		if tag == 'list':
 			keys = data[str(ctx.guild.id)]
 			text = str(keys.keys())
-			text = text.replace('dict_keys[(', '')
+			text = text.replace('dict_keys([', '')
 			text = text.replace("'", '')
-			text = text.replace(')]', '')
+			text = text.replace('])', '')
 		await ctx.send(text)
 
 
