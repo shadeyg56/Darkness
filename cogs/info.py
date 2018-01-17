@@ -117,8 +117,6 @@ class Info():
 		try:
 			data[ctx.guild.id][tagname] = text
 			await ctx.send(f'Tag {tagname} succesfully created')
-		except:
-			await ctx.send('Error making tag')
 		data = json.dumps(data, indent=4, sort_keys=True)
 		with open('cogs/utils/tags.json', 'w') as f:
 			f.write(data)
