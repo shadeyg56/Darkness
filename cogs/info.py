@@ -128,7 +128,7 @@ class Info():
 		with open('cogs/utils/tags.json') as f:
 			data = json.load(f)
 		text = data[str(ctx.guild.id)][tag]
-		if tag in list:
+		if tag in data:
 			if tag == 'list':
 				keys = data[str(ctx.guild.id)]
 				text = keys.keys()
