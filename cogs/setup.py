@@ -13,7 +13,7 @@ class Setup():
 		with open('cogs/utils/servers.json') as f:
 			data = json.loads(f.read())
 		server = ctx.guild
-		data[server.id] = {}
+		data[str(server.id)] = {}
 		x = await ctx.send('Welcome to the Darkness interactive setup')
 		await asyncio.sleep(3)
 		await ctx.send('Please enter a prefix (Enter None for default)')
@@ -39,6 +39,8 @@ class Setup():
 				welc_channel = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)		
 				await ctx.send(f'Welcome channel set to {welc_channel.content} with message {msg.content}')	
 		else:
+			msg = None
+			welc_channel = None
 			pass
 			
 		await ctx.send('Enable leave message?')
@@ -49,13 +51,14 @@ class Setup():
 			leave_msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
 			await ctx.send(f'Leave message set to {leave_msg.content}')	
 		else:
+			leave_msg = None
 			pass
 			
-		data[server.id]['name'] = server.name 
-		data[server.id]['prefix'] = prefix.content.strip('"')
-		data[server.id]['welc_channel'] = welc_channel.content.strip('"')
-		data[server.id]['welc_msg'] = msg.strip('"')
-		data[server.id]['leave_msg'] = leave_msg.content.strip('"')
+		data[str(server.id)]['name'] = server.name 
+		data[str(server.id)]['prefix'] = prefix.content.strip('"')
+		data[str(server.id)]['welc_channel'] = welc_channel.content.strip('"')
+		data[str(server.id)]['welc_msg'] = msg.strip('"')
+		data[str(server.id)]['leave_msg'] = leave_msg.content.strip('"')
 		
 		data = json.dumps(data, indent=4, sort_keys=True)
 		
