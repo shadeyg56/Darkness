@@ -128,16 +128,13 @@ class Info():
 		with open('cogs/utils/tags.json') as f:
 			data = json.load(f)
 		text = data[str(ctx.guild.id)][tag]
-		if tag in data:
-			if tag == 'list':
-				keys = data[str(ctx.guild.id)]
-				text = keys.keys()
-				text = text.replace('dict_keys[(', '')
-				text = text.replace("'", '')
-				text = text.replace(')]', '')
-			await ctx.send(text)
-		else:
-			await ctx.send('That tag does not exist. You can create it with create_tag <tagname> <tsxt>')
+		if tag == 'list':
+			keys = data[str(ctx.guild.id)]
+			text = keys.keys()
+			text = text.replace('dict_keys[(', '')
+			text = text.replace("'", '')
+			text = text.replace(')]', '')
+		await ctx.send(text)
 
 
 def setup(bot):
