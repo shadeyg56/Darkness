@@ -62,8 +62,10 @@ class Setup():
 		else:
 			data[str(server.id)]['welc_channel'] = welc_channel
 			data[str(server.id)]['welc_msg'] = msg
-		data[str(server.id)]['leave_msg'] = leave_msg.content.strip('"')
-		
+		if leave_msg != None:
+			data[str(server.id)]['leave_msg'] = leave_msg.content.strip('"')
+		else:
+			data[str(server.id)]['leave_msg'] = leave_msg
 		data = json.dumps(data, indent=4, sort_keys=True)
 		
 		with open('cogs/utils/servers.json', 'w') as f:
