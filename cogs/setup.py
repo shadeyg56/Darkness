@@ -61,7 +61,7 @@ class Setup():
 			data[str(server.id)]['welc_msg'] = msg.strip('"')
 		else:
 			data[str(server.id)]['welc_channel'] = welc_channel
-			data[str(sercer.id)]['welc_msg'] = msg
+			data[str(server.id)]['welc_msg'] = msg
 		data[str(server.id)]['leave_msg'] = leave_msg.content.strip('"')
 		
 		data = json.dumps(data, indent=4, sort_keys=True)
