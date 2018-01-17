@@ -116,7 +116,7 @@ class Info():
 			data = json.load(f)
 		if ctx.guild.id not in data:
 			data[ctx.guild.id] = {}
-		data[ctx.guild.id][tagname] = text
+		data[str(ctx.guild.id)][tagname] = text
 		await ctx.send(f'Tag {tagname} succesfully created')
 		data = json.dumps(data, indent=4, sort_keys=True)
 		with open('cogs/utils/tags.json', 'w') as f:
@@ -126,7 +126,7 @@ class Info():
 	async def tag(self, ctx, *, tag:str):
 		with open('cogs/utils/tags.json') as f:
 			data = json.load(f)
-		text = data[ctx.guild.id][tag]
+		text = data[str(ctx.guild.id)][tag]
 		try:
 			if tag == 'list':
 				text = data.keys()
