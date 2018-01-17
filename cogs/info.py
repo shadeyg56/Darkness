@@ -132,6 +132,9 @@ class Info():
 			if tag == 'list':
 				keys = data[str(ctx.guild.id)]
 				text = keys.keys()
+				text = text.replace('dict_keys[(', '')
+				text = text.replace("'", '')
+				text = text.replace(')]', '')
 			await ctx.send(text)
 		except:
 			await ctx.send('That tag does not exist. You can create it with create_tag <tagname> <text>')
