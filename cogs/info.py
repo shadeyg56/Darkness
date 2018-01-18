@@ -6,6 +6,7 @@ import platform
 import openweathermapy.core as weather
 import urbandict
 import json
+from translation import google, ConnectError
 
 class Info():
 	def __init__(self, bot):
@@ -110,6 +111,7 @@ class Info():
 				embed.add_field(name="Example",value=example,inline=False)
 				embed.set_footer(text="Urban Dictionary")
 				await ctx.send(embed=embed)
+				
 	@commands.command()
 	async def create_tag(self, ctx, tagname:str, *, text:str):
 		with open('cogs/utils/tags.json') as f:
@@ -118,7 +120,7 @@ class Info():
 			data[str(ctx.guild.id)] = {}
 			data[str(ctx.guild.id)]['list'] = None
 		data[str(ctx.guild.id)][tagname] = text
-		await ctx.send(f'Tag {tagname} succesfully created')
+		await ctx.send(f'Tag {tagname} successfully created')
 		data = json.dumps(data, indent=4, sort_keys=True)
 		with open('cogs/utils/tags.json', 'w') as f:
 			f.write(data)
@@ -135,7 +137,25 @@ class Info():
 			text = text.replace("'", '')
 			text = text.replace('])', '')
 		await ctx.send(text)
-
+		
+	@commands.command()
+	async def delete_tag(self, ctx, tagname:str):
+			with open('cogs/utils/tags.json') as f:
+				data = json.load(f)
+			text = data[str(ctx.guild.id)][tagname] = None
+			await ctx.send(f'Tag {tagname} was successfully deleted')
+			data = json.dumps(data, indent=4, sort_keys=True)
+			with open('cogs/utils/tags.json', 'w') as f:
+				f.write(data)
+				
+	@commands.command()
+	async def translate(self, ctx,lang:str, *, message:str):
+		LANGUAGES = { 'af': 'afrikaans', 'sq': 'albanian', 'am': 'amharic', 'ar': 'arabic', 'hy': 'armenian', 'az': 'azerbaijani', 'eu': 'basque', 'be': 'belarusian', 'bn': 'bengali', 'bs': 'bosnian', 'bg': 'bulgarian', 'ca': 'catalan', 'ceb': 'cebuano', 'ny': 'chichewa', 'zh-CN': 'chinese (simplified)', 'zh-TW': 'chinese (traditional)', 'co': 'corsican', 'hr': 'croatian', 'cs': 'czech', 'da': 'danish', 'nl': 'dutch', 'en': 'english', 'eo': 'esperanto', 'et': 'estonian', 'tl': 'filipino', 'fi': 'finnish', 'fr': 'french', 'fy': 'frisian', 'gl': 'galician', 'ka': 'georgian', 'de': 'german', 'el': 'greek', 'gu': 'gujarati', 'ht': 'haitian creole', 'ha': 'hausa', 'haw': 'hawaiian', 'iw': 'hebrew', 'hi': 'hindi', 'hmn': 'hmong', 'hu': 'hungarian', 'is': 'icelandic', 'ig': 'igbo', 'id': 'indonesian', 'ga': 'irish', 'it': 'italian', 'ja': 'japanese', 'jw': 'javanese', 'kn': 'kannada', 'kk': 'kazakh', 'km': 'khmer', 'ko': 'korean', 'ku': 'kurdish (kurmanji)', 'ky': 'kyrgyz', 'lo': 'lao', 'la': 'latin', 'lv': 'latvian', 'lt': 'lithuanian', 'lb': 'luxembourgish', 'mk': 'macedonian', 'mg': 'malagasy', 'ms': 'malay', 'ml': 'malayalam', 'mt': 'maltese', 'mi': 'maori', 'mr': 'marathi', 'mn': 'mongolian', 'my': 'myanmar (burmese)', 'ne': 'nepali', 'no': 'norwegian', 'ps': 'pashto', 'fa': 'persian', 'pl': 'polish', 'pt': 'portuguese', 'pa': 'punjabi', 'ro': 'romanian', 'ru': 'russian', 'sm': 'samoan', 'gd': 'scots gaelic', 'sr': 'serbian', 'st': 'sesotho', 'sn': 'shona', 'sd': 'sindhi', 'si': 'sinhala', 'sk': 'slovak', 'sl': 'slovenian', 'so': 'somali', 'es': 'spanish', 'su': 'sundanese', 'sw': 'swahili', 'sv': 'swedish', 'tg': 'tajik', 'ta': 'tamil', 'te': 'telugu', 'th': 'thai', 'tr': 'turkish', 'uk': 'ukrainian', 'ur': 'urdu', 'uz': 'uzbek', 'vi': 'vietnamese', 'cy': 'welsh', 'xh': 'xhosa', 'yi': 'yiddish', 'yo': 'yoruba', 'zu': 'zulu' } 
+		LANGUAGES = {y:x for x,y in LANGUAGES.items()}
+		if lang in LANGUAGES:
+			lang = LANGUAGES[str(lang)]
+			print(google(f'{message}', dst= 'fr', proxies = {'http': '127.0.0.1:20'}))
+			await ctx.send(google(message, dst = lang, proxies = None))
 
 def setup(bot):
 	bot.add_cog(Info(bot))
