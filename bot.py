@@ -17,7 +17,7 @@ async def get_pre(bot, message):
 		data = json.load(f)
 	try:
 		if str(message.guild.id) not in data:
-			return '~'
+			return 'd.'
 	except:
 		pass
 	else:
@@ -54,7 +54,7 @@ async def on_ready():
     print('DV: {}'.format(discord.__version__))
     bot.uptime = datetime.datetime.now()
     embed=discord.Embed(title='Good Morning', description='Up and at em', color=0xed)   
-    embed.set_footer(text='Darkness ready for use')
+    embed.set_footer(text='Major update released | d.setup')
     server = len(bot.guilds)
     channel = bot.get_channel(356599668739670049)
     users = sum(1 for _ in bot.get_all_members())
@@ -71,6 +71,7 @@ async def help(ctx):
     embed.add_field(name='Miscellaneous:', value='help, say')
     embed.add_field(name="Moderation", value="purge, kick, ban, unban, addrole, removerole")
     embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban")
+    embed.add_field(name='Utils', value='google, translate, source, tag, hastebin')
     embed.add_field(name='Fun', value='cat, ball')
     embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
     await ctx.send(embed=embed)
