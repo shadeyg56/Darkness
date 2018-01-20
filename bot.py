@@ -35,8 +35,7 @@ startup_extensions = [
     "cogs.mod",
     "cogs.fun",
     "cogs.info",
-    'cogs.setup',
-    'cogs.music'
+    'cogs.setup'
     
  
  
@@ -55,12 +54,12 @@ async def on_ready():
     print('DV: {}'.format(discord.__version__))
     bot.uptime = datetime.datetime.now()
     embed=discord.Embed(title='Good Morning', description='Up and at em', color=0xed)   
-    embed.set_footer(text='Major update released | d.setup')
+    embed.set_footer(text='Darkness ready for use')
     server = len(bot.guilds)
     channel = bot.get_channel(356599668739670049)
     users = sum(1 for _ in bot.get_all_members())
     await channel.send(embed=embed)
-    await bot.change_presence(game=discord.Game(name='Being coded.'))
+    await bot.change_presence(game=discord.Game(name='Major update | d.setup'))
 
 def is_owner():
     return commands.check(lambda ctx: ctx.message.author.id == 300396755193954306)
