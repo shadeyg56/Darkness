@@ -7,6 +7,9 @@ import openweathermapy.core as weather
 import urbandict
 import json
 from mtranslate import translate
+from pygoogling.googling import GoogleSearch
+import hastebin
+import inspect
 
 class Info():
 	def __init__(self, bot):
@@ -112,50 +115,61 @@ class Info():
 				embed.set_footer(text="Urban Dictionary")
 				await ctx.send(embed=embed)
 				
-	@commands.command()
-	async def create_tag(self, ctx, tagname:str, *, text:str):
-		with open('cogs/utils/tags.json') as f:
-			data = json.load(f)
-		if str(ctx.guild.id) not in data:
-			data[str(ctx.guild.id)] = {}
-			data[str(ctx.guild.id)]['list'] = None
-		data[str(ctx.guild.id)][tagname] = text
-		await ctx.send(f'Tag {tagname} successfully created')
-		data = json.dumps(data, indent=4, sort_keys=True)
-		with open('cogs/utils/tags.json', 'w') as f:
-			f.write(data)
 
 	@commands.command()
-	async def tag(self, ctx, *, tag:str):
+	async def tag(self, ctx, tag:str, tagname=None, *, txt=None):
 		with open('cogs/utils/tags.json') as f:
 			data = json.load(f)
-		text = data[str(ctx.guild.id)][tag]
+		if tag != 'list':
+			if tag != 'create':
+				if tag != 'delete':
+					text = data[str(ctx.guild.id)][tag]
+					await ctx.send(text)
 		if tag == 'list':
 			keys = data[str(ctx.guild.id)]
 			text = str(keys.keys())
 			text = text.replace('dict_keys([', '')
 			text = text.replace("'", '')
 			text = text.replace('])', '')
-		await ctx.send(text)
-		
-	@commands.command()
-	async def delete_tag(self, ctx, tagname:str):
-			with open('cogs/utils/tags.json') as f:
-				data = json.load(f)
-			text = data[str(ctx.guild.id)][tagname] = None
+			await ctx.send(text)
+		if tag == 'create':
+			if str(ctx.guild.id) not in data:
+				data[str(ctx.guild.id)] = {}
+			data[str(ctx.guild.id)][tagname] = txt
+			await ctx.send(f'Tag {tagname} successfully created')
+		if tag == 'delete':
+			del data[str(ctx.guild.id)][tagname]
 			await ctx.send(f'Tag {tagname} was successfully deleted')
-			data = json.dumps(data, indent=4, sort_keys=True)
-			with open('cogs/utils/tags.json', 'w') as f:
-				f.write(data)
+		data = json.dumps(data, indent=4, sort_keys=True)
+		with open('cogs/utils/tags.json', 'w') as f:
+			f.write(data)
 				
 	@commands.command()
 	async def translate(self, ctx,lang:str, *, message:str):
 		LANGUAGES = { 'af': 'afrikaans', 'sq': 'albanian', 'am': 'amharic', 'ar': 'arabic', 'hy': 'armenian', 'az': 'azerbaijani', 'eu': 'basque', 'be': 'belarusian', 'bn': 'bengali', 'bs': 'bosnian', 'bg': 'bulgarian', 'ca': 'catalan', 'ceb': 'cebuano', 'ny': 'chichewa', 'zh-CN': 'chinese (simplified)', 'zh-TW': 'chinese (traditional)', 'co': 'corsican', 'hr': 'croatian', 'cs': 'czech', 'da': 'danish', 'nl': 'dutch', 'en': 'english', 'eo': 'esperanto', 'et': 'estonian', 'tl': 'filipino', 'fi': 'finnish', 'fr': 'french', 'fy': 'frisian', 'gl': 'galician', 'ka': 'georgian', 'de': 'german', 'el': 'greek', 'gu': 'gujarati', 'ht': 'haitian creole', 'ha': 'hausa', 'haw': 'hawaiian', 'iw': 'hebrew', 'hi': 'hindi', 'hmn': 'hmong', 'hu': 'hungarian', 'is': 'icelandic', 'ig': 'igbo', 'id': 'indonesian', 'ga': 'irish', 'it': 'italian', 'ja': 'japanese', 'jw': 'javanese', 'kn': 'kannada', 'kk': 'kazakh', 'km': 'khmer', 'ko': 'korean', 'ku': 'kurdish (kurmanji)', 'ky': 'kyrgyz', 'lo': 'lao', 'la': 'latin', 'lv': 'latvian', 'lt': 'lithuanian', 'lb': 'luxembourgish', 'mk': 'macedonian', 'mg': 'malagasy', 'ms': 'malay', 'ml': 'malayalam', 'mt': 'maltese', 'mi': 'maori', 'mr': 'marathi', 'mn': 'mongolian', 'my': 'myanmar (burmese)', 'ne': 'nepali', 'no': 'norwegian', 'ps': 'pashto', 'fa': 'persian', 'pl': 'polish', 'pt': 'portuguese', 'pa': 'punjabi', 'ro': 'romanian', 'ru': 'russian', 'sm': 'samoan', 'gd': 'scots gaelic', 'sr': 'serbian', 'st': 'sesotho', 'sn': 'shona', 'sd': 'sindhi', 'si': 'sinhala', 'sk': 'slovak', 'sl': 'slovenian', 'so': 'somali', 'es': 'spanish', 'su': 'sundanese', 'sw': 'swahili', 'sv': 'swedish', 'tg': 'tajik', 'ta': 'tamil', 'te': 'telugu', 'th': 'thai', 'tr': 'turkish', 'uk': 'ukrainian', 'ur': 'urdu', 'uz': 'uzbek', 'vi': 'vietnamese', 'cy': 'welsh', 'xh': 'xhosa', 'yi': 'yiddish', 'yo': 'yoruba', 'zu': 'zulu' } 
 		LANGUAGES = {y:x for x,y in LANGUAGES.items()}
-		if lang:
+		if lang in  LANGUAGES:
 			await ctx.send('```{}```'.format(translate(message, lang)))
 		else:
 			await ctx.send('```That is not an available language.```')
+			
+	@commands.command()
+	async def google(self, ctx, *, search_query:str):
+		google_search = GoogleSearch(search_query)
+		google_search.start_search()
+		result = google_search.search_result
+		await ctx.send(f'{result[0]}\n**See Also:**\n{result[1]}\n{result[2]}')
+		
+	@commands.command()
+	async def hastebin(self, ctx, *, code:str):
+		await ctx.send(hastebin.post(code))
+		
+	@commands.command()
+	async def source(self, ctx, *, command:str):
+		source = str(inspect.getsource(self.bot.get_command(command).callback))
+		fmt = '```py\n'+source.replace('`', '\u200b') + '\n```'
+		await ctx.send(fmt)
+		
 
 def setup(bot):
 	bot.add_cog(Info(bot))
