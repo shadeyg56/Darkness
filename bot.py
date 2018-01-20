@@ -168,7 +168,7 @@ async def devcontact(ctx, *, message:str):
 	
 @bot.command()
 async def invite(ctx):
-	await ctx.send('**Darkness Invite:** https://discordapp.com/oauth2/authorize?client_id=355189919410421760&scope=bot
+	await ctx.send('**Darkness Invite:** https://discordapp.com/oauth2/authorize?client_id=355189919410421760&scope=bot')
 		       
 @bot.command()
 async def support(ctx):
