@@ -160,13 +160,6 @@ async def say(ctx, *, msg: str):
 	await discord.Message.delete(ctx.message)
 	
 @bot.command()
-@bot.cooldown(1, 600, bot.BucketType.user)
-async def devcontact(ctx, *, message:str):
-	dev = bot.get_user(300396755193954306)
-	await dev.send(f'{message} sent by {ctx.author.name} | {ctx.author.id} from {ctx.guild.name} | {ctx.guild.id}')
-	await ctx.send('Your message was sent to the dev')
-	
-@bot.command()
 async def invite(ctx):
 	await ctx.send('**Darkness Invite:** https://discordapp.com/oauth2/authorize?client_id=355189919410421760&scope=bot')
 		       
