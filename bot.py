@@ -68,7 +68,7 @@ def is_owner():
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="Darkness Commands", color=0xed)
-    embed.add_field(name='Miscellaneous:', value='help, say, devcontact')
+    embed.add_field(name='Miscellaneous:', value='help, invite, support, say, devcontact')
     embed.add_field(name="Moderation", value="purge, kick, ban, unban, addrole, removerole")
     embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban, tag, translate")
     embed.add_field(name='Setup', value='setup, config')
@@ -165,6 +165,14 @@ async def devcontact(ctx, *, message:str):
 	dev = bot.get_user(300396755193954306)
 	await dev.send(f'{message} sent by {ctx.author.name} | {ctx.author.id} from {ctx.guild.name} | {ctx.guild.id}')
 	await ctx.send('Your message was sent to the dev')
+	
+@bot.command()
+async def invite(ctx):
+	await ctx.send('**Darkness Invite:** https://discordapp.com/oauth2/authorize?client_id=355189919410421760&scope=bot
+		       
+@bot.command()
+async def support(ctx):
+	await ctx.send('**Darkness Support:** https://discord.gg/Jjdp8hf')
 
 @bot.command()
 @is_owner()
