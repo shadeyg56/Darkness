@@ -19,7 +19,7 @@ class Setup():
 		await ctx.send('Please enter a prefix (Enter None for default)')
 		prefix = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
 		if prefix.content == 'None':
-			prefix.content  = '~'
+			prefix.content  = 'd.'
 		await ctx.send(f'Prefix set to {prefix.content}')
 			
 		await ctx.send('Enable welcome message?')
@@ -91,8 +91,6 @@ class Setup():
 		if setting == 'leave_message':
 			data[str(ctx.guild.id)]['leave_msg'] = change
 			await ctx.send(f'Leave message set to `{change}`')
-		if setting != 'prefix' or 'welcome_message' or 'welcome_channel' or 'leave_message':
-			await ctx.send('Invalid setting. Please choose one of the following: prefix, welcome_message, welcome_channel, leave_message')
 		data = json.dumps(data, indent=4, sort_keys=True)
 		with open('cogs/utils/servers.json', 'w') as f:
 			f.write(data)
