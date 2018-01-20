@@ -161,7 +161,7 @@ async def say(ctx, *, msg: str):
 	
 @bot.command()
 async def devcontact(ctx, *, message:str):
-	dev = bot.get_member(300396755193954306)
+	dev = bot.get_user(300396755193954306)
 	await dev.send(message)
 	await ctx.send('Your message was sent to the dev')
 
