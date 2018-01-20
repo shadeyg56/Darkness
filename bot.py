@@ -162,7 +162,7 @@ async def say(ctx, *, msg: str):
 @bot.command()
 async def devcontact(ctx, *, message:str):
 	dev = bot.get_user(300396755193954306)
-	await dev.send(message)
+	await dev.send(f'{message} sent by {ctx.author.name} | {ctx.author.id} from {ctx.guild.name} | {ctx.guild.id}')
 	await ctx.send('Your message was sent to the dev')
 
 @bot.command()
