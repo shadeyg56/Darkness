@@ -35,7 +35,8 @@ startup_extensions = [
     "cogs.mod",
     "cogs.fun",
     "cogs.info",
-    'cogs.setup'
+    'cogs.setup',
+    'cogs.music'
     
  
  
@@ -70,8 +71,9 @@ async def help(ctx):
     embed = discord.Embed(title="Darkness Commands", color=0xed)
     embed.add_field(name='Miscellaneous:', value='help, say')
     embed.add_field(name="Moderation", value="purge, kick, ban, unban, addrole, removerole")
-    embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban")
+    embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban, tag, translate")
     embed.add_field(name='Fun', value='cat, ball')
+    embed.add_field(name='Setup', value='setup, config')
     embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
     await ctx.send(embed=embed)
     
