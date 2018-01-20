@@ -54,7 +54,7 @@ class Mod():
                     await ctx.send('That role doesnt exist')
             try:
                     await user.add_roles(role)
-                    await ctx.send('I removed the {} role from {}'.format(rolename, user))
+                    await ctx.send('I added the {} role from {}'.format(rolename, user))
             except discord.Forbidden:
                     await ctx.send('I need **Manage Roles** for this')
       
