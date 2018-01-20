@@ -68,7 +68,7 @@ def is_owner():
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="Darkness Commands", color=0xed)
-    embed.add_field(name='Miscellaneous:', value='help, say')
+    embed.add_field(name='Miscellaneous:', value='help, say, devcontact')
     embed.add_field(name="Moderation", value="purge, kick, ban, unban, addrole, removerole")
     embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban, tag, translate")
     embed.add_field(name='Setup', value='setup, config')
@@ -158,6 +158,12 @@ async def say(ctx, *, msg: str):
 	"Make the bot say something"
 	await ctx.send(msg)
 	await discord.Message.delete(ctx.message)
+	
+@bot.command()
+async def devcontact(ctx, *, message:str):
+	dev = bot.get_member(300396755193954306)
+	await dev.send(message)
+	await ctx.send('Your message was sent to the dev')
 
 @bot.command()
 @is_owner()
