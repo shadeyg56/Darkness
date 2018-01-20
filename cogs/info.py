@@ -170,6 +170,13 @@ class Info():
 		fmt = '```py\n'+source.replace('`', '\u200b') + '\n```'
 		await ctx.send(fmt)
 		
+	@commands.command()
+	@commands.cooldown(1, 600, commands.BucketType.user)
+	async def devcontact(self, ctx, *, message:str):
+		dev = self.bot.get_user(300396755193954306)
+		await dev.send(f'{message} sent by {ctx.author.name} | {ctx.author.id} from {ctx.guild.name} | {ctx.guild.id}')
+		await ctx.send('Your message was sent to the dev')
+		
 
 def setup(bot):
 	bot.add_cog(Info(bot))
