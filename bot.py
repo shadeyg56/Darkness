@@ -69,7 +69,7 @@ def is_owner():
 async def help(ctx):
     embed = discord.Embed(title="Darkness Commands", color=0xed)
     embed.add_field(name='Miscellaneous:', value='help, invite, support, say, devcontact')
-    embed.add_field(name="Moderation", value="purge, kick, ban, unban, addrole, removerole")
+    embed.add_field(name="Moderation", value="purge, kick, ban, unban, softban,  addrole, removerole")
     embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban, tag, translate")
     embed.add_field(name='Setup', value='setup, config')
     embed.add_field(name='Utils', value='google, translate, source, tag, hastebin')
