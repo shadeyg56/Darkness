@@ -162,7 +162,8 @@ class Info():
 		
 	@commands.command()
 	async def hastebin(self, ctx, *, code:str):
-		await ctx.send(hastebin.post(code))
+		await ctx.message.delete()
+		await ctx.send(f'{hastebin.post(code)} made by {ctx.author}')
 		
 	@commands.command()
 	async def source(self, ctx, *, command:str):
