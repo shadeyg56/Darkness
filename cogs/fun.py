@@ -35,6 +35,17 @@ class Fun():
                 x = cat.getCat(directory="cats", filename=None, format='{}'.format(self.type[pic]))
                 with open(x, 'rb') as File:
                         await ctx.send(file=discord.File(File))
+			
+	@commands.command()
+	async def poker(self, ctx, opponent: discord.Member):
+		hand_1 = None
+		await ctx.send(f'{opponent.mention}, {ctx.author} has challenged you to a round of Texas Holdem Poker. Type `accept` to play')
+		res = await self.bot.wait_for('message', check=lambda m: m.author == opponent.name)
+		if res.content == 'accept':
+			await ctx.send('Challenge accepted\n Dealing card in DM..')
+		else:
+			await ctx.send('Game declined')
+			
 
 
 
