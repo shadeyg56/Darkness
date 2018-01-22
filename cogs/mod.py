@@ -1,10 +1,14 @@
 import discord
 from discord.ext import commands
 import asyncio
+import json
 
 class Mod():
     def __init__(self, bot):
             self.bot = bot
+            self.embed_color = 0xd60606
+            with open('cogs/utils/servers.json') as f:
+            	self.data = json.load(f)
 		
      
     @commands.command()
@@ -12,7 +16,12 @@ class Mod():
     @commands.has_permissions(ban_members=True)
     async def softban(self, ctx, member: discord.Member, length: int, *, reason: str='No reason given.'):
         """Temporarily bans a member for a specified amount of time."""
-
+        if str(ctx.guild.id) in self.data:
+	        mod_log = self.data[str(ctx.guild.id)]['mod_log']
+	        mod_log = mod_log.replace('<', '')
+	        mod_log = mod_log.replace('#', '')
+	        mod_log = mod_log.replace('>', '')
+	        mod_log = self.bot.get_channel(int(mod_log))
         if length > 10000:
             return await ctx.send('Length of ban is too long.')
 
@@ -40,7 +49,7 @@ class Mod():
         public_embed.add_field(name='Length', value=f'{length} seconds')
 
         try:
-            await ctx.send(embed=public_embed)
+            await mod_log.send(embed=public_embed)
         except discord.HTTPException:
             pass  # couldn't send the public embed
         try:
@@ -72,33 +81,59 @@ class Mod():
     		except discord.Forbidden:
     					await ctx.send('I need **Manage Messages** for this')
 						
-    @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member:discord.Member):
-             try:
-                        await ctx.guild.ban(member)
-                        await ctx.send(f"{member} was banned from the server")
-             except discord.Forbidden:
-                        await ctx.send("I need **Ban Members** for this")
+    async def ban(self, ctx, member:discord.Member, *, reason=None):
+    			if str(ctx.guild.id) in self.data:
+    							mod_log = self.data[str(ctx.guild.id)]['mod_log']
+    							mod_log = mod_log.replace('<', '')
+    							mod_log = mod_log.replace('#', '')
+    							mod_log = mod_log.replace('>', '')
+    							mod_log = self.bot.get_channel(int(mod_log))
+    			try:  
+    							await ctx.guild.ban(member, reason=reason)
+    							await ctx.send(f"{member} was banned from the server")
+    							embed = discord.Embed(title=f'{member.name} has been banned', description=f'This member was banned by {ctx.author}', color=self.embed_color)
+    							embed.add_field(name='Reason', value=reason)
+    							await mod_log.send(embed=embed)
+    			except discord.Forbidden:
+    							await ctx.send("I need **Ban Members** for this")
                         
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def unban(self, ctx, member_id: int, *, reason=None):
-            member = self.bot.get_user(member_id)
-            try:
-                    await ctx.guild.unban(member,reason=reason)
-                    await ctx.send(f"{member} was unbanned from the server")
-            except discord.Forbidden:
-                    await ctx.send("I need **Ban Members for that**")
+    			if str(ctx.guild.id) in self.data:
+    				 mod_log = self.data[str(ctx.guild.id)]['mod_log']
+    				 mod_log = mod_log.replace('<', '')
+    				 mod_log = mod_log.replace('#', '')
+    				 mod_log = mod_log.replace('>', '')
+    				 mod_log = self.bot.get_channel(int(mod_log))
+    			try:
+    				member = self.bot.get_user(member_id)
+    				await ctx.guild.unban(member,reason=reason)
+    				await ctx.send(f"{member} was unbanned from the server")
+    				embed = discord.Embed(title=f'{member.name} has been unbanned', description=f'This member was unbanned by {ctx.author}', color=self.embed_color)
+    				embed.add_field(name='Reason', value=reason)
+    				await mod_log.send(embed=embed)
+    			except discord.Forbidden:
+    				await ctx.send("I need **Ban Members for that**")
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, member:discord.Member):
-            try:
-                    await ctx.guild.kick(member)
-                    await ctx.send(f"{member} was kicked from the server.")
-            except discord.Forbidden:
-                    await ctx.send("I need **Kick Members** for that")
+    async def kick(self, ctx, member:discord.Member, *, reason=None):
+    			if str(ctx.guild.id) in self.data:
+    				mod_log = self.data[str(ctx.guild.id)]['mod_log']
+    				mod_log = mod_log.replace('<', '')
+    				mod_log = mod_log.replace('#', '')
+    				mod_log = mod_log.replace('>', '')
+    				mod_log = self.bot.get_channel(int(mod_log))
+    			try:
+    				await ctx.guild.kick(member)
+    				await ctx.send(f"{member} was kicked from the server.")
+    				embed = discord.Embed(title=f'{member.name} has been kicked', description=f'This member was kicked by {ctx.author}', color=self.embed_color)
+    				embed.add_field(name='Reason', value=reason)
+    				await mod_log.send(embed=embed)
+    			except discord.Forbidden:
+    				await ctx.send("I need **Kick Members** for that")
                     
     @commands.command()
     @commands.has_permissions(manage_roles=True)
