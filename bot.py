@@ -135,12 +135,12 @@ async def _reload(ctx,*, module : str):
         bot.unload_extension(module)
         x = await ctx.send('Successfully Unloaded.')
         bot.load_extension(module)
-        x = await x.edit('Successfully Reloaded.')
+        await x.edit('Successfully Reloaded.')
     except Exception as e:
-        x = await x.edit('\N{PISTOL}')
-        await bot.say(f'{type(e).__name__}: {e}')
+        await x.edit('\N{PISTOL}')
+        await ctx.send(f'{type(e).__name__}: {e}')
     else:
-        x = await x.edit('Done. \N{OK HAND SIGN}')
+        await x.edit('Done. \N{OK HAND SIGN}')
  
 
 def fmt_help(page):
