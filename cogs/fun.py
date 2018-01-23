@@ -82,9 +82,10 @@ class Fun():
 					await author.send(f'You folded. The opponent gets the chips. You have {player1_chips} chips')
 					await opponent.send(f'The opponent folded. You get the chips. You now have {player2_chips} chips')
 					player2_chips += pot
+					turn = 'player2'
 				if choice.content.lower() == 'bet':
 					await author.send('How much do you want to bet?')
-					ammount = await self.bot.wait_for('message')
+					ammount = await self.bot.wait_for('message', check=lambda m: m.author.id == opponent.id)
 					if int(ammount.content) < 25:
 						await author.send('You must bet atleast 25 chips')
 					elif int(ammount.content) > player1_chips:
@@ -92,8 +93,9 @@ class Fun():
 					else:
 						pot += int(ammount.content)
 						player1_chips -= int(ammount.content)
-			
-
+						await author.send(f'You raised the bet by {ammount.content}\nIt is now the opponents turn')
+						await opponent.send(f'The opponent raised the bet by {ammount.content}\n`Check`, `Bet` or `Fold`?')
+						turn = 'player2'
 
 
 
