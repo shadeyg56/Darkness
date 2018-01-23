@@ -133,7 +133,7 @@ async def _reload(ctx,*, module : str):
     module = 'cogs.'+module
     try:
         bot.unload_extension(module)
-        x = await ctx.send'Successfully Unloaded.')
+        x = await ctx.send('Successfully Unloaded.')
         bot.load_extension(module)
         x = await x.edit('Successfully Reloaded.')
     except Exception as e:
