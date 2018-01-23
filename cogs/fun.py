@@ -73,7 +73,7 @@ class Fun():
 			if turn == 'player1':
 				await opponent.send('The opponent is going')
 				await author.send(f'`Check`, `{option}`, or `Fold`')
-				choice = await self.bot.wait_for('message', check=lambda m: m.author.id == opponent.id)
+				choice = await self.bot.wait_for('message', check=lambda m: m.author.id == author.id
 				if choice.content.lower() == 'check':
 					await author.send('You checked. It is the opponents turn now')
 					await opponent.send(f'The opponent checked\n`Check`, `{option}` or `Fold`?')
@@ -85,7 +85,7 @@ class Fun():
 					turn = 'player2'
 				if choice.content.lower() == 'bet':
 					await author.send('How much do you want to bet?')
-					ammount = await self.bot.wait_for('message', check=lambda m: m.author.id == opponent.id)
+					ammount = await self.bot.wait_for('message', check=lambda m: m.author.id == author.id)
 					if int(ammount.content) < 25:
 						await author.send('You must bet atleast 25 chips')
 					elif int(ammount.content) > player1_chips:
