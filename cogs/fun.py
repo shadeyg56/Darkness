@@ -57,7 +57,7 @@ class Fun():
 			await ctx.author.send('The opponent is going')
 			await opponent.send('`Check`, `Call`, or `Fold`?')
 			choice = await self.bot.wait_for('message')
-			if choice.content.lower == 'check':
+			if choice.content.lower() == 'check':
 				await opponent.send('You checked. It is the opponents turn now')
 				await author.send('The oppenent checked\n`Check`, `Call` or `Fold`?')
 		else:
