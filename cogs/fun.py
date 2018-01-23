@@ -65,7 +65,7 @@ class Fun():
 			if turn == 'player2':
 				await ctx.author.send('The opponent is going')
 				await opponent.send(f'`Check`, `{option}`, or `Fold`?')
-				choice = await self.bot.wait_for('message', check=lambda m: m.author.id = opponent.id)
+				choice = await self.bot.wait_for('message', check=lambda m: m.author.id == opponent.id)
 				if choice.content.lower() == 'check':
 					await opponent.send('You checked. It is the opponents turn now')
 					await author.send(f'The opponent checked\n`Check`, `{option}` or `Fold`?')
