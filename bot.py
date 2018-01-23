@@ -126,7 +126,21 @@ async def on_member_remove(member):
 		await channel.send(msg)
 
 	
-	
+@bot.command(name='reload')
+async def _reload(ctx,*, module : str):
+    """Reloads a module."""
+    channel = ctx.channel
+    module = 'cogs.'+module
+    try:
+        bot.unload_extension(module)
+        x = await ctx.send'Successfully Unloaded.')
+        bot.load_extension(module)
+        x = await x.edit('Successfully Reloaded.')
+    except Exception as e:
+        x = await x.edit('\N{PISTOL}')
+        await bot.say(f'{type(e).__name__}: {e}')
+    else:
+        x = await x.edit('Done. \N{OK HAND SIGN}')
  
 
 def fmt_help(page):
