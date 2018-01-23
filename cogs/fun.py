@@ -90,11 +90,6 @@ class Fun():
 					else:
 						pot += int(ammount.content)
 						player1_chips -= int(ammount.content)
-					
-					
-		else:
-			await ctx.send('Game declined')
-			pass
 			
 
 
