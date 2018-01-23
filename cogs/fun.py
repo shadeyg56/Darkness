@@ -58,7 +58,7 @@ class Fun():
 			await ctx.send('Challenge accepted\n Dealing cards in DM..')
 			await ctx.author.send(f'Here is your hand **{hand_1}**\nYou both have 1000 chips')
 			await opponent.send(f'Here is your hand **{hand_2}**\nYou both have 1000 chips')
-			await asyncio.sleep(5))
+			await asyncio.sleep(5)
 			turn = 'player2'
 			while turn == 'player2':
 				await ctx.author.send('The opponent is going')
