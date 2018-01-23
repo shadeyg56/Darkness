@@ -39,10 +39,12 @@ class Fun():
 	@commands.command()
 	async def poker(self, ctx, opponent: discord.Member):
 		num = random.randint(0, 24)
+		num2 = random.randint(0, 24)
+		num3 = random.randint(0, 24)
+		num4 = random.randint(0, 24)
 		cards = ['ace of hearts ',' ace of spades ',' ace of clubs ',' ace of diamonds ',' one of hearts ',' one of spades',' one of hearts',' one of diamonds ',' two of hearts ',' two of spades ',' two of hearts ',' two of diamonds ',' three of hearts ',' three of spades ',' three of clubs',' three of diamonds ',' four of hearts ',' four of spades ',' four of clubs ',' four of diamonds ',' five of hearts ',' five of spades ',' five of clubs ',' five of diamonds ',' six of hearts ',' six of spades ',' six of clubs',' six of diamonds ',' seven of hearts ',' seven of spades ',' seven of clubs ',' seven of diamonds ',' eight of hearts ',' eight of spades ',' eight of clubs ',' eight of diamonds ',' nine of hearts ',' nine of spades ',' nine of clubs ',' nine of diamonds ',' ten of hearts ',' ten of spades ',' ten of clubs ',' ten of diamonds ',' jack of hearts ',' jack of spades ',' jack of clubs ',' jack of diamonds ',' queen of hearts ',' queen of spades ',' queen of clubs ',' queen of diamonds ',' king of hearts ',' king of spades ',' king of clubs ',' king of diamonds']
-		hand_1 = [f'{cards[num]}', f'{cards[num]}']
-		hand_2 = [f'{cards[num]}', f'{cards[num]}']
-		print(opponent.id)
+		hand_1 = [f'{cards[num]}', f'{cards[num2]}']
+		hand_2 = [f'{cards[num3]}', f'{cards[num4]}']
 		await ctx.send(f'{opponent.mention}, {ctx.author} has challenged you to a round of Texas Holdem Poker. Type `accept` to play')
 		res = await self.bot.wait_for('message', check=lambda m: m.author.id == opponent.id)
 		if res.content == 'accept':
