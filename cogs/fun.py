@@ -48,7 +48,7 @@ class Fun():
 		hand_1 = [f'{cards[num]}', f'{cards[num2]}']
 		hand_2 = [f'{cards[num3]}', f'{cards[num4]}']
 		await ctx.send(f'{opponent.mention}, {ctx.author} has challenged you to a round of Texas Holdem Poker. Type `accept` to play')
-		res = await self.bot.wait_for('message')
+		res = await self.bot.wait_for('message',check=lambda m: m.channel == ctx.channel)
 		if res.content == 'accept':
 			await ctx.send('Challenge accepted\n Dealing cards in DM..')
 			await ctx.author.send(f'Here is your hand **{hand_1}**')
