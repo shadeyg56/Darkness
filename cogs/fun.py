@@ -39,6 +39,8 @@ class Fun():
 			
 	@commands.command()
 	async def poker(self, ctx, opponent: discord.Member):
+		def check(m):
+			return m.channel == ctx.channel
 		num = random.randint(0, 24)
 		num2 = random.randint(0, 24)
 		num3 = random.randint(0, 24)
@@ -53,7 +55,7 @@ class Fun():
 		hand_1 = [f'{cards[num]}', f'{cards[num2]}']
 		hand_2 = [f'{cards[num3]}', f'{cards[num4]}']
 		await ctx.send(f'{opponent.mention}, {ctx.author} has challenged you to a round of Texas Holdem Poker. Type `accept` to play')
-		res = await self.bot.wait_for('message',check=lambda m: m.channel == ctx.channel)
+		res = await self.bot.wait_for('message',check
 		if res.content == 'accept':
 			await ctx.send('Challenge accepted\n Dealing cards in DM..')
 			await ctx.author.send(f'Here is your hand **{hand_1}**\nYou both have 1000 chips')
@@ -71,7 +73,7 @@ class Fun():
 			while turn == 'player1':
 				await opponent.send('The opponent is going')
 				await author.send(f'`Check`, `{option}`, or `Fold`')
-				choice = await self.bot.wait_for('message')
+				choice = await self.bot.wait_for('message', check=check)
 				if choice.content.lower() == 'check':
 					await author.send('You checked. It is the opponents turn now')
 					await opponent.send(f'The opponent checked\n`Check`, `{option}` or `Fold`?')
