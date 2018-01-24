@@ -37,7 +37,7 @@ class Fun():
                 with open(x, 'rb') as File:
                         await ctx.send(file=discord.File(File))
 			
-	async def round(self, ctx, player):
+	async def round(self, ctx, player:str):
 		await opponent.send('The opponent is going')
 		await author.send(f'`Check`, `{option}`, or `Fold`')
 		choice = await self.bot.wait_for('message', check=lambda m: m.author.id == author.id)
