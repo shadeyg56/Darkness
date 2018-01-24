@@ -42,9 +42,9 @@ class Fun():
 		await author.send(f'`Check`, `{option}`, or `Fold`')
 		choice = await self.bot.wait_for('message', check=lambda m: m.author.id == author.id)
 		if choice.content.lower() == 'check':
-		await author.send('You checked. It is the opponents turn now')
-		await opponent.send(f'The opponent checked\n`Check`, `Bet` or `Fold`?')
-		turn = 'player2'
+			await author.send('You checked. It is the opponents turn now')
+			await opponent.send(f'The opponent checked\n`Check`, `Bet` or `Fold`?')
+			turn = 'player2'
 		if choice.content.lower() == 'fold':
 			await author.send(f'You folded. The opponent gets the chips. You have {player1_chips} chips')
 			await opponent.send(f'The opponent folded. You get the chips. You now have {player2_chips} chips')
