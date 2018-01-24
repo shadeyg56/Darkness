@@ -55,13 +55,13 @@ class Fun():
 			ammount = await self.bot.wait_for('message', check=lambda m: m.author.id == author.id)
 			if int(ammount.content) < 25:
 				await author.send('You must bet atleast 25 chips')
-				elif int(ammount.content) > player1_chips:
-					await author.send(f'You only have {player1_chips} chips')
-				else:
-					pot += int(ammount.content)
-					player1_chips -= int(ammount.content)
-					await author.send(f'You raised the bet by {ammount.content}\nIt is now the opponents turn')
-					await opponent.send(f'The opponent raised the bet by {ammount.content}\n`Check`, `Bet` or `Fold`?')
+			elif int(ammount.content) > player1_chips:
+				await author.send(f'You only have {player1_chips} chips')
+			else:
+				pot += int(ammount.content)
+				player1_chips -= int(ammount.content)
+				await author.send(f'You raised the bet by {ammount.content}\nIt is now the opponents turn')
+				await opponent.send(f'The opponent raised the bet by {ammount.content}\n`Check`, `Bet` or `Fold`?')
 
 			
 	@commands.command()
