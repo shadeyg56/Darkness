@@ -46,9 +46,9 @@ class Fun():
 		await opponent.send(f'The opponent checked\n`Check`, `Bet` or `Fold`?')
 		turn = 'player2'
 		if choice.content.lower() == 'fold':
-			await author.send(f'You folded. The opponent gets the chips. You have {player_chips} chips')
-			await opponent.send(f'The opponent folded. You get the chips. You now have {player_chips} chips')
-			player_chips += pot
+			await author.send(f'You folded. The opponent gets the chips. You have {player1_chips} chips')
+			await opponent.send(f'The opponent folded. You get the chips. You now have {player2_chips} chips')
+			player2_chips += pot
 			turn = 'player2'
 		if choice.content.lower() == 'bet':
 			await author.send('How much do you want to bet?')
@@ -56,10 +56,10 @@ class Fun():
 			if int(ammount.content) < 25:
 				await author.send('You must bet atleast 25 chips')
 				elif int(ammount.content) > player1_chips:
-					await author.send(f'You only have {player_chips} chips')
+					await author.send(f'You only have {player1_chips} chips')
 				else:
 					pot += int(ammount.content)
-					player_chips -= int(ammount.content)
+					player1_chips -= int(ammount.content)
 					await author.send(f'You raised the bet by {ammount.content}\nIt is now the opponents turn')
 					await opponent.send(f'The opponent raised the bet by {ammount.content}\n`Check`, `Bet` or `Fold`?')
 
@@ -73,12 +73,10 @@ class Fun():
 		num3 = random.randint(0, 24)
 		num4 = random.randint(0, 24)
 		author = ctx.author
-		round = 1
 		pot = 0
 		option = 'Bet'
 		player1_chips = 1000
 		player2_chips = 1000
-		turn = 'player2'
 		cards = ['ace of hearts ',' ace of spades ',' ace of clubs ',' ace of diamonds ',' one of hearts ',' one of spades',' one of hearts',' one of diamonds ',' two of hearts ',' two of spades ',' two of hearts ',' two of diamonds ',' three of hearts ',' three of spades ',' three of clubs',' three of diamonds ',' four of hearts ',' four of spades ',' four of clubs ',' four of diamonds ',' five of hearts ',' five of spades ',' five of clubs ',' five of diamonds ',' six of hearts ',' six of spades ',' six of clubs',' six of diamonds ',' seven of hearts ',' seven of spades ',' seven of clubs ',' seven of diamonds ',' eight of hearts ',' eight of spades ',' eight of clubs ',' eight of diamonds ',' nine of hearts ',' nine of spades ',' nine of clubs ',' nine of diamonds ',' ten of hearts ',' ten of spades ',' ten of clubs ',' ten of diamonds ',' jack of hearts ',' jack of spades ',' jack of clubs ',' jack of diamonds ',' queen of hearts ',' queen of spades ',' queen of clubs ',' queen of diamonds ',' king of hearts ',' king of spades ',' king of clubs ',' king of diamonds']
 		hand_1 = [f'{cards[num]}', f'{cards[num2]}']
 		hand_2 = [f'{cards[num3]}', f'{cards[num4]}']
@@ -89,7 +87,10 @@ class Fun():
 			await ctx.author.send(f'Here is your hand **{hand_1}**\nYou both have 1000 chips')
 			await opponent.send(f'Here is your hand **{hand_2}**\nYou both have 1000 chips')
 			await asyncio.sleep(5)
-			self.round(turn)
+			turn = 'player2'
+			await self.round(turn)
+			
+
 
 
 def setup(bot):
