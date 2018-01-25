@@ -175,7 +175,27 @@ class Mod():
 		warn[guild][user.name] = reason
 		await ctx.send(f'**{user.name}** was warned')
 		await user.send(f'You were warned in **{ctx.guild}** by **{ctx.author}** for: **{reason**}
-          
+		embed = discord.Embed(title=f'{user.name} has been warned', description=f'This member was warned by {ctx.author}', color=self.embed_color)
+		embed.add_field(name='Reason', value=reason)
+		warns = json.dumps(warns, indent=4, sort_keys=True)
+		with open('cogs/utils/warns.json', 'w') as f:
+			f.write(warns)
+				
+
+    @commands.command()
+    async def warns(self, ctx, user:discord.Member=None):
+	guild = str(ctx.guild.id)
+	with open('cogs/utils/warns.json') as f:
+		warns = json.load(f)
+        if user == None:
+		x = warns[guild]
+		x = x.keys
+		for value in x:
+			await ctx.send(value)
+	else:
+		x = warns[guild][user.name]
+		x = x.keys
+			await ctx.send(x)
        
 	
 def setup(bot):
