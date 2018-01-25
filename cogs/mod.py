@@ -159,42 +159,42 @@ class Mod():
     @commands.command()
     @command.has_permission(manage_guild=True)
     async def warn(self, ctx, user: discord.Member, *, reason:str):
-	guild = str(ctx.guild.id)
-	if str(ctx.guild.id) in self.data:
+    	guild = str(ctx.guild.id)
+    	if str(ctx.guild.id) in self.data:
     		mod_log = self.data[str(ctx.guild.id)]['mod_log']
     		mod_log = mod_log.replace('<', '')
     		mod_log = mod_log.replace('#', '')
     		mod_log = mod_log.replace('>', '')
     		mod_log = self.bot.get_channel(int(mod_log))
-	with open('cogs/utils/warns.json') as f:
-		warn = json.load(f)
-	if guild not in warn:
-		warn[guild] = {}
-		warn[guild][user.name] = {}
-	try:
-		warn[guild][user.name] = reason
-		await ctx.send(f'**{user.name}** was warned ')
-		await user.send(f'You were warned in **{ctx.guild}** by **{ctx.author}** for: **{reason**}
-		embed = discord.Embed(title=f'{user.name} has been warned', description=f'This member was warned by {ctx.author}', color=self.embed_color)
-		embed.add_field(name='Reason', value=reason)
-		warns = json.dumps(warns, indent=4, sort_keys=True)
-		with open('cogs/utils/warns.json', 'w') as f:
-			f.write(warns)
+    	with open('cogs/utils/warns.json') as f:
+    		warn = json.load(f)
+    	if guild not in warn:
+    		warn[guild] = {}
+    		warn[guild][user.name] = {}
+    	try:
+    		warn[guild][user.name] = reason
+    		await ctx.send(f'**{user.name}** was warned ')
+    		await user.send(f'You were warned in **{ctx.guild}** by **{ctx.author}** for: **{reason**}')
+    		embed = discord.Embed(title=f'{user.name} has been warned', description=f'This member was warned by {ctx.author}', color=self.embed_color)
+    		embed.add_field(name='Reason', value=reason)
+    		warns = json.dumps(warns, indent=4, sort_keys=True)
+    		with open('cogs/utils/warns.json', 'w') as f:
+    			f.write(warns)
 				
 
     @commands.command()
     async def warns(self, ctx, user:discord.Member=None):
-	guild = str(ctx.guild.id)
-	with open('cogs/utils/warns.json') as f:
-		warns = json.load(f)
-        if user == None:
-		x = warns[guild]
-		x = x.keys
+    	guild = str(ctx.guild.id)
+    	with open('cogs/utils/warns.json') as f:
+    		warns = json.load(f)
+    	if user == None:
+    		x = warns[guild]
+    		x = x.keys
 		for value in x:
 			await ctx.send(value)
-	else:
-		x = warns[guild][user.name]
-		x = x.keys
+		else:
+			x = warns[guild][user.name]
+			x = x.keys
 			await ctx.send(x)
        
 	
