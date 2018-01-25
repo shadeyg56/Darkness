@@ -173,7 +173,7 @@ class Mod():
 		warn[guild][user.name] = {}
 	try:
 		warn[guild][user.name] = reason
-		await ctx.send(f'**{user.name}** was warned')
+		await ctx.send(f'**{user.name}** was warned ')
 		await user.send(f'You were warned in **{ctx.guild}** by **{ctx.author}** for: **{reason**}
 		embed = discord.Embed(title=f'{user.name} has been warned', description=f'This member was warned by {ctx.author}', color=self.embed_color)
 		embed.add_field(name='Reason', value=reason)
