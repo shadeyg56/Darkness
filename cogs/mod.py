@@ -171,18 +171,15 @@ class Mod():
     	if guild not in warn:
     		warn[guild] = {}
     		warn[guild][user.name] = {}
-    	try:
-    		warn[guild][user.name] = reason
-    		await ctx.send(f'**{user.name}** was warned')
-    		await user.send(f'You were warned in **{ctx.guild}** by **{ctx.author}** for: **{reason}**')
-    		embed = discord.Embed(title=f'{user.name} has been warned', description=f'This member was warned by {ctx.author}', color=self.embed_color)
-    		embed.add_field(name='Reason', value=reason)
-    		await mod_log.send(embed=embed)
-    		warns = json.dumps(warns, indent=4, sort_keys=True)
-    		with open('cogs/utils/warns.json', 'w') as f:
-    			f.write(warns)
-    	except:
-    		pass
+    	warn[guild][user.name] = reason
+    	await ctx.send(f'**{user.name}** was warned')
+    	await user.send(f'You were warned in **{ctx.guild}** by **{ctx.author}** for: **{reason}**')
+    	embed = discord.Embed(title=f'{user.name} has been warned', description=f'This member was warned by {ctx.author}', color=self.embed_color)
+    	embed.add_field(name='Reason', value=reason)
+    	await mod_log.send(embed=embed)
+    	warns = json.dumps(warns, indent=4, sort_keys=True)
+    	with open('cogs/utils/warns.json', 'w') as f:
+    		f.write(warns)
 	
 	
 def setup(bot):
