@@ -180,9 +180,6 @@ class Mod():
     		warns = json.dumps(warns, indent=4, sort_keys=True)
     		with open('cogs/utils/warns.json', 'w') as f:
     			f.write(warns)
-				
-
-       
-	
+		
 def setup(bot):
 	bot.add_cog(Mod(bot))
