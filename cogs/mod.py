@@ -120,12 +120,7 @@ class Mod():
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member:discord.Member, *, reason=None):
-    			if str(ctx.guild.id) in self.data:
-    				mod_log = self.data[str(ctx.guild.id)]['mod_log']
-    				mod_log = mod_log.replace('<', '')
-    				mod_log = mod_log.replace('#', '')
-    				mod_log = mod_log.replace('>', '')
-    				mod_log = self.bot.get_channel(int(mod_log))
+    		
     			try:
     				await ctx.guild.kick(member)
     				await ctx.send(f"{member} was kicked from the server.")
@@ -134,7 +129,9 @@ class Mod():
     				await mod_log.send(embed=embed)
     			except discord.Forbidden:
     				await ctx.send("I need **Kick Members** for that")
-                    
+				
+
+		
     @commands.command()
     @commands.has_permissions(manage_roles=True)
     async def addrole(self, ctx, user: discord.Member, *, rolename:str):
@@ -158,6 +155,26 @@ class Mod():
                     await ctx.send(f'I removed the {rolename} role from {user}')
             except discord.Forbidden:
                     await ctx.send('I need **Manage Roles** for that')
+			
+    @commands.command()
+    @command.has_permission(manage_guild=True)
+    async def warn(self, ctx, user: discord.Member, *, reason:str):
+	guild = str(ctx.guild.id)
+	if str(ctx.guild.id) in self.data:
+    		mod_log = self.data[str(ctx.guild.id)]['mod_log']
+    		mod_log = mod_log.replace('<', '')
+    		mod_log = mod_log.replace('#', '')
+    		mod_log = mod_log.replace('>', '')
+    		mod_log = self.bot.get_channel(int(mod_log))
+	with open('cogs/utils/warns.json') as f:
+		warn = json.load(f)
+	if guild not in warn:
+		warn[guild] = {}
+		warn[guild][user.name] = {}
+	try:
+		warn[guild][user.name] = reason
+		await ctx.send(f'**{user.name}** was warned')
+		await user.send(f'You were warned in **{ctx.guild}** by **{ctx.author}** for: **{reason**}
           
        
 	
