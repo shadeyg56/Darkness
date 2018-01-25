@@ -157,7 +157,7 @@ class Mod():
                     await ctx.send('I need **Manage Roles** for that')
 			
     @commands.command()
-    @command.has_permission(manage_guild=True)
+    @commands.has_permission(manage_guild=True)
     async def warn(self, ctx, user: discord.Member, *, reason:str):
     	guild = str(ctx.guild.id)
     	if str(ctx.guild.id) in self.data:
