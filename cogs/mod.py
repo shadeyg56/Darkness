@@ -183,5 +183,6 @@ class Mod():
 			
 	except:
 		pass
+	
 def setup(bot):
 	bot.add_cog(Mod(bot))
