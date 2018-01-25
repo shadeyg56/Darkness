@@ -182,20 +182,6 @@ class Mod():
     			f.write(warns)
 				
 
-    @commands.command()
-    async def warns(self, ctx, user:discord.Member=None):
-    	guild = str(ctx.guild.id)
-    	with open('cogs/utils/warns.json') as f:
-    		warns = json.load(f)
-    	if user == None:
-    		x = warns[guild]
-    		x = x.keys
-		for value in x:
-			await ctx.send(value)
-		else:
-			x = warns[guild][user.name]
-			x = x.keys
-			await ctx.send(x)
        
 	
 def setup(bot):
