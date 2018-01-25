@@ -177,9 +177,9 @@ class Mod():
     	embed = discord.Embed(title=f'{user.name} has been warned', description=f'This member was warned by {ctx.author}', color=self.embed_color)
     	embed.add_field(name='Reason', value=reason)
     	await mod_log.send(embed=embed)
-    	warns = json.dumps(warns, indent=4, sort_keys=True)
+    	warn = json.dumps(warn, indent=4, sort_keys=True)
     	with open('cogs/utils/warns.json', 'w') as f:
-    		f.write(warns)
+    		f.write(warn)
 	
 	
 def setup(bot):
