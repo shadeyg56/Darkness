@@ -182,12 +182,12 @@ class Mod():
     	warn = json.dumps(warn, indent=4, sort_keys=True)
     	with open('cogs/utils/warns.json', 'w') as f:
     		f.write(warn)
-		
-	@commands.command()
-	@commands.has_permissions(kick_members=True)
-	async def warns(self, ctx, user:discord.Member = None):
-		with open('cogs/utils/warns.json') as f:
-			data = json.load(f)
+	
+	 @commands.command()
+	 @commands.has_permissions(kick_members=True)
+	 async def warns(self, ctx, user:discord.Member = None):
+	 	with open('cogs/utils/warns.json') as f:
+	 		data = json.load(f)
 		if user == None:
 			x = data[str(ctx.guild.id)]
 			for key in x.keys:
