@@ -183,19 +183,19 @@ class Mod():
     	with open('cogs/utils/warns.json', 'w') as f:
     		f.write(warn)
 	
-	 @commands.command()
-	 @commands.has_permissions(kick_members=True)
-	 async def warns(self, ctx, user:discord.Member = None):
-	 	with open('cogs/utils/warns.json') as f:
-	 		data = json.load(f)
-		if user == None:
-			x = data[str(ctx.guild.id)]
-			for key in x.keys:
-				warns = data[str(ctx.guild.id)][key]['warnings']
-				await ctx.send(warns)
-		else:
-			x = data[str(ctx.guild.id)][user.name]['warnings']
-			await ctx.send(x)
+    @commands.command()
+    @commands.has_permissions(kick_members=True)
+    async def warns(self, ctx, user:discord.Member = None):
+	 with open('cogs/utils/warns.json') as f:
+	 	data = json.load(f)
+	if user == None:
+		x = data[str(ctx.guild.id)]
+		for key in x.keys:
+			warns = data[str(ctx.guild.id)][key]['warnings']
+			await ctx.send(warns)
+	else:
+		x = data[str(ctx.guild.id)][user.name]['warnings']
+		await ctx.send(x)
 			
 def setup(bot):
 	bot.add_cog(Mod(bot))
