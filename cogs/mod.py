@@ -156,8 +156,10 @@ class Mod():
             except discord.Forbidden:
                     await ctx.send('I need **Manage Roles** for that')
 			
+	
+	
     @commands.command()
-    @commands.has_permissions(manage_guild=True)
+    @commands.has_permissions(kick_members=True)
     async def warn(self, ctx, user: discord.Member, *, reason:str):
     	guild = str(ctx.guild.id)
     	if str(ctx.guild.id) in self.data:
@@ -180,7 +182,20 @@ class Mod():
     	warn = json.dumps(warn, indent=4, sort_keys=True)
     	with open('cogs/utils/warns.json', 'w') as f:
     		f.write(warn)
-	
-	
+		
+	@commands.command()
+	@commands.has_permissions(kick_members=True)
+	async def warns(self, ctx, user:discord.Member = None):
+		with open('cogs/utils/warns.json') as f:
+			data = json.load(f)
+		if user == None:
+			x = data[str(ctx.guild.id)]
+			for key in x.keys:
+				warns = data[str(ctx.guild.id)][key]['warnings']
+				await ctx.send(warns)
+		else:
+			x = data[str(ctx.guild.id)][user.name]['warnings']
+			await ctx.send(x)
+			
 def setup(bot):
 	bot.add_cog(Mod(bot))
