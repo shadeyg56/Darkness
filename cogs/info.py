@@ -45,13 +45,13 @@ class Info():
 		if user == None:
 			user = ctx.author
 		role_List = []
-		roles = for role in user.roles:
+		for role in user.roles:
 					role_List = role_List.append(role.name)
 					role_List = str(role_List)
 					role_List = role_List.replace('[', "")
 					role_List = role_List.replace('"', "")
 					role_List = role_List.replace("]", "")
-					
+
 					
 		avatar = user.avatar_url
 		server = ctx.guild
@@ -64,7 +64,7 @@ class Info():
 		embed.add_field(name="Joined At", value=user.joined_at.__format__('%A, %d. %B %Y'))
 		embed.add_field(name="Join Number", value=member_number)
 		embed.add_field(name="Nickname", value=user.nick)
-		embed.add_field(name="Roles", value=roles)
+		embed.add_field(name="Roles", value=role_List)
 		embed.set_footer(text=f"ID: {user.id}")
 		await ctx.send(embed=embed)
 
