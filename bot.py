@@ -238,6 +238,16 @@ async def to_code_block(ctx, body):
 async def terminal(ctx, *, command:str):
     await ctx.send(subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8'))
 
+@bot.command()
+@is_owner()
+async def update(ctx):
+    x = subprocess.run("git pull", stdout=subprocess.PIPE).stdout.decode("utf-8")
+    for module in startup_extensions:
+        bot.unload_extension(module)
+        bot.load_extension(module)
+    await ctx.send(x)
+    await ctx.send("All Cogs Reloaded")
+
       
 @bot.command(name='eval')
 @is_owner()
