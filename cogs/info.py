@@ -44,13 +44,13 @@ class Info():
 	async def userinfo(self, ctx, user: discord.Member = None):
 		if user == None:
 			user = ctx.author
-		role_List = ["@everyone"]
+		role_List = [""]
 		for role in user.roles:
 					role_List.append(role.name)
 
 		role_List = str(role_List)
 		role_List = role_List.replace('[', "")
-		role_List = role_List.replace('"', "")
+		role_List = role_List.replace("'", "")
 		role_List = role_List.replace("]", "")
 
 					
