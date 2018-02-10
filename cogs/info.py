@@ -47,7 +47,8 @@ class Info():
 		role_List = []
 		for role in user.roles:
 					role_List = role_List.append(role.name)
-					role_List = str(role_List)
+					
+		role_List = str(role_List)
 					role_List = role_List.replace('[', "")
 					role_List = role_List.replace('"', "")
 					role_List = role_List.replace("]", "")
