@@ -236,7 +236,7 @@ async def to_code_block(ctx, body):
 @bot.command()
 @is_owner()
 async def terminal(ctx, *, command:str):
-    await ctx.send(subprocess.run(["sudo /home/pi/Desktop/Darkness", command], stdout=subprocess.PIPE).stdout.decode('utf-8'))
+    await ctx.send(subprocess.run(["sudo", "/home/pi/Desktop/Darkness", command], stdout=subprocess.PIPE).stdout.decode('utf-8'))
 @bot.command()
 @is_owner()
 async def update(ctx):
