@@ -237,7 +237,6 @@ async def to_code_block(ctx, body):
 @is_owner()
 async def terminal(ctx, *, command:str):
     await ctx.send(subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8'))
-✅1
 
       
 @bot.command(name='eval')
