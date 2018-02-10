@@ -9,6 +9,7 @@ import json
 import asyncio
 import string
 import sys
+import subprocess
 sys.path.insert(0, '/home/pi/Desktop/')
 import private
 TOKEN = private.TOKEN
@@ -232,6 +233,11 @@ async def to_code_block(ctx, body):
         content = body.strip('`')
     await bot.edit_message(ctx.message, '```py\n'+content+'```')
            
+@bot.command()
+@is_owner()
+async def terminal(ctx, *, command:str):
+    await ctx.send(subprocess.run(command, stdout=subprocess.PIPE).stdout.decode('utf-8'))
+✅1
 
       
 @bot.command(name='eval')
