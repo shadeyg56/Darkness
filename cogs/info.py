@@ -44,8 +44,8 @@ class Info():
 	async def userinfo(self, ctx, user: discord.Member = None):
 		if user == None:
 			user = ctx.author
-		for role in user.roles:
-					x = role.name
+		roles = [for role in user.roles:
+					x = role.name]
 		avatar = user.avatar_url
 		server = ctx.guild
 		created = user.created_at
@@ -57,7 +57,7 @@ class Info():
 		embed.add_field(name="Joined At", value=user.joined_at.__format__('%A, %d. %B %Y'))
 		embed.add_field(name="Join Number", value=member_number)
 		embed.add_field(name="Nickname", value=user.nick)
-		embed.add_field(name="Roles", value=x)
+		embed.add_field(name="Roles", value=roles)
 		embed.set_footer(text=f"ID: {user.id}")
 		await ctx.send(embed=embed)
 
