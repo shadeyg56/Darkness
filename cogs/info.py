@@ -44,7 +44,7 @@ class Info():
 	async def userinfo(self, ctx, user: discord.Member = None):
 		if user == None:
 			user = ctx.author
-		roles = [for role in user.roles
+		roles = [role for role in user.roles
 					x = role.name]
 		avatar = user.avatar_url
 		server = ctx.guild
