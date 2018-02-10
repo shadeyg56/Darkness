@@ -46,7 +46,7 @@ class Info():
 			user = ctx.author
 		role_List = ["@everyone"]
 		for role in user.roles:
-					role_List = role_List.append(role.name)
+					role_List.append(role.name)
 
 		role_List = str(role_List)
 		role_List = role_List.replace('[', "")
