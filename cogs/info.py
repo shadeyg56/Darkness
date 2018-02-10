@@ -44,7 +44,7 @@ class Info():
 	async def userinfo(self, ctx, user: discord.Member = None):
 		if user == None:
 			user = ctx.author
-		role_List = []
+		role_List = ["@everyone"]
 		for role in user.roles:
 					role_List = role_List.append(role.name)
 
