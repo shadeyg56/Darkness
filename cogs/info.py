@@ -187,12 +187,12 @@ class Info():
 	async def devcontact(self, ctx, *, message:str):
 		dev = self.bot.get_user(300396755193954306)
 		await dev.send(f'{message} sent by {ctx.author.name} | {ctx.author.id} from {ctx.guild.name} | {ctx.guild.id}')
-		await ctx.send('Your message was sent to the dev')
+		await ctx.send('Your message was sent to the dev'
 		
 	@commands.command()
 	async def search_dbl(self, ctx, bot: discord.Member):
 		client = dbl.Client()
-		x = await client.get_server_count(int(bot.id))
+		x = await dbl.get_server_count(int(bot.id))
 		await ctx.send(json.dumps(x))
 
 def setup(bot):
