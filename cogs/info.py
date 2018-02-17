@@ -190,7 +190,7 @@ class Info():
 		await ctx.send('Your message was sent to the dev'
 		
 	@commands.command(aliases=['dbl'])
-	async def bot_search(self, ctx, bot: discord.Member):
+	async def searchdbl(self, ctx, bot: discord.Member):
 		client = dbl.Client()
 		x = await dbl.get_server_count(int(bot.id))
 		await ctx.send(json.dumps(x))
