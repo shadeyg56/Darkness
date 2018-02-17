@@ -10,6 +10,8 @@ from mtranslate import translate
 from pygoogling.googling import GoogleSearch
 import hastebin
 import inspect
+import dblpy
+from dlbpy import Client
 
 class Info():
 	def __init__(self, bot):
@@ -187,6 +189,11 @@ class Info():
 		await dev.send(f'{message} sent by {ctx.author.name} | {ctx.author.id} from {ctx.guild.name} | {ctx.guild.id}')
 		await ctx.send('Your message was sent to the dev')
 		
+	@commands.command()
+	async def dbl(self, ctx, bot: discord.Member):
+		dbl = dblpy.Client()
+	        x = await dlbpy.get_server_count(bot.id)
+		await ctx.send(json.dumps(x))
 
 def setup(bot):
 	bot.add_cog(Info(bot))
