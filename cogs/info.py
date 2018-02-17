@@ -11,6 +11,7 @@ from pygoogling.googling import GoogleSearch
 import hastebin
 import inspect
 import dbl
+from dbl import Client
 
 class Info():
 	def __init__(self, bot):
@@ -190,7 +191,8 @@ class Info():
 		
 	@commands.command()
 	async def dbl(self, ctx, bot: discord.Member):
-		x = await dlb.get_server_count(bot.id)
+		client = dbl.Client()
+		x = await client.get_server_count(bot.id)
 		await ctx.send(json.dumps(x))
 
 def setup(bot):
