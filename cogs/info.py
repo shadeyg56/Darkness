@@ -190,7 +190,7 @@ class Info():
 		
 	@commands.command()
 	async def dbl(self, ctx, bot: discord.Member):
-		x = await dlbpy.get_server_count(bot.id)
+		x = await dlb.get_server_count(bot.id)
 		await ctx.send(json.dumps(x))
 
 def setup(bot):
