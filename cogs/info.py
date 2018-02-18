@@ -173,8 +173,11 @@ class Info():
 		
 	@commands.command()
 	async def hastebin(self, ctx, *, code:str):
-		await ctx.message.delete()
-		await ctx.send(f'{hastebin.post(code)} made by {ctx.author}')
+		try:
+			await ctx.message.delete()
+			await ctx.send(f'{hastebin.post(code)} made by {ctx.author}')
+		except:
+			await ctx.send(f'{hastebin.post(code)} made by {ctx.author}. *Note: I was unable to delete the original code due to missing perms*')
 		
 	@commands.command()
 	async def source(self, ctx, *, command:str):
