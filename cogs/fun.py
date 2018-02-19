@@ -3,6 +3,7 @@ from discord.ext import commands
 import cat
 import random
 import asyncio
+import aiohttp
 from insultgenerator import phrases
 
 class Fun():
@@ -96,6 +97,13 @@ class Fun():
 		roast = phrases.get_so_insult_with_action_and_target(user.mention, 'they')
 		embed = discord.Embed(title='Roasted :fire:', description=roast, color=0xd60606)
 		await ctx.send(embed=embed)
+		
+	@commands.command()
+	async def yomomma(self, ctx):
+		async with aiohttp.ClientSession() as session:
+			async with session.get('http://api.yomomma.info') as resp:
+				data = await resp.json()
+		await ctx.send(data['joke']
 
 
 
