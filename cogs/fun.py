@@ -4,6 +4,7 @@ import cat
 import random
 import asyncio
 import aiohttp
+import json
 from insultgenerator import phrases
 
 class Fun():
