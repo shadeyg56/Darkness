@@ -3,6 +3,7 @@ from discord.ext import commands
 import cat
 import random
 import asyncio
+from insultgenerator import phrases
 
 class Fun():
 	def __init__(self, bot):
@@ -89,7 +90,12 @@ class Fun():
 			await asyncio.sleep(5)
 			turn = 'player2'
 			await self.round(turn)
-			
+	
+	@commands.command()
+	async def roast(self, ctx, user: discord.Member):
+		roast = phrases.get_so_insult_with_action_and_target(user.mention, 'they')
+		embed = discord.Embed(title='Roasted :fire:', description=insult, color=0xd60606)
+		await ctx.send(embed=embed)
 
 
 
