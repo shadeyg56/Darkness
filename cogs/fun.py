@@ -103,7 +103,7 @@ class Fun():
 		async with aiohttp.ClientSession() as session:
 			async with session.get('http://api.yomomma.info') as resp:
 				data = await resp.json()
-		await ctx.send(data['joke']
+		await ctx.send(data['joke'])
 
 
 
