@@ -236,11 +236,11 @@ async def to_code_block(ctx, body):
 @bot.command()
 @is_owner()
 async def terminal(ctx, *, command:str):
-    await ctx.send(subprocess.call(["sudo", "/home/pi/Desktop/Darkness", command], stdout=subprocess.PIPE).stdout.decode('utf-8'))
+	await ctx.send(subprocess.run(command,  cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8'))
 @bot.command()
 @is_owner()
 async def update(ctx):
-    x = subprocess.run(["cd /home/pi/Desktop/Darkness", "git pull"], stdout=subprocess.PIPE).stdout.decode("utf-8")
+    x = subprocess.run('git pull', cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8'))
     for module in startup_extensions:
         bot.unload_extension(module)
         bot.load_extension(module)
