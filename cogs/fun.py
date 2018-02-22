@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands 
-import cat
 import random
 import asyncio
 import aiohttp
@@ -34,12 +33,22 @@ class Fun():
 
 	@commands.command()
 	async def cat(self, ctx):
-                pic = random.randint(0,1)
-                channel = ctx.channel
-                x = cat.getCat(directory="cats", filename=None, format='{}'.format(self.type[pic]))
-                with open(x, 'rb') as File:
-                        await ctx.send(file=discord.File(File))
-			
+		async with aiohttp.ClientSession() as session:
+			async with session.get('http://random.cat/meow') as resp:
+				data = await resp.json()
+		embed = discord.Embed(color=discord.Color.blue())
+		embed.set_image(url=data['file'])
+		await ctx.send(embed=embed)
+		
+	@commands.command()
+	async def dog(self, ctx):
+		async with aiohttp.ClientSession() as session:
+			async with session.get('http://dog.ceo/api/breeds/image/random') as resp:
+				data = await resp.json()
+		embed = discord.Embed(color=discord.Color.blue())
+		embed.set_image(url=data['message'])
+		await ctx.send(embed=embed)
+		
 	async def round(self, ctx, player:str):
 		await opponent.send('The opponent is going')
 		await author.send(f'`Check`, `{option}`, or `Fold`')
@@ -105,6 +114,7 @@ class Fun():
 			async with session.get('http://api.yomomma.info') as resp:
 				data = await resp.json(content_type=None)
 		await ctx.send(data['joke'])
+		
 
 
 
