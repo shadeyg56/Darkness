@@ -154,30 +154,17 @@ def fmt_help(page):
     em.set_author(name='Help - {}'.format(cmd))
 
 async def send_cmd_help(ctx):
-    if ctx.invoked_subcommand:
-        pages = bot.formatter.format_help_for(ctx, ctx.invoked_subcommand)
-        for page in pages:
-            # page = page.strip('```css').strip('```')
-
-
-            await ctx.send(page)
-        print('Sent command help')
-    else:
-        pages = bot.formatter.format_help_for(ctx, ctx.command)
-        for page in pages:
-            await ctx.send(page)
-        print('Sent command help')
+    await ctx.send(f'`Usage: {ctx.prefix + ctx.command.signature}')
 	
-#does not work
-#@bot.event
-#async def on_command_error(error, ctx):
-#   print(error)
-#   if isinstance(error, commands.MissingRequiredArgument):
-#       await send_cmd_help(ctx)
-#       print('Sent command help')
-#   elif isinstance(error, commands.BadArgument):
-#       await send_cmd_help(ctx)
-#       print('Sent command help')
+@bot.event
+async def on_command_error(error, ctx):
+   print(error)
+   if isinstance(error, commands.MissingRequiredArgument):
+		await send_cmd_help(ctx)
+		print('Sent command help')
+   elif isinstance(error, send_help):
+	await send_cmd_help(ctx)
+	print('Sent command help')
 #   elif isinstance(error, commands.DisabledCommand):
 #       await ctx.send("That command is disabled.")
 #       print('Command disabled.')
