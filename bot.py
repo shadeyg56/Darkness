@@ -240,7 +240,7 @@ async def terminal(ctx, *, command:str):
 @bot.command()
 @is_owner()
 async def update(ctx):
-    x = subprocess.run('git pull', cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8'))
+    x = subprocess.run('git pull', cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8')
     for module in startup_extensions:
         bot.unload_extension(module)
         bot.load_extension(module)
