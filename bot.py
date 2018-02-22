@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ext import formatter
 import datetime
 import io
 import textwrap
@@ -68,14 +69,9 @@ def is_owner():
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="Darkness Commands", color=0xed)
-    embed.add_field(name='Miscellaneous:', value='help, invite, support, say, devcontact')
-    embed.add_field(name="Moderation", value="purge, kick, ban, unban, softban,  addrole, removerole")
-    embed.add_field(name="Info", value="info, serverinfo, userinfo, weather, urban, tag, translate")
-    embed.add_field(name='Setup', value='setup, config')
-    embed.add_field(name='Utils', value='google, translate, source, tag, hastebin')
-    embed.add_field(name='Fun', value='cat, ball')
-    embed.set_footer(text='Bot Dev: -= shadeyg56 =-#1702')
+    formatter = commands.formatter.HelpFormatter()
+    help1 = formatter.format_help_for(ctx, bot)
+    embed = discord.Embed(title='Darkness Commands', description=help1)
     await ctx.send(embed=embed)
     
 @bot.event
@@ -160,11 +156,11 @@ async def send_cmd_help(ctx):
 async def on_command_error(error, ctx):
    print(error)
    if isinstance(error, commands.MissingRequiredArgument):
-	   await ctx.send(f'`Usage: {ctx.prefix + ctx.command.signature}')
-	   print('Sent command help')
-   elif isinstance(error, commands.BadArgument):
-	   await ctx.send(f'`Usage: {ctx.prefix + ctx.command.signature}')
-	   print('Sent command help')
+		await send_cmd_help(ctx)
+		print('Sent command help')
+   elif isinstance(error, send_help):
+	await send_cmd_help(ctx)
+	print('Sent command help')
 #   elif isinstance(error, commands.DisabledCommand):
 #       await ctx.send("That command is disabled.")
 #       print('Command disabled.')
