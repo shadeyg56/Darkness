@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from discord.ext import formatter
 import datetime
 import io
 import textwrap
@@ -152,15 +151,15 @@ def fmt_help(page):
 async def send_cmd_help(ctx):
     await ctx.send(f'`Usage: {ctx.prefix + ctx.command.signature}')
 	
-@bot.event
-async def on_command_error(error, ctx):
-   print(error)
-   if isinstance(error, commands.MissingRequiredArgument):
-	await send_cmd_help(ctx)
-	print('Sent command help')
-   elif isinstance(error, send_help):
-	await send_cmd_help(ctx)
-	print('Sent command help')
+#@bot.event
+#async def on_command_error(error, ctx):
+  # print(error)
+  # if isinstance(error, commands.MissingRequiredArgument):
+	#await send_cmd_help(ctx)
+	#print('Sent command help')
+#elif isinstance(error, send_help):
+	#await send_cmd_help(ctx)
+	#print('Sent command help')
 #   elif isinstance(error, commands.DisabledCommand):
 #       await ctx.send("That command is disabled.")
 #       print('Command disabled.')
