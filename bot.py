@@ -69,7 +69,7 @@ def is_owner():
 @bot.command()
 async def help(ctx):
     formatter = commands.formatter.HelpFormatter()
-    help1 = formatter.format_help_for(ctx, bot)
+    help1 = await formatter.format_help_for(ctx, bot)
     embed = discord.Embed(title='Darkness Commands', description=help1)
     await ctx.send(embed=embed)
     
