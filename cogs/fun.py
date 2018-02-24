@@ -115,6 +115,20 @@ class Fun():
 				data = await resp.json(content_type=None)
 		await ctx.send(data['joke'])
 		
+	@commands.command()
+	async def whosthatpokemon(self, ctx):
+		num = random.randint(1, 926)
+		async with aiohttp.ClientSession().get(f'https://pokeapi.co/api/v2/pokemon-form/{num}/') as resp:
+			data = await resp.json()
+		embed = discord.Embed(title='Who\'s that pokemon?', color=discord.Color.blue())
+		embed.set_image(url=data['sprites']['front_default'])
+		await ctx.send(embed=embed)
+		guess = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
+		if guess.content.lower == data['name']:
+			await ctx.send(f'Correct! That pokemon is {data["name"]}')
+		else:
+			await ctx.send(f'Incorrect! That pokemon is {data["name"]}')
+		
 
 
 
