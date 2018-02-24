@@ -197,14 +197,21 @@ class Info():
 	async def search_dbl(self, ctx, bot_user: discord.Member):
 		async with aiohttp.ClientSession().get(f'http://discordbots.org/api/bots/{bot_user.id}') as resp:
 						       data = await resp.json()
-		embed = discord.Embed(title=f'{bot_user.name} DBL Info', description=data['shortdesc'], color=discord.Color.blue())
-		embed.add_field(name='Links', value='[GitHub](data["github"]) | [Support](data["support"]) | [Website](data["website"]) | [Invite](data["invite"])')
-		embed.add_field(name='Prefix', value=data['prefix'])
-		embed.add_field(name='Library', value=data['lib'])
-		embed.add_field(name='Server Count', value=data['server_count'])
-		embed.add_field(name='Upvotes', value=data['points'])
-		embed.set_thumbnail(url=bot_user.avatar_url)
-		await ctx.send(embed=embed)
+		if 'server_count' in data:
+			server_count = data['server_count']
+		else:
+			server_count = None
+		if 'error' not in data:
+			embed = discord.Embed(title=f'{bot_user.name} DBL Info', description=data['shortdesc'], color=discord.Color.blue())
+			embed.add_field(name='Links', value='[GitHub](data["github"])' + ' ' + '[Support](data["support"])' + ' ' + '[Website](data["website"])' + ' ' + '[Invite](data["invite"])')
+			embed.add_field(name='Prefix', value=data['prefix'])
+			embed.add_field(name='Library', value=data['lib'])
+			embed.add_field(name='Server Count', value=server_count)
+			embed.add_field(name='Upvotes', value=data['points'])
+			embed.set_thumbnail(url=bot_user.avatar_url)
+			await ctx.send(embed=embed)
+		else:
+			await ctx.send(data['error'])
 
 def setup(bot):
 	bot.add_cog(Info(bot))
