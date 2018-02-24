@@ -196,7 +196,7 @@ class Info():
 	async def search_dbl(self, ctx, bot_user: discord.Member):
 		async with aiohttp.ClientSession().get(f'http://discordbots.org/api/{bot_user.id}') as resp:
 						       data = resp.json()
-		embed = discord.Embed(title=f'{bot.name} DBL Info'), description=data['shortdesc'], color=discord.Color.blue())
+		embed = discord.Embed(title=f'{bot.name} DBL Info', description=data['shortdesc'], color=discord.Color.blue())
 		embed.add_field(name='Links', value=f'{["GitHub"](data["github"])} | {["Support"](data["support"])} | {["Website"](data["website"])} | {["Invite"](data["invite"])}')
 		embed.add_field(name='Prefix', value=data['prefix'])
 		embed.add_field(name='Library', value=data['lib'])
