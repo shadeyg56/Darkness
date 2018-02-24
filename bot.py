@@ -27,7 +27,7 @@ async def get_pre(bot, message):
 	
 	
 bot = commands.Bot(command_prefix=get_pre)
-bot.remove_command("help")
+
 
 
 startup_extensions = [
@@ -66,17 +66,6 @@ def is_owner():
     return commands.check(lambda ctx: ctx.message.author.id == 300396755193954306)
 
 
-@bot.command()
-async def help(ctx):
-    formatter = commands.formatter.HelpFormatter()
-    for cog in startup_extensions:
-		cog = cog.strip('cogs.')
-		x = bot.get_cog(cog)
-		help1 = await formatter.format_help_for(ctx, x)
-		embed.add_field(name=cog, value=help1)
-    embed = discord.Embed(title='Darkness Commands', description=help1)
-    await ctx.send(embed=embed)
-    
 @bot.event
 async def on_member_join(member):
 	with open('cogs/utils/servers.json') as f:
@@ -314,3 +303,4 @@ if __name__ == "__main__":
         
     
 bot.run(TOKEN)
+   
