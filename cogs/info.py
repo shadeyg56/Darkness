@@ -12,6 +12,7 @@ import hastebin
 import inspect
 import dbl
 from dbl import Client
+import aiohttp
 
 class Info():
 	def __init__(self, bot):
