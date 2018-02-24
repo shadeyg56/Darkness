@@ -198,8 +198,7 @@ class Info():
 		async with aiohttp.ClientSession().get(f'http://discordbots.org/api/bots/{bot_user.id}') as resp:
 						       data = await resp.json()
 		embed = discord.Embed(title=f'{bot_user.name} DBL Info', description=data['shortdesc'], color=discord.Color.blue())
-		#this next line is horrible but only thing that would work plus i just kinda felt lazy since its 2:13 AM
-		embed.add_field(name='Links', value=["GitHub"](data["github"]) + ' ' + '|' + ' ' + ["Support"](data["support"]) + ' ' + '|' + ' ' + ["Website"](data["website"]) +' ' + '|' + ' ' + {["Invite"](data["invite"]))
+		embed.add_field(name='Links', value='[GitHub](data["github"]) | [Support](data["support"]) | [Website](data["website"]) | [Invite](data["invite"])')
 		embed.add_field(name='Prefix', value=data['prefix'])
 		embed.add_field(name='Library', value=data['lib'])
 		embed.add_field(name='Server Count', value=data['server_count'])
