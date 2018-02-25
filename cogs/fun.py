@@ -124,7 +124,7 @@ class Fun():
 		embed.set_image(url=data['sprites']['front_default'])
 		await ctx.send(embed=embed)
 		guess = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
-		if guess.content.lower == data['name']:
+		if guess.content == data['name']:
 			await ctx.send(f'Correct! That pokemon is {data["name"]}')
 		else:
 			await ctx.send(f'Incorrect! That pokemon is {data["name"]}')
