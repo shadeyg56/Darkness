@@ -104,9 +104,9 @@ class Fun():
 	
 	@commands.command()
 	async def roast(self, ctx, user: discord.Member):
-		roast = phrases.get_so_insult_with_action_and_target(user.mention, 'they')
-		embed = discord.Embed(title='Roasted :fire:', description=roast, color=0xd60606)
-		await ctx.send(embed=embed)
+		async with aiohttp.ClientSession().get('https://insult.mattbas.org/api/insult.json') as resp:
+			data = await resp.json(content_type=None)
+		await ctx.send(data['insult'])
 		
 	@commands.command()
 	async def yomomma(self, ctx):
