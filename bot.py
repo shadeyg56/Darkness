@@ -116,7 +116,7 @@ async def on_member_remove(member):
 
 @bot.event
 async def on_guild_join(guild):
-    channel = bot.get_channel(id=418216163588308993)
+    channel = bot.get_channel(418216163588308993)
     embed = discord.Embed(title='New Server!', description=f'Server Name: {guild.name} | Server Num {len(bot.guilds)}', color=discord.Color.green())
     embed.set_thumbnail(url=guild.icon_url)
     embed.set_footer(text=f"Server ID: {guild.id}")
@@ -125,7 +125,7 @@ async def on_guild_join(guild):
 
 @bot.event
 async def on_guild_remove(guild):
-    channel = bot.get_channel(id=418216163588308993)
+    channel = bot.get_channel(418216163588308993)
     embed = discord.Embed(title='Removed Server :crying_cat_face:', description=f'Server Name: {guild.name} | Server Num {len(bot.guilds)}', color=discord.Color.red())
     embed.set_thumbnail(url=guild.icon_url)
     embed.set_footer(text=f"Server ID: {guild.id}")
