@@ -41,7 +41,7 @@ class Info():
 		embed.add_field(name='Voice Chanels', value=voice_channels)
 		embed.add_field(name="Region", value=server.region)
 		embed.set_footer(text=created_at)
-		await ctx.send(embed=embed)
+		await ctx.send(embed=embed
 
 	@commands.command()
 	async def userinfo(self, ctx, user: discord.Member = None):
