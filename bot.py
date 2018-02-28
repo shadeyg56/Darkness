@@ -114,7 +114,24 @@ async def on_member_remove(member):
 		channel = bot.get_channel(int(welc_channel))
 		await channel.send(msg)
 
-	
+@bot.event
+async def on_guild_join(guild):
+    channel = bot.get_channel(id=418216163588308993)
+    embed = discord.Embed(title='New Server!', description=f'Server Name: {guild.name} | Server Num {len(bot.guilds)}', color=discord.Color.green())
+    embed.set_thumbnail(url=guild.icon_url)
+    embed.set_footer(text=f"Server ID: {guild.id}")
+    embed.set_author(name=f"Owner: {guild.owner} | ID: {guild.owner.id}", icon_url=guild.owner.icon_url)
+    await channel.send(embed=embed)
+
+@bot.event
+async def on_guild_remove(guild):
+    channel = bot.get_channel(id=418216163588308993)
+    embed = discord.Embed(title='Removed Server :crying_cat_face:', description=f'Server Name: {guild.name} | Server Num {len(bot.guilds)}', color=discord.Color.red())
+    embed.set_thumbnail(url=guild.icon_url)
+    embed.set_footer(text=f"Server ID: {guild.id}")
+    embed.set_author(name=f"Owner: {guild.owner} | ID: {guild.owner.id}", icon_url=guild.owner.icon_url)
+    await channel.send(embed=embed)
+
 @bot.command(name='reload')
 async def _reload(ctx,*, module : str):
     """Reloads a module."""
@@ -216,12 +233,15 @@ async def terminal(ctx, *, command:str):
 @is_owner()
 async def update(ctx):
     x = subprocess.run('git pull', cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8')
-    for module in startup_extensions:
-        bot.unload_extension(module)
-        bot.load_extension(module)
-    await ctx.send(x)
-    await ctx.send("All Cogs Reloaded")
-
+    try:
+        for module in startup_extensions:
+            bot.unload_extension(module)
+            bot.load_extension(module)
+        await ctx.send(x)
+        await ctx.send("All Cogs Reloaded")
+    except Exception as e:
+        await ctx.send(f"Error, Log: {e}")
+    
       
 @bot.command(name='eval')
 @is_owner()
