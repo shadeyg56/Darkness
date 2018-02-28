@@ -120,7 +120,7 @@ async def on_guild_join(guild):
     embed = discord.Embed(title='New Server!', description=f'Server Name: {guild.name} | Server Num {len(bot.guilds)}', color=discord.Color.green())
     embed.set_thumbnail(url=guild.icon_url)
     embed.set_footer(text=f"Server ID: {guild.id}")
-    embed.set_author(name=f"Owner: {guild.owner} | ID: {guild.owner.id}", icon_url=guild.owner.icon_url)
+    embed.set_author(name=f"Owner: {guild.owner} | ID: {guild.owner.id}", icon_url=guild.owner.avatar_url)
     await channel.send(embed=embed)
 
 @bot.event
@@ -129,7 +129,7 @@ async def on_guild_remove(guild):
     embed = discord.Embed(title='Removed Server :crying_cat_face:', description=f'Server Name: {guild.name} | Server Num {len(bot.guilds)}', color=discord.Color.red())
     embed.set_thumbnail(url=guild.icon_url)
     embed.set_footer(text=f"Server ID: {guild.id}")
-    embed.set_author(name=f"Owner: {guild.owner} | ID: {guild.owner.id}", icon_url=guild.owner.icon_url)
+    embed.set_author(name=f"Owner: {guild.owner} | ID: {guild.owner.id}", icon_url=guild.owner.avatar_url)
     await channel.send(embed=embed)
 
 @bot.command(name='reload')
