@@ -240,7 +240,7 @@ async def update(ctx):
         await ctx.send(x)
         await ctx.send("All Cogs Reloaded")
     except Exception as e:
-        await ctx.send(f"Error, Log: {e}")
+        await ctx.send(f"Error, Log: \n```py\n{e}```")
     
       
 @bot.command(name='eval')
