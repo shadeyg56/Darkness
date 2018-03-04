@@ -203,7 +203,7 @@ class Info():
 			server_count = None
 		if 'error' not in data:
 			embed = discord.Embed(title=f'{bot_user.name} DBL Info', description=data['shortdesc'], color=discord.Color.blue())
-			embed.add_field(name='Links', value='[GitHub](data["github"])' + ' ' + '[Support](data["support"])' + ' ' + '[Website](data["website"])' + ' ' + '[Invite](data["invite"])')
+			embed.add_field(name='Links', value=f'[GitHub]({data["github"]})' + ' ' + f'[Support]({data["support"]})' + ' ' + f'[Website]({data["website"]})' + ' ' + f'[Invite]({data["invite"]})')
 			embed.add_field(name='Prefix', value=data['prefix'])
 			embed.add_field(name='Library', value=data['lib'])
 			embed.add_field(name='Server Count', value=server_count)
