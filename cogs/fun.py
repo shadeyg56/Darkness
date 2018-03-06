@@ -6,7 +6,7 @@ import aiohttp
 import json
 from insultgenerator import phrases
 
-class Fun():
+class Fun:
 	def __init__(self, bot):
 		self.bot = bot
 		self.answers = ['It is certain', 'It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
@@ -16,15 +16,14 @@ class Fun():
                      'Very doubtful']
 		self.type = ["png", "gif"]
 
-	@commands.command()
+	@commands.command(aliases=['8ball', 'eightball'])
 	async def ball(self, ctx, *, question:str):
-  		ans = random.randint(0, 19)
   		author = ctx.author
   		avatar = author.avatar_url
   		timestamp = ctx.message.created_at
   		embed = discord.Embed(title="8ball", color=0xed, timestamp=timestamp)
   		embed.add_field(name='Question :question:', value=f"{question}")
-  		embed.add_field(name="Answer :8ball:", value=self.answers[ans])
+  		embed.add_field(name="Answer :8ball:", value=random.choice(self.answers))
   		embed.set_footer(text="Asked at")
   		embed.set_thumbnail(url='http://legomenon.com/images/magic-8ball-first-white.jpg')
   		embed.set_author(name=author, icon_url=avatar)

@@ -187,8 +187,8 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def say(ctx, *, msg: str):
 	"Make the bot say something"
+	await ctx.message.delete()
 	await ctx.send(msg)
-	await discord.Message.delete(ctx.message)
 	
 @bot.command()
 async def invite(ctx):
