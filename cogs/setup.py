@@ -24,7 +24,7 @@ class Setup():
 			
 		await ctx.send('Enable welcome message?')
 		msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
-		if msg.content == 'Yes':
+		if msg.content.lower() == 'yes':
 			await ctx.send('What should the message say?')
 			await ctx.send('You can use {user} {server} and {member_count} to use them in your message')
 			msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
@@ -45,7 +45,7 @@ class Setup():
 			
 		await ctx.send('Enable leave message?')
 		leave_msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
-		if leave_msg.content == 'Yes':
+		if leave_msg.content.lower() == 'yes':
 			await ctx.send('What should the message say?')
 			await ctx.send('You can use {user} {server} and {member_count} to use them in your message')
 			leave_msg = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
@@ -56,7 +56,7 @@ class Setup():
 		
 		await ctx.send('Enable mod-log?')
 		mod_log = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
-		if mod_log.content == 'Yes':
+		if mod_log.content.lower() == 'yes':
 			await ctx.send('What channel should the mod-log be?')
 			mod_log = await self.bot.wait_for('message', check=lambda m: m.author == ctx.author)
 			await ctx.send(f'Mod-log set to channel {mod_log.content}')

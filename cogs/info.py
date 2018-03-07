@@ -174,11 +174,15 @@ class Info():
 		
 	@commands.command()
 	async def hastebin(self, ctx, *, code:str):
-		try:
-			await ctx.message.delete()
-			await ctx.send(f'{hastebin.post(code)} made by {ctx.author}')
-		except:
-			await ctx.send(f'{hastebin.post(code)} made by {ctx.author}. *Note: I was unable to delete the original code due to missing perms*')
+	 async with aiohttp.ClientSession() as session:
+	  async with session.post("https://hastebin.com/documents", data=code) as resp:
+	   resp = await resp.json()
+	   try:
+	    await ctx.message.delete()
+	   except discord.Forbidden:
+	    pass
+	   finally:
+	       await ctx.send(f"https://hastebin.com/{resp['key']} made by {ctx.author.name}#{ctx.author.discriminator}")
 		
 	@commands.command()
 	async def source(self, ctx, *, command:str):
@@ -215,4 +219,3 @@ class Info():
 
 def setup(bot):
 	bot.add_cog(Info(bot))
-
