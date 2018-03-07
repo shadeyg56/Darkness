@@ -179,10 +179,9 @@ class Info():
 	   resp = await resp.json()
 	   try:
 	    await ctx.message.delete()
+	    await ctx.send(f"https://hastebin.com/{resp['key']} made by {ctx.author}")
 	   except discord.Forbidden:
-	    pass
-	   finally:
-	       await ctx.send(f"https://hastebin.com/{resp['key']} made by {ctx.author.name}#{ctx.author.discriminator}")
+	    await ctx.send(f"https://hastebin.com/{resp['key']} made by {ctx.author} *Note: I would have deleted the original code but I lack the perms*")
 		
 	@commands.command()
 	async def source(self, ctx, *, command:str):
