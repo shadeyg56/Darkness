@@ -183,23 +183,7 @@ async def support(ctx):
 	await ctx.send('**Darkness Support:** https://discord.gg/Jjdp8hf')
 
            
-@bot.command()
-@is_owner()
-async def terminal(ctx, *, command:str):
-	await ctx.send(subprocess.run(command,  cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8'))
-@bot.command()
-@is_owner()
-async def update(ctx):
-    x = subprocess.run('git pull', cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8')
-    try:
-        for module in startup_extensions:
-            bot.unload_extension(module)
-            bot.load_extension(module)
-        await ctx.send(x)
-        await ctx.send("All Cogs Reloaded")
-    except Exception as e:
-        await ctx.send(f"Error, Log: \n```py\n{e}```")
-    
+
       
 @bot.command(name='eval')
 @is_owner()
