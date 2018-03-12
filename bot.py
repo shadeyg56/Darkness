@@ -131,22 +131,6 @@ async def on_guild_remove(guild):
     embed.set_footer(text=f"Server ID: {guild.id}")
     embed.set_author(name=f"Owner: {guild.owner} | ID: {guild.owner.id}", icon_url=guild.owner.avatar_url)
     await channel.send(embed=embed)
-
-@bot.command(name='reload')
-async def _reload(ctx,*, module : str):
-    """Reloads a module."""
-    channel = ctx.channel
-    module = 'cogs.'+module
-    try:
-        bot.unload_extension(module)
-        x = await ctx.send('Successfully Unloaded.')
-        bot.load_extension(module)
-        await x.edit(content='Successfully Reloaded.')
-    except Exception as e:
-        await x.edit(contenr='\N{PISTOL}')
-        await ctx.send(f'{type(e).__name__}: {e}')
-    else:
-        await x.edit(content='Done. \N{OK HAND SIGN}')
  
 
 def fmt_help(page):
@@ -198,32 +182,6 @@ async def invite(ctx):
 async def support(ctx):
 	await ctx.send('**Darkness Support:** https://discord.gg/Jjdp8hf')
 
-@bot.command()
-@is_owner()
-async def shutdown(ctx):
-    await ctx.send("Shutting down...")
-    await bot.logout()
-
-def cleanup_code( content):
-    """Automatically removes code blocks from the code."""
-    # remove ```py\n```
-    if content.startswith('```') and content.endswith('```'):
-        return '\n'.join(content.split('\n')[1:-1])
-
-    # remove `foo`
-    return content.strip('` \n')        
-           
-def get_syntax_error(e):
-    if e.text is None:
-        return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
-    return '```py\n{0.text}{1:>{0.offset}}\n{2}: {0}```'.format(e, '^', type(e).__name__)
-
-async def to_code_block(ctx, body):
-    if body.startswith('```') and body.endswith('```'):
-        content = '\n'.join(body.split('\n')[1:-1])
-    else:
-        content = body.strip('`')
-    await bot.edit_message(ctx.message, '```py\n'+content+'```')
            
 @bot.command()
 @is_owner()
