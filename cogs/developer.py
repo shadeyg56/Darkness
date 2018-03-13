@@ -5,15 +5,13 @@ import io
 import textwrap
 import traceback
 from contextlib import redirect_stdout
-import sys
-sys.path.insert(0, '/home/pi/Desktop/Darkness')
-import bot as extensions
 
 
 
 class Developer():
     def __init__(self, bot):
         self.bot = bot
+        self.startup_extensions = ['fun', 'developer', 'mod', 'info', 'setup']
         
     @commands.command(name='reload')
     @commands.is_owner()
@@ -69,7 +67,7 @@ class Developer():
     async def update(self, ctx):
         x = subprocess.run('git pull', cwd='/home/pi/Desktop/Darkness', stdout=subprocess.PIPE, shell=True).stdout.decode('utf-8')
         try:
-            for module in extensions.startup_extensions:
+            for module in self.startup_extentions:
                 self.bot.unload_extension(module)
                 self.bot.load_extension(module)
                 await ctx.send(x)
