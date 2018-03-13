@@ -1,10 +1,6 @@
 import discord
 from discord.ext import commands
 import datetime
-import io
-import textwrap
-import traceback
-from contextlib import redirect_stdout
 import json
 import asyncio
 import string
@@ -36,7 +32,8 @@ startup_extensions = [
     "cogs.mod",
     "cogs.fun",
     "cogs.info",
-    'cogs.setup'
+    'cogs.setup',
+    "cogs.developer"
     
  
  
@@ -60,10 +57,7 @@ async def on_ready():
     channel = bot.get_channel(356599668739670049)
     users = sum(1 for _ in bot.get_all_members())
     await channel.send(embed=embed)
-    await bot.change_presence(game=discord.Game(name='Major update | d.setup'))
-
-def is_owner():
-    return commands.check(lambda ctx: ctx.message.author.id == 300396755193954306)
+    await bot.change_presence(activity=discord.Game(name='Major update | d.setup'))
 
 
 @bot.event
@@ -157,6 +151,9 @@ async def on_command_error(ctx, error):
 	elif isinstance(error, commands.DisabledCommand):
 		await ctx.send("That command is disabled.")
 		print('Command disabled.')
+	elif isinstance(error, commands.NotOwner):
+		await ctx.send("You're not a developer silly")
+		print("Attemepted dev command by non-dev")
 	#elif isinstance(error, commands.CommandInvokeError):
 #       # A bit hacky, couldn't find a better way
 #       no_dms = "Cannot send messages to this user"
