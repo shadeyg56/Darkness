@@ -11,7 +11,7 @@ from contextlib import redirect_stdout
 class Developer():
     def __init__(self, bot):
         self.bot = bot
-        self.startup_extensions = ['fun', 'developer', 'mod', 'info', 'setup']
+        self.startup_extensions = ['cogs.fun', 'cogs.developer', 'cogs.mod', 'cogs.info', 'cogs.setup']
         
     @commands.command(name='reload')
     @commands.is_owner()
@@ -120,12 +120,12 @@ class Developer():
                 except:
                     x = await ctx.send('```py\n\'Result was too long.\'```')
                 try:
-                    await bot.add_reaction(x, '\U0001f535')
+                    await self.bot.add_reaction(x, '\U0001f535')
                 except:
                     pass
             else:
                 try:
-                    await bot.add_reaction(ctx.message, '\U0001f535')
+                    await self.bot.add_reaction(ctx.message, '\U0001f535')
                 except:
                     pass
         else:
@@ -134,7 +134,7 @@ class Developer():
             except:
                 x = await ctx.send('```py\n\'Result was too long.\'```')
             try:
-                await bot.add_reaction(x, '\U0001f535')
+                await self.bot.add_reaction(x, '\U0001f535')
             except:
                 pass
             
