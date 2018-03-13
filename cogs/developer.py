@@ -14,7 +14,7 @@ class Developer():
     @commands.command(name='reload')
     @commands.is_owner()
     async def _reload(self, ctx,*, module : str):
-    """Reloads a module."""
+        """Reloads a module."""
         channel = ctx.channel
         module = 'cogs.'+module
         try:
