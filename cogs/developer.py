@@ -70,8 +70,8 @@ class Developer():
                 self.bot.load_extension(module)
                 await ctx.send(x)
                 await ctx.send("All Cogs Reloaded")
-                except Exception as e:
-                    await ctx.send(f"Error, Log: \n```py\n{e}```")
+        except Exception as e:
+            await ctx.send(f"Error, Log: \n```py\n{e}```")
                     
           
     @commands.command(name='eval')
