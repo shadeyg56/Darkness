@@ -184,72 +184,7 @@ async def support(ctx):
 
            
 
-      
-@bot.command(name='eval')
-@is_owner()
-async def _eval(ctx, *, body: str):
-    '''Run python scripts on discord!'''
-    env = {
-        'bot': bot,
-        'ctx': ctx,
-        'channel': ctx.message.channel,
-        'author': ctx.message.author,
-        'server': ctx.message.guild,
-        'message': ctx.message,
-    }
 
-    env.update(globals())
-
-    body = cleanup_code(content=body)
-    stdout = io.StringIO()
-
-    to_compile = 'async def func():\n%s' % textwrap.indent(body, '  ')
-    try:
-        exec(to_compile, env)
-    except SyntaxError as e:
-        return await ctx.send(get_syntax_error(e))
-
-    func = env['func']
-    try:
-        with redirect_stdout(stdout):
-            ret = await func()
-    except Exception as e:
-        value = stdout.getvalue()
-        x = await ctx.send('```py\n{}{}\n```'.format(value, traceback.format_exc()))
-        try:
-            await bot.add_reaction(x, '\U0001f534')
-        except:
-            pass
-    else:
-        value = stdout.getvalue()
-        
-        if TOKEN in value:
-            value = value.replace(TOKEN,"[EXPUNGED]")
-            
-        if ret is None:
-            if value:
-                try:
-                    x = await ctx.send('```py\n%s\n```' % value)
-                except:
-                    x = await ctx.send('```py\n\'Result was too long.\'```')
-                try:
-                    await bot.add_reaction(x, '\U0001f535')
-                except:
-                    pass
-            else:
-                try:
-                    await bot.add_reaction(ctx.message, '\U0001f535')
-                except:
-                    pass
-        else:
-            try:
-                x = await ctx.send('```py\n%s%s\n```' % (value, ret))
-            except:
-                x = await ctx.send('```py\n\'Result was too long.\'```')
-            try:
-                await bot.add_reaction(x, '\U0001f535')
-            except:
-                pass
 
 
 if __name__ == "__main__":
