@@ -76,7 +76,7 @@ class Developer():
           
     @commands.command(name='eval')
     @commands.is_owner()
-    async def _eval(ctx, *, body: str):
+    async def _eval(self, ctx, *, body: str):
         '''Run python scripts on discord!'''
         env = {
             'bot': bot,
