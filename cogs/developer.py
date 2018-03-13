@@ -1,7 +1,10 @@
 import discord
 from discord.ext import commands
 import subprocess
+import io
+import textwrap
 import traceback
+from contextlib import redirect_stdout
 
 
 class Developer():
