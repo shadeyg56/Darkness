@@ -1,4 +1,4 @@
-import discord
+aimport discord
 from discord.ext import commands
 import datetime
 import json
@@ -145,9 +145,8 @@ async def on_command_error(ctx, error):
 	if isinstance(error, commands.MissingRequiredArgument):
 		await send_cmd_help(ctx)
 		print('Sent command help')
-	elif isinstance(error, send_help):
-		await send_cmd_help(ctx)
-		print('Sent command help')
+	#elif isinstance(error, send_help):
+		#print('Sent command help')
 	elif isinstance(error, commands.DisabledCommand):
 		await ctx.send("That command is disabled.")
 		print('Command disabled.')
