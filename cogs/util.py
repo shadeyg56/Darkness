@@ -63,7 +63,7 @@ class Utils():
 		else:
 			await ctx.send("This server has no ranks")
 
-	@commands.command(aliases="rank")
+	@commands.command(aliases=["rank"])
 	async def iam(self, ctx, *, rank):
 		"Add a server rank to yourself"
 		with open("cogs/utils/servers.json") as f:
