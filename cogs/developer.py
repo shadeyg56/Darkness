@@ -45,9 +45,10 @@ class Developer():
         # remove `foo`
         return content.strip('` \n')        
            
+    
     def get_syntax_error(self, e):
         if e.text is None:
-            return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
+            return f'```py\n{e.__class__.__name__}: {e}\n```'
         return f'```py\n{e.text}{"^":>{e.offset}}\n{e.__class__.__name__}: {e}```'
 
     async def to_code_block(self, ctx, body):
