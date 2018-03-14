@@ -54,11 +54,8 @@ class Utils():
 			data = json.load(f)
 		if str(ctx.guild.id) in data:
 			if "ranks" in data[str(ctx.guild.id)]:
-				if rank in data[str(ctx.guild.id)]["ranks"]:
-					for rank in data[str(ctx.guild.id)]["ranks"]:
-						await ctx.send(rank)
-				else:
-					await ctx.send("That rank does not exist")
+				for rank in data[str(ctx.guild.id)]["ranks"]:
+					await ctx.send(rank)
 			else:
 				await ctx.send("This server has no ranks")
 		else:
@@ -71,7 +68,7 @@ class Utils():
 			data = json.load(f)
 		if rank in data[str(ctx.guild.id)]["ranks"]:
 			role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
-			await ctx.author.add_roles(roles=role)
+			await ctx.author.add_roles(role)
 			await ctx.send(f"I gave you the {rank} rank")
 		else:
 			await ctx.send("That rank does not exist")
