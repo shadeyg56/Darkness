@@ -7,7 +7,7 @@ class Utils():
 		self.bot = bot
 
 	@commands.command()
-	@commands.has_permission(manage_roles=True)
+	@commands.has_permissions(manage_roles=True)
 	async def addrank(self, ctx, *, rank: str):
 		"Add a rank that members can give themselves"
 		with open("cogs/utils/servers.json") as f:
@@ -31,7 +31,7 @@ class Utils():
 			f.write(data)
 
 	@commands.command()
-	@commands.has_permission(manage_roles=True)
+	@commands.has_permissions(manage_roles=True)
 	async def removerank(self, ctx, *, rank: str):
 		"Remove a rank that members can give themselves"
 		with open("cogs/utils/servers.json") as f:
