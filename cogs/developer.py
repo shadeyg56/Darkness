@@ -37,7 +37,7 @@ class Developer():
         await ctx.send("Shutting down...")
         await self.bot.logout()
 
-    def cleanup_code( content):
+    def cleanup_code(self, content):
         """Automatically removes code blocks from the code."""
         # remove ```py\n```
         if content.startswith('```') and content.endswith('```'):
@@ -45,12 +45,12 @@ class Developer():
         # remove `foo`
         return content.strip('` \n')        
            
-    def get_syntax_error(e):
+    def get_syntax_error(self, e):
         if e.text is None:
             return '```py\n{0.__class__.__name__}: {0}\n```'.format(e)
         return '```py\n{0.text}{1:>{0.offset}}\n{2}: {0}```'.format(e, '^', type(e).__name__)
 
-    async def to_code_block(ctx, body):
+    async def to_code_block(self, ctx, body):
         if body.startswith('```') and body.endswith('```'):
             content = '\n'.join(body.split('\n')[1:-1])
         else:
