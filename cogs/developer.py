@@ -136,5 +136,12 @@ class Developer():
             except:
                 pass
             
+    @commands.command()
+    @commands.is_owner()
+    async def set_presence(self, ctx, type: str, status: str, *, text: str):
+        activities = {'playing': discord.ActivityType.playing, 'streaming': discord.ActivityType.streaming, 'watching': discord.ActivityType.watching, 'listening': discord.ActivityType.listening}
+        await self.bot.change_presence(activity=discord.Activity(type=activities[type], name=text), status=status)
+        await ctx.send(f'Set the bot\'s presence to {type.title} {text}')
+            
 def setup(bot):
     bot.add_cog(Developer(bot))
