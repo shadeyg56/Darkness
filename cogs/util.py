@@ -79,4 +79,4 @@ class Utils():
 			await ctx.send("There is no server ranks")
 
 def setup(bot):
-	bot.add_Cog(Utils(bot))
+	bot.add_cog(Utils(bot))
