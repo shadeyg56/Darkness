@@ -10,7 +10,7 @@ class Utils():
 	@commands.command()
 	@commands.has_permissions(manage_roles=True)
 	async def addrank(self, ctx, *, rank: str):
-		"Add a rank that members can give themselves"
+		"""Add a rank that members can give themselves"""
 		with open("cogs/utils/servers.json") as f:
 			data = json.load(f)
 		role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
@@ -34,7 +34,7 @@ class Utils():
 	@commands.command()
 	@commands.has_permissions(manage_roles=True)
 	async def removerank(self, ctx, *, rank: str):
-		"Remove a rank that members can give themselves"
+		"""Remove a rank that members can give themselves"""
 		with open("cogs/utils/servers.json") as f:
 			data = json.load(f)
 		role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
@@ -49,7 +49,7 @@ class Utils():
 
 	@commands.command()
 	async def ranks(self, ctx):
-		"View all ranks in your server"
+		"""View all ranks in your server"""
 		with open("cogs/utils/servers.json") as f:
 			data = json.load(f)
 		if str(ctx.guild.id) in data:
@@ -63,13 +63,17 @@ class Utils():
 
 	@commands.command(aliases=["rank"])
 	async def iam(self, ctx, *, rank):
-		"Add a server rank to yourself"
+		"""Add a server rank to yourself"""
 		with open("cogs/utils/servers.json") as f:
 			data = json.load(f)
 		if rank in data[str(ctx.guild.id)]["ranks"]:
 			role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
-			await ctx.author.add_roles(role)
-			await ctx.send(f"I gave you the {rank} rank")
+			if role in ctx.author.roles:
+				await ctx.author.remove_roles(role)
+				await ctx.send('You already had that rank, so I went ahead and removed it. Just repeat the command to get it back at anytime.')
+			else:
+				await ctx.author.add_roles(role)
+				await ctx.send(f"I gave you the {rank} rank")
 		else:
 			await ctx.send("That rank does not exist")
 
