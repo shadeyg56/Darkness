@@ -34,7 +34,8 @@ startup_extensions = [
     "cogs.info",
     'cogs.setup',
     "cogs.developer",
-    "cogs.util"
+    "cogs.util",
+    'cogs.twitch'
     
  
  
