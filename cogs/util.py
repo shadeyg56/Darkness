@@ -16,7 +16,7 @@ class Utils():
 		role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
 		if str(ctx.guild.id) not in data:
 			data[str(ctx.guild.id)] = {}
-		if "ranks" not in data:
+		if "ranks" not in data[str(ctx.guild.id)]:
 			data[str(ctx.guild.id)]["ranks"] = {}
 		if role:
 			data[str(ctx.guild.id)]["ranks"][str(role.name)] = str(role.name)
