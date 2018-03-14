@@ -57,7 +57,7 @@ class Info():
 		role_List = role_List.replace("'", "")
 		role_List = role_List.replace("]", "")
 		if user.activity.type in activities:
-			activity = activites[user.activity.type]
+			activity = activities[user.activity.type]
 		else:
 			activity = "Doing Nothing"
 					
