@@ -69,7 +69,7 @@ class Utils():
 		with open("cogs/utils/servers.json") as f:
 			data = json.load(f)
 		try:
-			if rank in data[str(ctx.guild.id)]["ranks"]
+			if rank in data[str(ctx.guild.id)]["ranks"]:
 				role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
 				await ctx.author.add_roles(roles=role)
 				await ctx.send(f"I gave you the {rank} rank")
