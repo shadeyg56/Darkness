@@ -31,7 +31,7 @@ class Utils():
 			f.write(data)
 
 	@commands.command()
-	@commands.has_permission(manage_roles=True):
+	@commands.has_permission(manage_roles=True)
 	async def removerank(self, ctx, *, rank: str):
 		"Remove a rank that members can give themselves"
 		with open("cogs/utils/servers.json") as f:
@@ -77,3 +77,6 @@ class Utils():
 				await ctx.send("That rank does not exist")
 		except:
 			await ctx.send("There is no server ranks")
+
+def setup(bot):
+	bot.add_Cog(Utils(bot))
