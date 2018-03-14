@@ -39,7 +39,7 @@ class Utils():
 			data = json.load(f)
 		role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
 		if rank in data[str(ctx.guild.id)]["ranks"]:
-			del data[str(ctx.guild.id)]["rank"][rank]
+			del data[str(ctx.guild.id)]["ranks"][rank]
 			await ctx.send(f"I removed {rank} from the server ranks")
 		else:
 			await ctx.send("That rank does not exist")
