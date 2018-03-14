@@ -1,4 +1,4 @@
-aimport discord
+import discord
 from discord.ext import commands
 import datetime
 import json
