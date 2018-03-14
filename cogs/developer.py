@@ -105,7 +105,7 @@ class Developer():
             value = stdout.getvalue()
             x = await ctx.send('```py\n{}{}\n```'.format(value, traceback.format_exc()))
             try:
-                await self.bot.add_reaction(x, '\U0001f534')
+                await x.add_reaction('\U0001f534')
             except:
                 pass
         else:
@@ -119,12 +119,12 @@ class Developer():
                 except:
                     x = await ctx.send('```py\n\'Result was too long.\'```')
                 try:
-                    await self.bot.add_reaction(x, '\U0001f535')
+                    await x.add_reaction('\U0001f535')
                 except:
                     pass
             else:
                 try:
-                    await self.bot.add_reaction(ctx.message, '\U0001f535')
+                    await ctx.message.add_reaction('\U0001f535')
                 except:
                     pass
         else:
@@ -133,7 +133,7 @@ class Developer():
             except:
                 x = await ctx.send('```py\n\'Result was too long.\'```')
             try:
-                await self.bot.add_reaction(x, '\U0001f535')
+                await x.add_reaction('\U0001f535')
             except:
                 pass
             
