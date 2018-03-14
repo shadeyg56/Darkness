@@ -88,8 +88,8 @@ class Developer():
             'server': ctx.message.guild,
             'message': ctx.message,
         }
-        env.update(globals)
-        body = cleanup_code(content=body)
+        env.update(globals())
+        body = self.cleanup_code(content=body)
         stdout = io.StringIO()
         to_compile = 'async def func():\n%s' % textwrap.indent(body, '  ')
         try:
