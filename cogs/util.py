@@ -69,15 +69,12 @@ class Utils():
 		"Add a server rank to yourself"
 		with open("cogs/utils/servers.json") as f:
 			data = json.load(f)
-		try:
-			if rank in data[str(ctx.guild.id)]["ranks"]:
-				role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
-				await ctx.author.add_roles(roles=role)
-				await ctx.send(f"I gave you the {rank} rank")
-			else:
-				await ctx.send("That rank does not exist")
-		except:
-			await ctx.send("There is no server ranks ")
+		if rank in data[str(ctx.guild.id)]["ranks"]:
+			role = discord.utils.find(lambda m: rank.lower() in m.name.lower(), ctx.guild.roles)
+			await ctx.author.add_roles(roles=role)
+			await ctx.send(f"I gave you the {rank} rank")
+		else:
+			await ctx.send("That rank does not exist")
 
 def setup(bot):
 	bot.add_cog(Utils(bot))
