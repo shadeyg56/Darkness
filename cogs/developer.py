@@ -81,7 +81,7 @@ class Developer():
     async def _eval(self, ctx, *, body: str):
         '''Run python scripts on discord!'''
         env = {
-            'bot': bot,
+            'bot': self.bot,
             'ctx': ctx,
             'channel': ctx.message.channel,
             'author': ctx.message.author,
