@@ -33,7 +33,8 @@ startup_extensions = [
     "cogs.fun",
     "cogs.info",
     'cogs.setup',
-    "cogs.developer"
+    "cogs.developer",
+    "cogs.util"
     
  
  
