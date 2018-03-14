@@ -78,5 +78,7 @@ class Utils():
 		except:
 			await ctx.send("There is no server ranks")
 
+
+
 def setup(bot):
 	bot.add_cog(Utils(bot))
