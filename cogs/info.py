@@ -48,7 +48,7 @@ class Info():
 		activities = {discord.ActivityType.playing:"Playing", discord.ActivityType.streaming: "Streaming", discord.ActivityType.watching: "Watching", discord.ActivityType.listening: "Listening"}
 		if user == None:
 			user = ctx.author
-		role_List = [""]
+		role_List = []
 		for role in user.roles:
 					role_List.append(role.name)
 
@@ -68,7 +68,7 @@ class Info():
 		embed = discord.Embed(title="User Info",description=f"{user} is on Discord in {user.status} mode", color=0xed)
 		embed.set_author(name=user, icon_url= avatar)
 		embed.set_thumbnail(url=avatar)
-		embed.add_field(name='Activity', value=f'{activity} {user.activity}')
+		embed.add_field(name='Activity', value=f'{activity} {user.activity.name}')
 		embed.add_field(name="Account Created", value=created.__format__('%A, %d. %B %Y'))
 		embed.add_field(name="Joined At", value=user.joined_at.__format__('%A, %d. %B %Y'))
 		embed.add_field(name="Join Number", value=member_number)
