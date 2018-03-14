@@ -136,5 +136,13 @@ def get_syntax_error(self, e):
             except:
                 pass
             
+    @commands.command()
+    @commands.is_owner()
+    async def set_presence(self, ctx, type: str, status: str, *, text: str):
+        statuses = {'online': discord.Status.online, 'idle': discord.Status.idle, 'dnd': discord.Status.dnd}
+        activities = {'playing': discord.ActivityType.playing, 'streaming': discord.ActivityType.streaming, 'watching': discord.ActivityType.watching, 'listening': discord.ActivityType.listening}
+        await self.bot.change_presence(activity=discord.Activity(type=activities[type], name=text), status=statuses[status])
+        await ctx.send(f'Set the bot\'s presence to {type.title()} {text}')
+            
 def setup(bot):
     bot.add_cog(Developer(bot))
