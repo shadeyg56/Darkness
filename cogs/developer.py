@@ -110,8 +110,6 @@ class Developer():
         else:
             value = stdout.getvalue()
         
-        if TOKEN in value:
-            value = value.replace(TOKEN,"[EXPUNGED]")
             
         if ret is None:
             if value:
