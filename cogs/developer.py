@@ -96,7 +96,7 @@ class Developer():
         try:
             exec(to_compile, env)
         except SyntaxError as e:
-            return await ctx.send(get_syntax_error(e))
+            return await ctx.send(self.get_syntax_error(e))
         func = env['func']
         try:
             with redirect_stdout(stdout):
