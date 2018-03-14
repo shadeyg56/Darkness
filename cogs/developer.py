@@ -70,8 +70,8 @@ class Developer():
             for module in self.startup_extensions:
                 self.bot.unload_extension(module)
                 self.bot.load_extension(module)
-                await ctx.send(x)
-                await ctx.send("All Cogs Reloaded")
+            await ctx.send(x)
+            await ctx.send("All Cogs Reloaded")
         except Exception as e:
             await ctx.send(f"Error, Log: \n```py\n{e}```")
                     
