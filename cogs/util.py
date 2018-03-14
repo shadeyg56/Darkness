@@ -76,7 +76,7 @@ class Utils():
 			else:
 				await ctx.send("That rank does not exist")
 		except:
-			await ctx.send("There is no server ranks")
+			await ctx.send("There is no server ranks ")
 
 
 
