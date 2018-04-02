@@ -136,6 +136,17 @@ class Fun:
 			await ctx.send(f'```{data}```')
 		except Exception as e:
 			await ctx.send(f'An error occured in the API\n\nLog:\n```py\n{e}```')
+			
+	@commands.command()
+	async def dadjoke(self, ctx):
+		async with aiohttp.ClientSession().get('https://icanhazdadjoke.com', headers={'Accept': 'application/json'}) as resp:
+			data = await resp.json()
+		try:
+			await ctx.send(data['joke'])
+		except Exception as e:
+			await ctx.send(f'An error occured in the API\nLog\n```py\n{e}```')
+		
+		
 		
 
 
