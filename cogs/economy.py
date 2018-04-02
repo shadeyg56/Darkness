@@ -20,7 +20,7 @@ class Economy():
 			await ctx.send("You've already opened an account silly")
 
 	@commands.command()
-	async def balance()
+	async def balance():
 		if str(ctx.author.id) in self.data:
 			embed = discord.Embed(title="Balance", description=f"{self.data[str(ctx.author.id)]["balance"]} Darkness Chips <:Darkness:411673568170999808>", color=discord.Color.blue())
 			await ctx.send(embed=embed)
