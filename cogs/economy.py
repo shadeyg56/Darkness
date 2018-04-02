@@ -30,7 +30,7 @@ class Economy():
 		with open('cogs/utils/economy.json') as f:
 			data = json.load(f)
 		if str(ctx.author.id) in data:
-			if ctx.guild.name in data[str(ctx.author.id)]['servers']
+			if ctx.guild.name in data[str(ctx.author.id)]['servers']:
 				embed = discord.Embed(title="Balance", description=f"{data[str(ctx.author.id)]['servers'][ctx.guild.name]['balance']} Darkness Chips <:Darkness:411673568170999808>", color=discord.Color.blue())
 				await ctx.send(embed=embed)
 			else:
