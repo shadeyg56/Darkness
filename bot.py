@@ -1,3 +1,4 @@
+
 import discord
 from discord.ext import commands
 import datetime
@@ -34,8 +35,7 @@ startup_extensions = [
     "cogs.info",
     'cogs.setup',
     "cogs.developer",
-    "cogs.util",
-    'cogs.twitch'
+    "cogs.util"
     
  
  
