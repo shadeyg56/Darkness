@@ -127,6 +127,15 @@ class Fun:
 			await ctx.send(f'Correct! That pokemon is {data["name"]}')
 		else:
 			await ctx.send(f'Incorrect! That pokemon is {data["name"]}')
+			
+	@commands.command()
+	async def cowsay(self, ctx, *, message):
+		async with aiohttp.ClientSession().post('http://cowsay.morecode.org/say', params={'message': message, 'format': 'text'}) as resp:
+			data = await resp.text()
+		try:
+			await ctx.send(f'```{data}```')
+		except Exception as e:
+			await ctx.send(f'An error occured in the API\n\nLog:\n```py\n{e}```')
 		
 
 
