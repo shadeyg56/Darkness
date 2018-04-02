@@ -16,7 +16,7 @@ class Economy():
 			data[str(ctx.author.id)] = {}
 			data[str(ctx.author.id)]["name"] = str(ctx.author)
 			data[str(ctx.author.id)]["servers"] = {}
-			data[str(ctx.author.id)]["servers"][ctx.guild] = ctx.guild.id
+			data[str(ctx.author.id)]["servers"][ctx.guild.name] = ctx.guild.id
 			data[str(ctx.author.id)]["balance"] = 200
 		else:
 			await ctx.send("You've already opened an account silly")
