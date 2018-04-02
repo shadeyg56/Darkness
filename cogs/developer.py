@@ -11,7 +11,7 @@ from contextlib import redirect_stdout
 class Developer():
     def __init__(self, bot):
         self.bot = bot
-        self.startup_extensions = ['cogs.fun', 'cogs.developer', 'cogs.mod', 'cogs.info', 'cogs.setup', 'cogs.util']
+        self.startup_extensions = ['cogs.fun', 'cogs.developer', 'cogs.mod', 'cogs.info', 'cogs.setup', 'cogs.util', 'cogs.economy']
         
     @commands.command(name='reload')
     @commands.is_owner()
