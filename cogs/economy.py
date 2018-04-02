@@ -7,7 +7,7 @@ class Economy():
 		with open('cogs/utils/economy.json') as f:
 			self.data = json.load(f)
 
-	@commands.commands()
+	@commands.command()
 	async def openaccount(self, ctx):
 		if str(ctx.author.id) not in self.data:
 			await ctx.send("Thanks for joining the National Darkness Bank. As a welcome gift we have given you 200 Darkness chips <:Darkness:411673568170999808>")
