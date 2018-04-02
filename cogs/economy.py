@@ -18,6 +18,9 @@ class Economy():
 			self.data[str(ctx.author.id)]["balance"] = 200
 		else:
 			await ctx.send("You've already opened an account silly")
+		data = json.dumps(self.data, indent=4)
+		with open('cogs/utils/economy.json', 'w') as f:
+			f.write(data)
 
 	@commands.command()
 	async def balance():
