@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import json
 
 class Economy():
 	def __init__(self, bot):
