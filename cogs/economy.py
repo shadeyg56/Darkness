@@ -12,8 +12,8 @@ class Economy():
 	async def openaccount(self, ctx):
 		if str(ctx.author.id) not in self.data:
 			await ctx.send("Thanks for joining the National Darkness Bank. As a welcome gift we have given you 200 Darkness chips <:Darkness:411673568170999808>")
-			self.data[ctx.author.id] = {}
-			self.data[ctx.author.id]["name"] = ctx.author
+			self.data[str(ctx.author.id)] = {}
+			self.data[str(ctx.author.id)]["name"] = ctx.author
 			self.data[str(ctx.author.id)]["servers"] = {}
 			self.data[str(ctx.author.id)]["servers"][ctx.guild] = ctx.guild.id
 			self.data[str(ctx.author.id)]["balance"] = 200
