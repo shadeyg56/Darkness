@@ -12,12 +12,13 @@ class Economy():
 		with open('cogs/utils/economy.json') as f:
 			data = json.load(f)
 		if str(ctx.author.id) not in data:
-			await ctx.send("Thanks for joining the National Darkness Bank. As a welcome gift we have given you 200 Darkness chips <:Darkness:411673568170999808>")
+			await ctx.send("Thanks for joining the National Darkness Bank. As a welcome gift we have given you 200 Darkness chips <:Darkness:411673568170999808> in this server")
 			data[str(ctx.author.id)] = {}
 			data[str(ctx.author.id)]["name"] = str(ctx.author)
 			data[str(ctx.author.id)]["servers"] = {}
-			data[str(ctx.author.id)]["servers"][ctx.guild.name] = ctx.guild.id
-			data[str(ctx.author.id)]["balance"] = 200
+			data[str(ctx.author.id)]["servers"][ctx.guild.name] = {}
+			data[str(ctx.author.id)]["servers"][ctx.guild.name]["id"] = ctx.guild.id
+			data[str(ctx.author.id)]["servers"][ctx.guild.name]["balance"] = 200
 		else:
 			await ctx.send("You've already opened an account silly")
 		data = json.dumps(data, indent=4)
@@ -29,7 +30,7 @@ class Economy():
 		with open('cogs/utils/economy.json') as f:
 			data = json.load(f)
 		if str(ctx.author.id) in data:
-			embed = discord.Embed(title="Balance", description=f"{data[str(ctx.author.id)]['balance']} Darkness Chips <:Darkness:411673568170999808>", color=discord.Color.blue())
+			embed = discord.Embed(title="Balance", description=f"{data[str(ctx.author.id)][ctx.guild.name]['balance']} Darkness Chips <:Darkness:411673568170999808>", color=discord.Color.blue())
 			await ctx.send(embed=embed)
 		else:
 			await ctx.send("You haven't opened an account yet. To do so run the openaccount command.")
