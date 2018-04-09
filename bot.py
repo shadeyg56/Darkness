@@ -23,7 +23,7 @@ async def get_pre(bot, message):
 
 	
 	
-bot = commands.Bot(command_prefix=get_pre)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or(get_pre))
 
 
 
@@ -61,6 +61,20 @@ async def on_ready():
     users = sum(1 for _ in bot.get_all_members())
     await channel.send(embed=embed)
     await bot.change_presence(activity=discord.Game(name='Major update | d.setup'))
+
+@bot.command()
+async def prefix(ctx):
+	"""Get the prefix for the server you're in"""
+	with open('cogs/utils/servers.json') as f:
+		data = json.load(f)
+	try:
+		if str(message.guild.id) not in data:
+			await ctx.send(f"{ctx.guild}'s prefix: d.")
+	except:
+		pass
+	else:
+		await ctx.send(f"{ctx.guild}'s prefix: {data[str(message.guild.id)]['prefix']}") 
+
 
 
 @bot.event
