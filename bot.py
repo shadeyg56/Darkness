@@ -15,7 +15,7 @@ async def get_pre(bot, message):
 		data = json.load(f)
 	try:
 		if str(message.guild.id) not in data:
-			return ['d.", "<@355189919410421760>"]
+			return ["d.", "<@355189919410421760>"]
 	except:
 		pass
 	else:
