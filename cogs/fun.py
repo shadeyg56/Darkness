@@ -8,7 +8,7 @@ from insultgenerator import phrases
 import sys
 sys.path.insert(0, '/home/pi/Desktop/')
 import private
-from Cleverbot import async as cleverbot
+from Cleverbotio import async as cleverbot
 
 class Fun:
 	def __init__(self, bot):
