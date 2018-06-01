@@ -153,7 +153,7 @@ class Fun:
 	@commands.command(aliases=["cb"])
 	async def cleverbot(self, ctx, message: str):
 		cb = cleverbot.Cleverbot(private.CB_USER, private.CB_KEY, "shadeyg56")
-		resp = await cb.ask(message)
+		resp = await cb.say(message)
 		await ctx.send(resp["response"])
 		
 		
