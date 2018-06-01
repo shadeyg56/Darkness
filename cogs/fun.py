@@ -5,6 +5,9 @@ import asyncio
 import aiohttp
 import json
 from insultgenerator import phrases
+sys.path.insert(0, '/home/pi/Desktop/')
+import private
+from Cleverbot import async as cleverbot
 
 class Fun:
 	def __init__(self, bot):
@@ -145,6 +148,12 @@ class Fun:
 			await ctx.send(data['joke'])
 		except Exception as e:
 			await ctx.send(f'An error occured in the API\nLog\n```py\n{e}```')
+				       
+	@commands.command(aliases=["cb"])
+	async def cleverbot(self, ctx, message: str):
+		cb = cleverbot.Cleverbot(private.CB_USER, private.CB_KEY, "shadeyg56")
+		resp = await cb.ask(message)
+		await ctx.send(resp["response"])
 		
 		
 		
