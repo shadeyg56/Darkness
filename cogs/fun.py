@@ -5,6 +5,7 @@ import asyncio
 import aiohttp
 import json
 from insultgenerator import phrases
+import sys
 sys.path.insert(0, '/home/pi/Desktop/')
 import private
 from Cleverbot import async as cleverbot
