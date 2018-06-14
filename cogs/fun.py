@@ -151,7 +151,7 @@ class Fun:
 			await ctx.send(f'An error occured in the API\nLog\n```py\n{e}```')
 				       
 	@commands.command(aliases=["cb"])
-	async def cleverbot(self, ctx, message: str):
+	async def cleverbot(self, ctx, *, message: str):
 		cb = cleverbot.Cleverbot(private.CB_USER, private.CB_KEY, "shadeyg56")
 		resp = await cb.say(message)
 		await ctx.send(resp["response"])
